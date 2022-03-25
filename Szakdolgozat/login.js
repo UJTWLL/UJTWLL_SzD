@@ -9,6 +9,8 @@ const routes = require('./userRouter');
 const controller = require('./userController');
 const MongoClient = require('mongodb').MongoClient;
 
+console.log("A localhost elérhető");
+
 /*MongoClient.connect('mongodb+srv://jokermta:QTIq5re1999@szdcluster.4fntd.mongodb.net/test?retryWrites=true&w=majority', {
   useUnifiedTopology: true,
   useNewUrlParser: true,
@@ -72,11 +74,21 @@ app.post('/auth', function(req, res, next) {
   }).then((db) => {
       var dbo = db.db("test");
 
-      return dbo.collection("profiles").find({}, { projection: { _id: 1, username: "asdasd", password: "asdasd" } }).toArray({
+      return dbo.collection("profiles").find(myobj).toArray({
           useUnifiedTopology: true,
           useNewUrlParser: true,
       }).then((collection) => {
           console.log(collection);
+          if (collection.length > 0) {
+            // Authenticate the user
+            req.session.loggedin = true;
+            req.session.username = inuser;
+            // Redirect to home page
+            res.redirect('/home');
+          } else {
+            res.send('Incorrect Username and/or Password!');
+          }			
+          response.end();
       }).catch(err => {
           console.log(`DB Connection Error: ${err.message}`);
       }).finally(() => {
