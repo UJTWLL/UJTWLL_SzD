@@ -5,8 +5,6 @@ const express = require('express');
 const app = express();
 const session = require('express-session');
 const path = require('path');
-const routes = require('./userRouter');
-const controller = require('./userController');
 const MongoClient = require('mongodb').MongoClient;
 const jsonwebtoken = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
@@ -84,7 +82,8 @@ app.post('/auth', function(req, res, next) {
             req.session.username = inuser;
             //res.json({ token: jwt.sign({ email: user.email, fullName: user.fullName, _id: user._id }, 'RESTFULAPIs') });
             // Redirect to home page
-            res.redirect('/home');
+            if(inuser == "admin") res.redirect('/admin');
+            else res.redirect('/home');
           } else {
             res.send('Incorrect Username and/or Password!');
           }			
@@ -171,8 +170,6 @@ app.get('/home', function(req, res) {
     next();
   }
 });*/
-
-routes(app);
 
 app.listen(3000);
 
