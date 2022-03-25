@@ -8,16 +8,18 @@ const path = require('path');
 const routes = require('./userRouter');
 const controller = require('./userController');
 const MongoClient = require('mongodb').MongoClient;
+const jsonwebtoken = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
 
-console.log("A localhost elérhető");
+console.log("The localhost is available");
 
 /*MongoClient.connect('mongodb+srv://jokermta:QTIq5re1999@szdcluster.4fntd.mongodb.net/test?retryWrites=true&w=majority', {
   useUnifiedTopology: true,
   useNewUrlParser: true,
 }).then((db) => {
   var dbo = db.db("test");
-  var myobj = { _id: 1, username: "asdasd", password: "asdasd" };
-  return dbo.collection("szd").insertOne(myobj, {
+  var myobj = { _id: 1, username: "test", password: bcrypt.hashSync("test", 10) }; //10 KÖRNYI SALT!!!
+  return dbo.collection("profiles").insertOne(myobj, {
     useUnifiedTopology: true,
     useNewUrlParser: true,
   }).then((collection) => {
@@ -65,7 +67,7 @@ app.post('/auth', function(req, res, next) {
   var inuser = req.body.username,
       inpass = req.body.password;
 
-  var myobj = { username: inuser, password: inpass };
+  var myobj = { username: inuser};
   console.log(`Login credentials: ` + JSON.stringify(myobj));
 
   MongoClient.connect('mongodb+srv://jokermta:QTIq5re1999@szdcluster.4fntd.mongodb.net/test?retryWrites=true&w=majority', {
@@ -74,21 +76,19 @@ app.post('/auth', function(req, res, next) {
   }).then((db) => {
       var dbo = db.db("test");
 
-      return dbo.collection("profiles").find(myobj).toArray({
-          useUnifiedTopology: true,
-          useNewUrlParser: true,
-      }).then((collection) => {
+      var profile = dbo.collection("profiles").findOne(myobj).then((collection) => {
           console.log(collection);
-          if (collection.length > 0) {
+          if (bcrypt.compareSync(inpass, collection.password)) {
             // Authenticate the user
             req.session.loggedin = true;
             req.session.username = inuser;
+            //res.json({ token: jwt.sign({ email: user.email, fullName: user.fullName, _id: user._id }, 'RESTFULAPIs') });
             // Redirect to home page
             res.redirect('/home');
           } else {
             res.send('Incorrect Username and/or Password!');
           }			
-          response.end();
+          res.end();
       }).catch(err => {
           console.log(`DB Connection Error: ${err.message}`);
       }).finally(() => {
@@ -158,6 +158,19 @@ app.get('/home', function(req, res) {
 	}
 	res.end();
 });
+
+/*app.use(function(req, res, next) {
+  if (req.headers && req.headers.authorization && req.headers.authorization.split(' ')[0] === 'JWT') {
+    jsonwebtoken.verify(req.headers.authorization.split(' ')[1], 'RESTFULAPIs', function(err, decode) {
+      if (err) req.user = undefined;
+      req.user = decode;
+      next();
+    });
+  } else {
+    req.user = undefined;
+    next();
+  }
+});*/
 
 routes(app);
 
