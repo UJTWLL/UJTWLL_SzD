@@ -4,14 +4,38 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width,minimum-scale=1">
 		<title>Admin</title>
-        <!-- the form awesome library is used to add icons to our form -->
-		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
-        <!-- include the stylesheet file -->
         <!--<link href="/style.css" rel="stylesheet" type="text/css">-->
 	</head>
 	<body>
-		<div>
-			<h1>Henlo</h1>
-		</div>
+		<h2>Üdv a szerveren, adminisztrátor!</h2>
+		<p class="addUser">
+			<form action="/add" method="post">
+				<label for="addUName">Felhasználónév: </label>
+				<input type="text" name="addUName" placeholder="Felhasználónév" id="addUName" required><br>
+				<label for="addPW">Jelszó: </label>
+				<input type="password" name="addPW" placeholder="Jelszó" id="addPW" required><br>
+				<label for="addPWAgain">Jelszó újra: </label>
+				<input type="password" name="addPWAgain" placeholder="Jelszó újra" id="addPWAgain" required><br>
+				<input type="submit" value="Add"><br>
+			</form>
+		</p>
+		<p class="modifyUser">
+			<form action="/modify" method="post">
+				<label for="modifyUName">Felhasználónév: </label>
+				<input type="text" name="modifyUName" placeholder="Felhasználónév" id="modifyUName" required><br>
+				<label for="modifyPW">Jelszó: </label>
+				<input type="password" name="modifyPW" placeholder="Jelszó" id="modifyPW" required><br>
+				<label for="modifyPWAgain">Jelszó újra: </label>
+				<input type="password" name="modifyPWAgain" placeholder="Jelszó újra" id="modifyPWAgain" required><br>
+				<input type="submit" value="Modify"><br>
+			</form>
+		</p>
+		<p class="removeUser">
+			<form action="/remove" method="post">
+				<label for="removeUName">Felhasználónév: </label>
+				<input type="text" name="removeUName" placeholder="Felhasználónév" id="removeUName" required><br>
+				<input type="submit" value="Remove"><br>
+			</form>
+		</p>
 	</body>
 </html>
