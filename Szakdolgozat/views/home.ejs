@@ -2,23 +2,35 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width,minimum-scale=1">
 		<title>Mesterséges Intelligencia</title>
-        <!-- the form awesome library is used to add icons to our form -->
-		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
-        <!-- include the stylesheet file -->
-        <!--<link href="/style.css" rel="stylesheet" type="text/css">-->
+        <link rel="stylesheet" href="/styles/mainStyle.css" type="text/css">
 	</head>
 	<body>
 		<div>
-			<h1>Főoldal</h1>
-			<table>
-				<tr>
-					<td><a href="/home">Főoldal</a></td>
-					<td><a href="/files">Fájlok</a></td>
-					<td><a href="/programmes">Programok</a></td>
-				</tr>
-			</table>
+			<div class="dropBase signOut">
+				<a href="/"><button class="signOutButton">Kilépés</button></a>
+			</div>
+			<h1 class="center title">Főoldal</h1>
+			<p></p>
+			<div class="center">
+				<a href="/home"><div class="dropBase">
+					<button class="dropButton home">Főoldal</button>
+				</div></a>
+				<div class="dropBase">
+					<button class="dropButton">Fájlok</button>
+					<div class="dropContent">
+						<a href="/files">Tananyagok</a>
+						<a href="/fileUpload">Feltöltés</a>
+					</div>
+				</div>
+				<div class="dropBase">
+					<button class="dropButton">Programok</button>
+					<div class="dropContent">
+				  		<a href="/programmes">Demonstrációk</a>
+				  		<a href="/programmeUpload">Feltöltés</a>
+					</div>						
+				</div>
+			</div>				
 		</div>
 	</body>
 </html>
