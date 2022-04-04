@@ -12,6 +12,8 @@ const path = require('path');
 const MongoClient = require('mongodb').MongoClient;
 const bcrypt = require('bcrypt');
 const cookieParser = require('cookie-parser');
+const multer = require('multer');
+const fs = require('fs');
 
 console.log("The localhost is available");
 
@@ -46,6 +48,16 @@ console.log("The localhost is available");
 //---------------------------------------------------------------------------------------------------------------------------------------
 
 const halfHour = 1000 * 60 * 30; // A felhasználói "session" fél óráig tart (1 800 000 miliszekundum)
+
+const storage = multer.diskStorage({
+  destination: function(req, file, cb) {
+      cb(null, '/programmes/uploaded/');
+  },
+
+  filename: function(req, file, cb) {
+      cb(null, file.originalname + path.extname(file.originalname));
+  }
+});
 
 app.use(session({
 	secret: "szakdolgozat",
@@ -90,7 +102,7 @@ app.post('/auth', function(req, res, next) {
         if(inuser == "admin") res.redirect('/admin');
         else res.redirect("/home");
       } else {
-        res.send('Incorrect Username and/or Password!');
+        res.redirect('/badauth');
       }			
       res.end();
     }).catch(err => {
@@ -138,7 +150,7 @@ app.post('/add', function(req, res, next) {
             var dbo = db.db("test");
             dbo.collection("profiles").insertOne(addObj).then((collection) => {
               console.log("User added!");
-              res.redirect('/success');
+              res.redirect('/dbsuccess');
             })
           });
         }
@@ -187,7 +199,7 @@ app.post('/modify', function(req, res, next) {
               useNewUrlParser: true,
             }).then((collection) => {
               console.log("User updated!");
-              res.redirect('/success');
+              res.redirect('/dbsuccess');
             })
           });
         }
@@ -232,7 +244,7 @@ app.post('/remove', function(req, res, next) {
             useNewUrlParser: true,
           }).then((collection) => {
             console.log("User removed!");
-            res.redirect('/success');
+            res.redirect('/dbsuccess');
           })
         });
       }
@@ -251,11 +263,44 @@ app.post('/remove', function(req, res, next) {
 });
 
 //---------------------------------------------------------------------------------------------------------------------------------------
+// FELTÖLTÉSEK KEZELÉSE
+//---------------------------------------------------------------------------------------------------------------------------------------
+
+// http://localhost:3000/fileupload
+app.post('/fileupload', (req, res) => {
+  var upload = multer({ storage: storage }).single('fileUp');
+  upload(req, res, function(err) {
+    if(!req.file){
+      res.redirect('/nofile');
+    }
+    else{
+      res.redirect('/uploadsuccess');
+    }
+  });
+});
+
+// http://localhost:3000/programmeupload
+app.post('/programmeupload', (req, res) => {
+  var upload = multer({ storage: storage }).single('programmeUp');
+  upload(req, res, function(err) {
+    if(!req.file){
+      res.redirect('/nofile');
+    }
+    else{
+      res.send(req.file);
+      //res.redirect('/uploadsuccess');
+    }
+  });
+});
+
+//---------------------------------------------------------------------------------------------------------------------------------------
 // CÍMEK, ÁTIRÁNYÍTÁSOK KEZELÉSE
 //---------------------------------------------------------------------------------------------------------------------------------------
 
 //http://localhost:3000/
 app.get('/', function(req, res) {
+  req.session.loggedin = false;
+  req.session.username = '';
   res.render("login");
 });
 
@@ -278,7 +323,7 @@ app.get('/files', function(req, res) {
 });
 
 // http://localhost:3000/fileUpload
-app.get('/fileUpload', function(req, res) {
+app.get('/fileupload', function(req, res) {
 	if (!req.session.loggedin) {
     res.redirect("invalid");
 	} else {
@@ -296,7 +341,7 @@ app.get('/programmes', function(req, res) {
 });
 
 // http://localhost:3000/programmeUpload
-app.get('/programmeUpload', function(req, res) {
+app.get('/programmeupload', function(req, res) {
 	if (!req.session.loggedin) {
     res.redirect("invalid");
 	} else {
@@ -313,14 +358,24 @@ app.get('/admin', function(req, res) {
 	}
 });
 
-// http://localhost:3000/success
-app.get('/success', function(req, res) {
-  res.render("success");
+// http://localhost:3000/dbsuccess
+app.get('/dbsuccess', function(req, res) {
+  res.render("dbsuccess");
+});
+
+// http://localhost:3000/uploadsuccess
+app.get('/uploadsuccess', function(req, res) {
+  res.render("uploadsuccess");
 });
 
 // http://localhost:3000/invalid
 app.get('/invalid', function(req, res) {
   res.render("invalid");
+});
+
+// http://localhost:3000/badauth
+app.get('/badauth', function(req, res) {
+  res.render("badauth");
 });
 
 // http://localhost:3000/notmatching
@@ -331,6 +386,11 @@ app.get('/notmatching', function(req, res) {
 // http://localhost:3000/notfound
 app.get('/notfound', function(req, res) {
   res.render("notfound");
+});
+
+// http://localhost:3000/notfile
+app.get('/nofile', function(req, res) {
+  res.render("nofile");
 });
 
 // http://localhost:3000/exists
