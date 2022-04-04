@@ -10,7 +10,7 @@
 			<div class="dropBase signOut">
 				<a href="/"><button class="signOutButton">Kilépés</button></a>
 			</div>
-			<h1 class="center title">Fájlok megtekintése</h1>
+			<h1 class="center title">Programok feltöltése</h1>
 			<p></p>
 			<div class="center">
 				<a href="/home"><div class="dropBase">
@@ -19,8 +19,8 @@
 				<div class="dropBase">
 					<button class="dropButton">Fájlok</button>
 					<div class="dropContent">
-						<a href="/files">Tananyagok</a>
-						<a href="/fileUpload">Feltöltés</a>
+				  		<a href="/files">Tananyagok</a>
+				  		<a href="/fileUpload">Feltöltés</a>
 					</div>
 				</div>
 				<div class="dropBase">
@@ -48,12 +48,11 @@
 						<i>Kunné Dr. Tamás Judit</i>
 					</td>
 					<td class="main">
-						<h3>Ütemtervek</h3>
-						<a href="/files/MI_21_22_1_TEMATIKA.txt" download>2021/2022/1 ütemterv</a>
-						<h3>Előadásfóliák</h3>
-						<a href="/files/MI_EA_1.txt" download>1. előadás</a>
-						<h3>Eredmények</h3>
-						<a href="/files/MI_21_22_1_ZH1.txt" download>2021/2022/1 ZH1 eredményei</a>
+						<h3>Program feltöltése</h3>
+						<form action="/programmeupload" method="post">
+							<input type="file" name="programmeUp"><br>
+							<input type="submit">
+						</form>
 					</td>
 				</tr>
 			</table>
