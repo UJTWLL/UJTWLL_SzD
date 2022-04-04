@@ -60,13 +60,13 @@ app.set("view engine", "ejs");
 app.use(express.static(__dirname + '/views'));
 app.use(cookieParser());
 
-//---------------------------------------------------------------------------------------------------------------------------------------
-// CÍMEK, ÁTIRÁNYÍTÁSOK KEZELÉSE
-//---------------------------------------------------------------------------------------------------------------------------------------
-
 /*app.use(function(req, res) {
   res.status(404).send({ url: req.originalUrl + ' not found' })
 });*/
+
+//---------------------------------------------------------------------------------------------------------------------------------------
+// AUTENTIKÁCIÓ
+//---------------------------------------------------------------------------------------------------------------------------------------
 
 // http://localhost:3000/auth
 app.post('/auth', function(req, res, next) {
@@ -102,6 +102,10 @@ app.post('/auth', function(req, res, next) {
     })
   });
 });
+
+//---------------------------------------------------------------------------------------------------------------------------------------
+// ADMINISZTRÁTOR MŰVELETEK KEZELÉSE
+//---------------------------------------------------------------------------------------------------------------------------------------
 
 // http://localhost:3000/add
 app.post('/add', function(req, res, next) {
@@ -191,13 +195,6 @@ app.post('/modify', function(req, res, next) {
           console.log("Username not found!");
           res.redirect('/notfound');
         }
-        /*if(collection.modifiedCount > 0){
-          console.log("siker");
-        }
-        else{
-          console.log("Username not found!");
-          res.redirect('/notfound');
-        }*/
       }).catch(err => {
         console.log(`DB Connection Error: ${err.message}`);
         res.redirect('/notfound');
@@ -253,6 +250,10 @@ app.post('/remove', function(req, res, next) {
   });
 });
 
+//---------------------------------------------------------------------------------------------------------------------------------------
+// CÍMEK, ÁTIRÁNYÍTÁSOK KEZELÉSE
+//---------------------------------------------------------------------------------------------------------------------------------------
+
 //http://localhost:3000/
 app.get('/', function(req, res) {
   res.render("login");
@@ -276,12 +277,30 @@ app.get('/files', function(req, res) {
 	}
 });
 
+// http://localhost:3000/fileUpload
+app.get('/fileUpload', function(req, res) {
+	if (!req.session.loggedin) {
+    res.redirect("invalid");
+	} else {
+    res.render("fileUpload");
+	}
+});
+
 // http://localhost:3000/programmes
 app.get('/programmes', function(req, res) {
 	if (!req.session.loggedin) {
     res.redirect("invalid");
 	} else {
     res.render("programmes");
+	}
+});
+
+// http://localhost:3000/programmeUpload
+app.get('/programmeUpload', function(req, res) {
+	if (!req.session.loggedin) {
+    res.redirect("invalid");
+	} else {
+    res.render("programmeUpload");
 	}
 });
 
