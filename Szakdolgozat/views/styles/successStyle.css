@@ -1,32 +1,28 @@
 body {
-    background-image: linear-gradient(180deg, rgb(255, 255, 255), rgb(200, 200, 255));
+    background-image: linear-gradient(180deg, rgb(255, 255, 255), rgb(200, 255, 200));
     font-family: 'Raleway', sans-serif;
 }
   
 div {
-    height: 71vh;
+    height: 63vh;
 }
-
-.loginButton {
-    background-color: #3333ad;
+  
+.button {
+    background-color: #33ad33;
     color: white;
     padding: 15px;
     font-size: 15px;
     border: none;
     min-width: 160px;
 }
-
-.loginButton:hover {
-    background-color: #333333;
-}
-
+  
 .center {
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
 }
-
-h1 {
-    text-align: center;
+  
+.button:hover {
+    background-color: #333333;
 }

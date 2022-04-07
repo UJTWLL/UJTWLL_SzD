@@ -6,7 +6,6 @@ body {
 .sidebar {
   width: 12%;
   padding-right: 3%;
-  text-align: justify;
 }
 
 .main {
@@ -16,6 +15,20 @@ body {
 
 .fill {
   height: 74vh;
+}
+
+div .fill {
+  height: 40vh;
+}
+
+.admin {
+  text-align: center;
+}
+
+.adminTable {
+  width: 40%;
+  margin-left:auto; 
+  margin-right:auto; 
 }
 
 .title {
@@ -100,4 +113,40 @@ body {
 
 .dropBase:hover .signOutButton {
   background-color: #333333;
+}
+
+.adminButton {
+  background-color: #33ad33;
+  color: white;
+  padding: 15px;
+  font-size: 15px;
+  border: none;
+  min-width: 160px;
+}
+
+.adminButton:hover {
+  background-color: #333333;
+}
+
+.adminButton a {
+  color: white;
+  text-decoration: none;
+}
+
+.uploadButton {
+  background-color: #33ad33;
+  color: white;
+  padding: 15px;
+  font-size: 15px;
+  border: none;
+  min-width: 160px;
+}
+
+.uploadButton:hover {
+  background-color: #333333;
+}
+
+.uploadButton a {
+  color: white;
+  text-decoration: none;
 }
