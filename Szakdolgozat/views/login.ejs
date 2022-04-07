@@ -2,22 +2,31 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>Login</title>
+		<title>Bejelentkezés</title>
         <link rel="stylesheet" href="/styles/loginStyle.css">
 	</head>
 	<body>
-		<div class="login">
-			<h1>Login</h1>
+		<p style="height: 25vh"></p>
+		<div>
 			<form action="/auth" method="post">
-				<label for="username">
-					<i class="fas fa-user"></i>
-				</label>
-				<input type="text" name="username" placeholder="Username" id="username" required>
-				<label for="password">
-					<i class="fas fa-lock"></i>
-				</label>
-				<input type="password" name="password" placeholder="Password" id="password" required><br><br>
-				<input type="submit" value="Login" class="loginButton">
+				<table class="center">
+					<tr>
+						<td><h1>Bejelentkezés</h1></td>
+					</tr>
+					<tr>
+						<td><label for="username"></label>
+							<input type="text" name="username" placeholder="Felhasználónév" id="username" required>
+						</td>
+					</tr>
+					<tr>
+						<td><label for="password"></label>
+							<input type="password" name="password" placeholder="Jelszó" id="password" required>
+						</td>
+					</tr>
+					<tr>
+						<td style="padding-top: 20px"><input type="submit" value="Bejelentkezés" class="loginButton"></td>
+					</tr>
+				</table>
 			</form>
 		</div>
 	</body>

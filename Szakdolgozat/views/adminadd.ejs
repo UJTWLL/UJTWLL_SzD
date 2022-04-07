@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,minimum-scale=1">
+		<title>Admin</title>
+        <link rel="stylesheet" href="/styles/mainStyle.css" type="text/css">
+	</head>
+	<body>
+		<div>
+			<div class="dropBase signOut">
+				<a href="/"><button class="signOutButton">Kilépés</button></a>
+			</div>
+			<h1 class="center title">Üdv a szerveren, adminisztrátor!</h1>
+			<p></p>
+			<div class="center">
+				<a href="/adminadd"><div class="dropBase">
+					<button class="dropButton home">Felhasználó hozzáadás</button>
+				</div></a>
+				<a href="/adminmodify"><div class="dropBase">
+					<button class="dropButton home">Felhasználó módosítás</button>
+				</div></a>
+				<a href="/adminremove"><div class="dropBase">
+					<button class="dropButton home">Felhasználó törlés</button>
+				</div></a>
+			</div>				
+		</div>
+		<br>
+		<div class="fill admin">
+			<form action="/add" method="post">
+				<table class="adminTable">
+					<tr>
+						<td><label for="addUName">Felhasználónév: </label>
+							<input type="text" name="addUName" placeholder="Felhasználónév" id="addUName" required>
+						</td>
+					</tr>
+					<tr>
+						<td><label for="addPW">Jelszó: </label>
+							<input type="password" name="addPW" placeholder="Jelszó" id="addPW" required>
+						</td>
+					</tr>
+					<tr>
+						<td><label for="addPWAgain">Jelszó újra: </label>
+							<input type="password" name="addPWAgain" placeholder="Jelszó újra" id="addPWAgain" required>
+						</td>
+					</tr>
+					<tr>
+						<td><input type="submit" value="Hozzáadás" class="adminButton"></td>
+					</tr>
+				</table>
+			</form>
+		</div>
+	</body>
+</html>

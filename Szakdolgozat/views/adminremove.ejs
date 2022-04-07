@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,minimum-scale=1">
+		<title>Admin</title>
+        <link rel="stylesheet" href="/styles/mainStyle.css" type="text/css">
+	</head>
+	<body>
+		<div>
+			<div class="dropBase signOut">
+				<a href="/"><button class="signOutButton">Kilépés</button></a>
+			</div>
+			<h1 class="center title">Üdv a szerveren, adminisztrátor!</h1>
+			<p></p>
+			<div class="center">
+				<a href="/adminadd"><div class="dropBase">
+					<button class="dropButton home">Felhasználó hozzáadás</button>
+				</div></a>
+				<a href="/adminmodify"><div class="dropBase">
+					<button class="dropButton home">Felhasználó módosítás</button>
+				</div></a>
+				<a href="/adminremove"><div class="dropBase">
+					<button class="dropButton home">Felhasználó törlés</button>
+				</div></a>
+			</div>				
+		</div>
+		<br>
+		<div class="fill admin">
+			<form action="/remove" method="post">
+				<table class="adminTable">
+					<tr>
+						<td><label for="removeUName">Felhasználónév: </label>
+							<input type="text" name="removeUName" placeholder="Felhasználónév" id="removeUName" required>
+						</td>
+					</tr>
+					<tr>
+						<td><input type="submit" value="Törlés" class="adminButton"></td>
+					</tr>
+				</table>
+			</form>
+		</div>
+	</body>
+</html>
