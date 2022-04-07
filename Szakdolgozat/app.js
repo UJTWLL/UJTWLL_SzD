@@ -12,7 +12,7 @@ const path = require('path');
 const MongoClient = require('mongodb').MongoClient;
 const bcrypt = require('bcrypt');
 const cookieParser = require('cookie-parser');
-const multer = require('multer');
+const formidable = require('formidable');
 const fs = require('fs');
 
 console.log("The localhost is available");
@@ -48,16 +48,6 @@ console.log("The localhost is available");
 //---------------------------------------------------------------------------------------------------------------------------------------
 
 const halfHour = 1000 * 60 * 30; // A felhasználói "session" fél óráig tart (1 800 000 miliszekundum)
-
-const storage = multer.diskStorage({
-  destination: function(req, file, cb) {
-      cb(null, '/programmes/uploaded/');
-  },
-
-  filename: function(req, file, cb) {
-      cb(null, file.originalname + path.extname(file.originalname));
-  }
-});
 
 app.use(session({
 	secret: "szakdolgozat",
@@ -97,9 +87,8 @@ app.post('/auth', function(req, res, next) {
       if (bcrypt.compareSync(inpass, collection.password)) {
         req.session.loggedin = true;
         req.session.username = inuser;
-        console.log(req.session);
 
-        if(inuser == "admin") res.redirect('/admin');
+        if(inuser == "admin") res.redirect('/adminadd');
         else res.redirect("/home");
       } else {
         res.redirect('/badauth');
@@ -140,7 +129,7 @@ app.post('/add', function(req, res, next) {
       dbo.collection("profiles").findOne({ username: addUser }).then((collection) => {
         if (collection) {
           console.log("User already exists!");
-          res.redirect('/exists');
+          res.redirect('/userexists');
         }
         else{
           MongoClient.connect('mongodb+srv://jokermta:QTIq5re1999@szdcluster.4fntd.mongodb.net/test?retryWrites=true&w=majority', {
@@ -267,30 +256,51 @@ app.post('/remove', function(req, res, next) {
 //---------------------------------------------------------------------------------------------------------------------------------------
 
 // http://localhost:3000/fileupload
-app.post('/fileupload', (req, res) => {
-  var upload = multer({ storage: storage }).single('fileUp');
-  upload(req, res, function(err) {
-    if(!req.file){
-      res.redirect('/nofile');
+app.post('/fileupload', async (req, res, next) => {
+  const form = new formidable.IncomingForm();
+  form.parse(req, function(err, fields, files){
+    if(files.fileUp.originalFilename == ""){
+      res.redirect('nofile');
     }
     else{
-      res.redirect('/uploadsuccess');
+      var uploadPath = path.join(__dirname, "views", "files", "uploads", files.fileUp.originalFilename);
+      var oldPath = files.fileUp.filepath;
+      var rawData = fs.readFileSync(oldPath);
+      if(fs.existsSync(uploadPath)){
+        res.redirect('fileexists');
+      }
+      else{
+        fs.writeFile(uploadPath, rawData, function(err){
+          res.redirect('uploadsuccess');
+          console.log("File successfully uploaded");
+        })
+      }
     }
-  });
+  })
 });
 
 // http://localhost:3000/programmeupload
 app.post('/programmeupload', (req, res) => {
-  var upload = multer({ storage: storage }).single('programmeUp');
-  upload(req, res, function(err) {
-    if(!req.file){
-      res.redirect('/nofile');
+  const form = new formidable.IncomingForm();
+  form.parse(req, function(err, fields, files){
+    if(files.programmeUp.originalFilename == ""){
+      res.redirect('nofile');
     }
     else{
-      res.send(req.file);
-      //res.redirect('/uploadsuccess');
+      var uploadPath = path.join(__dirname, "views", "programmes", "uploads", files.programmeUp.originalFilename);
+      var oldPath = files.programmeUp.filepath;
+      var rawData = fs.readFileSync(oldPath);
+      if(fs.existsSync(uploadPath)){
+        res.redirect('fileexists');
+      }
+      else{
+        fs.writeFile(uploadPath, rawData, function(err){
+          res.redirect('uploadsuccess');
+          console.log("File successfully uploaded");
+        })
+      }
     }
-  });
+  })
 });
 
 //---------------------------------------------------------------------------------------------------------------------------------------
@@ -322,12 +332,12 @@ app.get('/files', function(req, res) {
 	}
 });
 
-// http://localhost:3000/fileUpload
+// http://localhost:3000/fileupload
 app.get('/fileupload', function(req, res) {
 	if (!req.session.loggedin) {
     res.redirect("invalid");
 	} else {
-    res.render("fileUpload");
+    res.render("fileupload");
 	}
 });
 
@@ -340,32 +350,58 @@ app.get('/programmes', function(req, res) {
 	}
 });
 
-// http://localhost:3000/programmeUpload
+// http://localhost:3000/programmeupload
 app.get('/programmeupload', function(req, res) {
 	if (!req.session.loggedin) {
     res.redirect("invalid");
 	} else {
-    res.render("programmeUpload");
+    res.render("programmeupload");
 	}
 });
 
-// http://localhost:3000/admin
-app.get('/admin', function(req, res) {
+// http://localhost:3000/adminadd
+app.get('/adminadd', function(req, res) {
 	if (req.session.username != "admin") {
-    res.send('Please login as an administrator to view this page!');
+    res.redirect('/notadmin');
 	} else {
-    res.render("admin");
+    res.render("adminadd");
+	}
+});
+
+// http://localhost:3000/adminmodify
+app.get('/adminmodify', function(req, res) {
+	if (req.session.username != "admin") {
+    res.redirect('/notadmin');
+	} else {
+    res.render("adminmodify");
+	}
+});
+
+// http://localhost:3000/adminremove
+app.get('/adminremove', function(req, res) {
+	if (req.session.username != "admin") {
+    res.redirect('/notadmin');
+	} else {
+    res.render("adminremove");
 	}
 });
 
 // http://localhost:3000/dbsuccess
 app.get('/dbsuccess', function(req, res) {
-  res.render("dbsuccess");
+  if (!req.session.loggedin) {
+    res.redirect("invalid");
+	} else {
+    res.render("dbsuccess");
+	}
 });
 
 // http://localhost:3000/uploadsuccess
 app.get('/uploadsuccess', function(req, res) {
-  res.render("uploadsuccess");
+  if (!req.session.loggedin) {
+    res.redirect("invalid");
+	} else {
+    res.render("uploadsuccess");
+	}
 });
 
 // http://localhost:3000/invalid
@@ -375,27 +411,74 @@ app.get('/invalid', function(req, res) {
 
 // http://localhost:3000/badauth
 app.get('/badauth', function(req, res) {
-  res.render("badauth");
+  if (!req.session.loggedin) {
+    res.redirect("invalid");
+	} else {
+    res.render("badauth");
+	}
 });
 
 // http://localhost:3000/notmatching
 app.get('/notmatching', function(req, res) {
-  res.render("notmatching");
+  if (!req.session.loggedin) {
+    res.redirect("invalid");
+	} else {
+    res.render("notmatching");
+	}
 });
 
 // http://localhost:3000/notfound
 app.get('/notfound', function(req, res) {
-  res.render("notfound");
+  if (!req.session.loggedin) {
+    res.redirect("invalid");
+	} else {
+    res.render("notfound");
+	}
+});
+
+// http://localhost:3000/notadmin
+app.get('/notadmin', function(req, res) {
+  if (!req.session.loggedin) {
+    res.redirect("invalid");
+	} else {
+    res.render("notadmin");
+	}
 });
 
 // http://localhost:3000/notfile
 app.get('/nofile', function(req, res) {
-  res.render("nofile");
+  if (!req.session.loggedin) {
+    res.redirect("invalid");
+	} else {
+    res.render("nofile");
+	}
 });
 
-// http://localhost:3000/exists
-app.get('/exists', function(req, res) {
-  res.render("exists");
+// http://localhost:3000/userexists
+app.get('/userexists', function(req, res) {
+  if (!req.session.loggedin) {
+    res.redirect("invalid");
+	} else {
+    res.render("userexists");
+	}
+});
+
+// http://localhost:3000/badfile
+app.get('/badfile', function(req, res) {
+  if (!req.session.loggedin) {
+    res.redirect("invalid");
+	} else {
+    res.render("badfile");
+	}
+});
+
+// http://localhost:3000/fileexists
+app.get('/fileexists', function(req, res) {
+  if (!req.session.loggedin) {
+    res.redirect("invalid");
+	} else {
+    res.render("fileexists");
+	}
 });
 
 //---------------------------------------------------------------------------------------------------------------------------------------
