@@ -62,10 +62,6 @@ app.set("view engine", "ejs");
 app.use(express.static(__dirname + '/views'));
 app.use(cookieParser());
 
-/*app.use(function(req, res) {
-  res.status(404).send({ url: req.originalUrl + ' not found' })
-});*/
-
 //---------------------------------------------------------------------------------------------------------------------------------------
 // AUTENTIKÁCIÓ
 //---------------------------------------------------------------------------------------------------------------------------------------
@@ -411,38 +407,22 @@ app.get('/invalid', function(req, res) {
 
 // http://localhost:3000/badauth
 app.get('/badauth', function(req, res) {
-  if (!req.session.loggedin) {
-    res.redirect("invalid");
-	} else {
-    res.render("badauth");
-	}
+  res.render("badauth");
 });
 
 // http://localhost:3000/notmatching
 app.get('/notmatching', function(req, res) {
-  if (!req.session.loggedin) {
-    res.redirect("invalid");
-	} else {
-    res.render("notmatching");
-	}
+  res.render("notmatching");
 });
 
 // http://localhost:3000/notfound
 app.get('/notfound', function(req, res) {
-  if (!req.session.loggedin) {
-    res.redirect("invalid");
-	} else {
-    res.render("notfound");
-	}
+  res.render("notfound");
 });
 
 // http://localhost:3000/notadmin
 app.get('/notadmin', function(req, res) {
-  if (!req.session.loggedin) {
-    res.redirect("invalid");
-	} else {
-    res.render("notadmin");
-	}
+  res.render("notadmin");
 });
 
 // http://localhost:3000/notfile
