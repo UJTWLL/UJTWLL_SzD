@@ -1,0 +1,407 @@
+\Chapter{Az elérhető technológiák összehasonlítása}
+
+Alapvető technológiaként tekintünk a HTML, CSS, valamint a JavaScript nyelvekre, mivel ezek szolgálnak a legtöbb weboldal alapjául, ezek a legelterjedtebbek. A HTML a weboldal tartalmáért, a CSS a weboldal esztétikájáért, a JavaScript pedig az oldal dinamikus mivoltáért fog felelni.
+
+A továbbiakbak viszont szélesebb körű rendszerek álltak rendelkezésünkre. Először is tekintsük át néhány releváns, számunkra is elérhető keretrendszert.
+
+
+\Section{Webes keretrendszerek}
+
+\subsection{Vue.js}
+
+A Vue.js egy nyílt forráskódú frontend JavaScript keretrendszer, melyet legtöbbször felhasználói felületek, valamint single-page [1] applikációk fejlesztésekor alkalmaznak.
+
+Nagy előnye, hogy magasabb szintű funkcionalitást kölcsönöz a HTML applikációknak, melyet az ún. „direktíváival” ér el. Ezeknek egy része beépített, viszont a felhasználók saját maguk is elkészíthetik egyéni direktíváikat \cite{w3schoolsvue}. Emellett „virtuális DOM-ot [2]” használ. Ez azt jelenti, hogy csak akkor módosul a valódi DOM, ha az applikáció változói frissülnek, így pedig a feldogozási sebesség megnő például a Jqueryhez képest [4].
+
+Erról a rendszerről egy cikk számol be bővebben \cite{vuecikk}:\\
+
+\noindent\textit{\textbf{\large{Mi az a Vue.js?}}}\\
+
+\textit{Manapság minden egyes weboldalnak, webáruháznak szüksége van a megfelelő böngészőoldali élmény, valamint funkcionalitás megteremtésére. Ez alapvető fontosságú: ugyanis ezek nélkül az adott online megjelenés nem fogja azokat az eredményeket hozni, amiket szeretnénk, és elvárnánk. A Vue.js ebben tud nekünk segíteni.}
+
+\textit{Aki dolgozott már JavaScripttel, az tisztában van vele, hogy egy viszonylag könnyen használható scriptnyelv, viszont hosszú távon natív JavaScriptet használni-na, ez sokak szerint nem igazán jó ötlet.}
+
+\textit{Gondolhatunk itt számos különféle funkcionalitásra: egy felugró ablak megnyitása, bizonyos elemek elrejtése adott feltételek mellett: mindez szimpla JavaScripttel megoldva több időbe telhet. Akkor pedig, ha komplexebb applikációról lenne szó, egészen biztosan rosszul járunk.}
+
+\textit{Ennek kapcsán érdemes lehet valamilyen jobb megoldás után néznünk.}\\
+
+\noindent\textit{\textbf{Miért van szükség keretrendszerekre, könyvtárakra?}}\\
+
+\textit{Keretrendszerekre (framework), valamint könyvtárakra (library) általában azért lehet szükség, mert ezeknek a segítségével jóval gyorsabban dolgozhatunk, valósíthatjuk meg az adott funkcionalitást.}
+
+\textit{Ezen felül, gondoljunk csak a böngésző kompatibilitásra: ez a probléma nem csupán CSS esetén merülhet fel. A megírt kódunk nem egyformán fog működni minden böngésző, illetve azok verziói alatt.}
+
+\textit{Mindezek eredményeként a mai modern webfejlesztésben gyakorlatilag mindenki keretrendszereket, és könyvtárakat is használ.}\\
+
+\noindent\textit{\textbf{Mi az a Vue.js?}}\\
+
+\textit{A Vue.js egy JavaScript könyvtár. Sok esetben keretrendszernek szokták hívni, pedig valójában nem az: az Angular, React, Vue trióból egyedül az Angular minősül frameworknek.}
+
+\textit{2014-ben jelent meg először, a Google egyik volt fejlesztője készítette eredetileg. Azóta hihetetlenül sok újításon ment keresztül, és a használati tendenciája egyre inkább felfelé ívelőnek látszik. Miért?}\\
+
+\noindent\textit{\textbf{Miért a Vue.js?}}\\
+
+\textit{A Vue.js egy nagyon könnyen megtanulható, és használható JavaScript könyvtár. Alacsony Learning Curve-vel rendelkezik, én annak idején az Udemy-n egy 20 órás tananyagot végig csináltam a témához kapcsolódóan, és egy kicsi gyakorlás után már teljesen tudtam is használni azokra a feladatokra, amikre szerettem volna.}
+
+\textit{A Vue.js-t annak ellenére, hogy könnyebben elsajátítható, rengeteg feladatra könnyedén fel lehet használni. Kifejezetten szeretik startupok is használni, valamint kiváló párosítást alkot Laravel keretrendszerrel.}
+
+\textit{Abban az esetben, ha még soha nem használtunk JavaScript keretrendszert, kifejezetten jó opció lehet, ugyanis a sikerélményünk garantált lesz.}\\
+
+\noindent\textit{\textbf{Milyen feature-ök vannak a Vue.js-ben?}}\\
+
+\textit{A Vue.js a háttérben egy virtuális DOM-ot használ. Amennyiben az applikációnk változói frissülnek, az igazi DOM is módosulni fog, ez egy sokkal gyorsabb performanszt, teljesítményt nyújt, mint például a jQuery.}
+
+\textit{Ez a könyvtár egy MVC-hez hasonló architektúrát követ. Az adataink, a különféle metódusok, valamint az oldalunk HTML része könnyedén szétválasztható a segítségével, ebből adódóan egy jól áttekinthető, átlátható kódot tudhatunk a magunkénak. Az adatok „egy helyre gyűjtésében” lehet segítségünkre a Vuex, ami teljesen engedi különválasztani az applikációnktól azokat, ezáltal a különféle állapotokat meghatározó adatok egy helyre kerülnek.}
+
+\textit{A Vue.js komponensekből épül fel. Ennek kapcsán könnyedén hozhatunk létre „újrahasznosítható” elemeket az alkalmazásunkon belül: ha például egy képgalériát szeretnénk létrehozni, akkor az egyetlen képet megtestesítő elem lehet egy ilyen komponens. Vagy akár egy űrlap, melyet a weboldalunkon máshol is használni szeretnénk.}
+
+\textit{A Vue segítségével képesek lehetünk akár többoldalas appokat is építeni, ebből adódóan az úgynevezett routing is jól meg van benne oldva.}
+
+\textit{Az Vue.js mellé rengeteg kiváló packaget, és third party plugint készítettek. Ezek közé tartozik például a már említett Vuex, vagy a Vuelidate, aminek a segítségével űrlap-érvényesítést valósíthatunk meg könnyedén.}
+
+\subsection{Angular}
+
+A címben említett Angular egy elterjedt TypeScript alapú keretrendszer. Érdemes megjegyezni, hogy az ebben a dolgozatban felsorolt három keretrendszer közül ez az egyetlen tényleges keretrendszer, a Vue.js, valamint a Node.js pusztán JavaScript-könyvtárak.
+
+Ennek a rendszernek a jellegzetessége, hogy HTML-eket egészít ki attribútumokkal, ebből adódik, hogy legtöbbször single-page alkalmazások fejlesztésekor szokták alkalmazni, melyekhez számtalan bemutató videó, valamint demonstrációs anyag létezik [5].
+
+Továbbá, a három felsorolt lehetőség közül ezen keretrendszer tanulmányozásával foglalkozunk kizárólagosan Webtechnológiák II. tantárgy berkein belül.
+
+Egy rövid (angol nyelvről fordított) szöveg mutatja be részleteiben a rendszert \cite{angularcikk}:\\
+
+\noindent\textit{\textbf{\large{Bevezetés az Angular koncepcióiba}}}\\
+
+\textit{Az Angular egy felület és egy keretrendszer, mely single-page kliens applikációk fejlesztését biztosítja HTML, valamint TypeScript segítségével. Megvalósítja az alapvető és az opcionális funkcionalitást TypeScript függvénykönytárak készleteként, melyek beilleszthetőek az applikációkba.}
+
+\textit{Egy Angular applikáció architechtúrája bizonyos alapvető koncepcióra támaszkodik. Az Angular keretrendszer építőkövei olyan Angular komponensek, melyek úgynevezett NgModulokba szervezettek. Az NgModulok összegyűjtik az összefüggő kódot funkcionális készletekbe; egy Angular applikáció ilyen NgModulok által van definiálva. Egy applikáció mindig rendelkezik legalább egy modullal, mely lehetővé teszi az úgynevezett "bootstrapping"-et, és jellegzetesen számos más modullal rendelkezik.}
+
+\textit{A komponensek "view"-okat (nézeteket) definiálnak. Ezek képernyőelem-készletek, melyek közül az Angular választhat és módosíthat, a programlogika, valamint az adat alapján. A komponensek szolgáltatásokat használnak, amelyek olyan meghatározott funkcionalitást biztosítanak, amik nem kapcsolódnak közvetlenül a nézetekhez. A szolgáltatások biztosítói beilleszthetőek a komponensekbe függőségek formájában, ezzel modulárissá, újrahasználhatóvá, valamint hatékonnyá téve a programunkat. A modulok, a komponensek, illetve a szolgáltatások olyan osztályok, melyek "dekorátorokat" használnak. Ezek jelzik a típusukat, és metaadatokat biztosítanak, melyek meghatározzák az Angular számára, hogyan használhatják őket.}
+
+
+\textit{A komponensek osztályaihoz tartozó metaadatokhoz társul egy sablon, mely meghatározza a nézetet. A sablonban átlagos HTML elemekhez kapcsolódnak Angular direktívák és összeköttetésjelzők, melyek lehetővé teszik az Angular számára, hogy módosítsák a HTML elemeket a megjelenítés legenerálása előtt.}
+
+\textit{A szolgáltató osztályhoz tartozó metaadatok elérhetővé teszik az Angular számára szükséges információkat, így lehetővé téve a függőség beillesztést (DI) a komponensek részére.}
+
+\textit{Egy applikáció komponensei jellemzően definiálnak hierarchikusan rendezett nézeteket. Az Angular elérhetővé teszi az átirányító (Router) szolgáltatás számára, hogy segítséget nyújtson a fejlesztőnek a nézetek közötti navigációban. Az átírányító biztosítja a kifinomult, böngészőn belüli navigációs lehetőségeket.}
+
+\textit{[...]}\\
+
+\noindent\textit{\textbf{Modulok}}\\
+
+\textit{Az Angular NgModuljai különböznek, illetve kiegészítik a JavaScript (ES2015) modulokat. Egy NgModul meghatároz egy fordítási kontextust a komponensek készlete számára, melyek az applikáció tartományához, munkafolyamatához, vagy a hozzá kapcsolódó képességkészlethez kötődnek. Egy NgModul a komponensekhez társíthat hozzá kapcsolódó kódot (például szolgáltatást), hogy funkcionális egységet alkossanak.}
+
+\textit{Minden Angular applikáció rendelkezik egy gyökérmodullal, melynek megegyezés szerint AppModul a neve. Ez biztosítja a bootstrap mechanizmusokat, melyek indítját az  alkalmazást. Az applikáció általában számos funkcionális modult tartalmaz.}
+
+\textit{Az NgModul - a JavaScript modulokhoz hasonlóan - képesek funkcionalitást beilleszteni még NgModulokból, valamint engedélyezni a saját funkcionalitásuk exportálását, melyet így más NgModulok is használatba vehetnek. Például, hogy valaki használhassa az átirányító szolgáltatást az alkalmazásában, be kell importálnia a Router NgModult.}
+
+\textit{A kód különböző funkcionális modulokba való átszervezésével könnyebben kezelhetjük a komplex applikációk fejlesztését, akár a desing és az újrahasználhatóság szempontjából is. Továbbá, e technika az úgynevezett "lazy loading" ("lusta töltés") előnyét nyújtja. Ez lehetővé teszi, hogy igény szerint tölthettünk be modulokat, ezzel minimalizálva az indításnál betöltendő kód mennyiségét.}\\
+
+\noindent\textit{\textbf{Komponensek}}\\
+
+\textit{Minden Angular alkalmazás rendelkezik legalább egy komponenssel (a gyökér komponenssel), mely kpcsolatba hozza a komponens hierarchiát az oldal dokumentum objektum modelljével (DOM). Minden komponens egy osztályt definiál, mely tartalmazza az applikáció adatait és logikáját, és kapcsolatban áll a HTML sablonnal, amely definiálja a célkörnyezetben megjelenítendő nézetet.}
+
+\textit{A @Component() dekorátor azonosítja az alatta lévő osztályt komponensként, és rendelkezésre bocsátja a sablont, és a hozzá kapcsolódó komponens-specifikus metaadatokat.}
+
+\textit{A dekorátorok olyan funkciók, melyek JavaScript osztályokat módosítanak. Az Angular számos dekorátort definiál, melyek az osztályokhoz bizonyos metaadatokat rendelnek, így a rendszer tudja, mit jelentenek, illetve hogyan működnek az adott osztályok.}
+
+\textit{[...]}\\
+
+\noindent\textit{\textbf{Sablonok, direktívák, és adatösszeköttetés}}\\
+
+\textit{A sablonok HTML elemeket kombinálnak Angular jelölőkkel, melyek módosíthatják a HTML objektumokat a megjelenítésük előtt. A sablon direktívák programlogikát biztosítanak, az összeköttetésjelzők pedig összekapcsolják az alkalmazás-adatokat a DOM-mal. Kétféle adatösszeköttetést különböztetünk meg:}
+
+\textit{Az \textsc{eseményösszeköttetés} segítségével az applikáció képes "válaszolni" a felhasználói inputra a célkörnyezetben az alkalmazásadatok frissítésével.}
+
+\textit{A \textsc{tulajdonságösszeköttetés} lehetővé teszi, hogy számított értékeket illeszthessünk be az alkalmazásadatból a HTML elemekbe.}
+
+\textit{Mielőtt egy nézet megjelenítésre kerülne, az Angular kiérétkeli a direktívákat, illetve feloldja a sablonban található összeköttetési szintaxisokat, így módosítva a HTML elemeket és a DOM-ot a program adatai, valamint logikája alapján. Az Angular támogatja a kétirányú adatösszeköttetést. Ez azt jelentik, hogy a DOM-ban bekövetkezett változások, mint például a felhasználói választások a programadatban is bekövetkeznek.}
+
+\textit{A sablonok használhatnak úgynevezett "pipe"-okat, melyek javítják a felhasználói élményt azáltal, hogy átalakítják a megjelenő értékeket. Például, pipe-okat használunk akokr, ha a felhasználó elhelyezkedése alapján szeretnénk megjeleníteni dátumot vagy valutát. Az Angular biztosít előre definiált pipe-okat gyakori átalakításokra, továbbá a fejlesztő is írhat saját pipe-okat.}
+
+\textit{[..]}\\
+
+\noindent\textit{\textbf{Szolgáltatások és függőségbeillesztések}}\\
+
+\textit{Az olyan adathoz vagy logikához, mely nem kapcsolódik az adott nézethez, és szeretnénk megosztani más komponensekkel, szolgáltatásosztályokat hozunk létre. Ezek definícióját az @Injectable() dekorátor előzi meg. Ezen dekorátor biztosítja a metaadatokat, melyek lehetővé teszik, hogy más szolgáltatások beilleszthetőek legyenek függőségekként az osztályunkba.}
+
+\textit{A függőségbeillesztés (Dependency Injection, DI) segítségével a komponens osztályok megtarthatják tömör és hatékony mivoltukat. Ezek nem kérnek le adatot a szerverről, nem érvényesítenek felhasználói adatbevitelt, és nem naplóznak közvetlenül a konzolra; ezek csak elküldik az adott feladatokat a felelős szolgáltatásoknak.}
+
+\textit{[...]}\\
+
+\noindent\textit{\textbf{Átirányítás}}\\
+
+\textit{Az Angular átirányító NgModul olyan szolgáltatást biztosít, mely lehetővé teszi az aklalmazáson belüli különböző applikáció állapotok, valamint nézet hierarchiák közötti navigációs útvonal definiálását. Ez a modell a böngésző-navigációs konvenciók által lehet ismerős:}
+\textit{
+\begin{itemize}
+\item{Ha a felhasználó beír egy URL-t a címsorba, a böngésző a kapcsolódó oldalra navigál.}
+\item{Az oldalon található linkre kattintva a böngésző egy új oldalra navigál.}
+\item{A böngésző "Vissza", valamint "Tovább" gombjaira kattintva a böngésző előzménye alapján az előző, illetve a következő (már meglátogatott) oldalra navigál.}
+\end{itemize}
+Az átirányítás feltérképezi az URL-szerű útvonalakat. Viszont ezeket nem oldalak, hanem nézetek formájában teszi. Amikor egy felhasználó végrehajt valamit az oldalon (például rákattint egy linkre, mely a böngészőben egy új oldalt töltene be), az átirányító megszakítja a böngésző folyamatát, és megjeleníti, vagy eltűnteti a nézetek hierarchiáját.}
+
+\textit{Ha az átirányító meghatározza, hogy a jelenlegi applikáció állapot egy bizonyos funkcionalitást igényel, és a modul, mely ezt definiálja, még nem töltődött be, úgy az átirányító igény szerint "lusta töltést" alkalmazhat a modulon.}
+
+\textit{Az átirányító értelmezi a link URL címét az applikáció nézeteinek navigációs szabálykészlete, valamint adatállapota alapján. Navigálhatunk új nézetekre amikor a felhasználó egy gombra kattint, vagy kiválaszt egy opciót a legördülő listából, illetve, ha bármi más forrásból "ingert" kapunk. Az átirányító naplózza a tevékenységeket a böngésző előzményeiben, így a "Vissza", valamint a "Tovább" gombok is rendeltetésszerűen működnek.}
+
+\textit{Ahhoz, hogy navigációs szabályokat létrehozhassunk, a navigációs útvonalakat a komponensekkel kell társítani. Egy útvonal URL-szerű szintaxist használ, mely egyesíti a programadatot, pontosan úgy, ahogyan a sablonszintaxis egyesíti a nézeteket a programadattal. Ezután alkalmazhatjuk a programlogikát, hogy kiválasszuk, melyik nézetet jelenítsük meg, vagy rejtsük el, válaszként a felhasználói inputra, a saját hozzáférési szabályaink alapján.}
+
+\subsection{Node.js}
+
+A Node.js egy JavaScript függvénykönyvtár, melyet kifejezetten webszerverek fejlesztésére hoztak létre. 
+
+Tulajdonságai közé tartozik az a tény, hogy skálázható, illetve aszinkron programozásra is képes, így nagyobb volumenű, jelentős áteresztőképességet igénylő projektekhez kiválóan alkalmazható.
+
+A rendszer ezen felül backend és frontend projekteknek is remek alapot ad. Hogy pontosan milyen esetekben érdemes használni, azt megtudhatjuk az alábbi értekezésből \cite{nodejscikk}:\\
+
+\noindent\textit{\textbf{\large{Node.js: miért, mikor, és mikor ne?}}}\\
+
+\textit{Az utóbbi pár évben a Node.js végigment azon az úton, amelyen a legtöbb új, felkapott technológia végigmegy. Amikor megjelent, hatalmas hype övezte, mindenki megváltónak kiáltotta ki, és a boldog-boldogtalan elkezdett gyakorlatilag mindent Node.js-ben írni. Ezt követte a keserű ébredés, amikor kiderült, hogy ez sem lesz az "egy és igaz" platform, amiben minden megvalósítható (ezt persze sosem állította senki), és sokan elfordultak a projekttől. Manapság leginkább a konszolidáció időszaka zajlik, és a megváltó státusz helyett inkább egy újabb lehetséges eszközként tekintünk a reportoárunkban a Node.js-re. Ebben a posztban azt vizsgáljuk meg, milyen esetekben lehet jó döntés a Node.js-t választani egy adott feladatra, és mely esetekben kifejezetten ellenjavallt.}
+
+\textit{Először nézzük meg, mik azok a tipikus alkalmazás kategóriák, amelyeknél érdemes megfontolnunk a Node.js platformot.}\\
+
+\noindent\textit{\textbf{Realtime többfelhasználós alkalmazások}}\\
+
+\textit{Ebben a kategóriában népszerű példaként szokták hozni a chatszobát, mint olyan alkalmazást, melyet mintha csak a Node.js-re öntöttek volna: nagyforgalmú, adatintenzív (de kis számításigényű) alkalmazás, amely elosztott platformon fut. Ezek az appok (és a példánk is) nagyon gyakran eseményvezéreltek, nagyszámú konkurrens kapcsolatot kell kezelniük, és nem mellékesen mindezek mellett elfogadható felhasználói élmény is kell nyújtaniuk.}\\
+
+\noindent\textit{\textbf{API egy objektumadatbázis felett}}\\
+
+\textit{Bár a realtime alkalmazások jelentik a Node.js savát-borsát, viszonylag adja magát olyan esetekben is, amikor egy API-t kell fejlesztenünk egy objektum alapú adatbázishoz (pl. MongoDB). Mivel az adatainkat már eleve JSON-ban tároljuk, a JavaScriptben történő kezelésük igen kényelmessé válik, illetve a szokásos OO-relációs eltérést sem kell lekezelnünk.}
+
+\textit{Ha például egy MongoDB adatbázis fölé Railsben, PHP-ban vagy más hasonló környezetben építenénk API-t, az adatok olvasásához és írásához számos extra lépést kellene beépítenünk: a JSON-t konvertálni kellene a saját modellünkre, azokat pedig visszaalakítani JSON-ra, hogy HTTP válaszként küldhessük őket. Ezeket Node.js esetén mind megspóroljuk, és nagyon hatékony tud lenni, ha az adatunk az egész stacken ugyanazon formátumban van.}\\
+
+\noindent\textit{\textbf{Üzenetsorok kialakítása}}\\
+
+\textit{Ha az alkalmazásunk nagyszámú kérést fogad, az adatbázis könnyen szűk keresztmetszetté válhat. Mint azt jól tudjuk, a Node.js nagyon jó a sok konkurrens kérés kezelésében, azonban mivel a DB hozzáférés egy blokkoló művelet, könnyen bajba kerülhetünk a teljesítményt illetően. A megoldás erre az, hogy a kliensnek már az adatbázis művelet elvégzése előtt választ adunk, mintha az sikeresen megvalósult volna, a valódi kérést pedig betesszük valamilyen sorba (erre használhatunk külső toolt, pl. ZeroMQ).}
+
+\textit{Ezzel a megközelítéssel a rendszerünk nagy terhelés alatt is válaszképes marad. Ez főleg olyan esetekben jó, ahol a változtatásoknak nem kell azonnal megjelenniük az adatbázisban, és az “eventual consistency” is elég (pl. likeok száma a Facebookon, felhasználói statisztikák, stb.).}
+
+\textit{Egy ilyen queue természetesen más környezetben is megvalósítható, azonban legtöbbször nem ugyanazon a hardveren, vagy sokkal alacsonyabb válaszidővel.}\\
+
+\textit{A következőkben nézzünk meg néhány esetet, amelyen a Node.js \textbf{kifejezetten ellenjavallt} lehet.}\\
+
+\noindent\textit{\textbf{Szerveroldali alkalmazás, mögötte relációs adatbázissal}}\\
+
+\textit{Ez egy máig nagyon elterejedt és klasszikus felállás, és egy olyan, amelyre a Node.js kifejezetten rossz választás; egy Node.js/Express.js kombináció alkalmazása egyértelműen hátrányosabb mondjuk egy Railshez vagy Djangohoz képest.}
+
+\textit{Sajnos a Node.js ökoszisztémában az RDBMS eszközök még mindig elég fejletlennek mondhatók, az egyetlen említésre méltó ORM a Sequelize, de tudásban és használhatóságban máig elmarad a riválisoktól és relációs adatbázisok használatakor (főleg ha pl. Rails háttérrel rendelkezünk) sokszor úgy érezhetjük, újra és újra “fel kell találnunk a kereket”.}\\
+
+\noindent\textit{\textbf{Magas számításigényű szerveroldali alkalmazások}}\\
+
+\textit{A Node.js által megoldott legfőbb probléma a blokkoló I/O általi teljesítménycsökkenés, amit jól meg is old. Amennyiben azonban számításigényes feladatokat végzünk benne, viszonylag gyorsan semmissé tehetjük a nagy áteresztőképesség nyújtotta előnyöket, hiszen bármely bejövő kérést blokkolni fog a jelenleg zajló számítás, hiszen ne feledjük: a Node.js egyszálas, és mindig egyetlen CPU magot használ.}
+
+\textit{Ha mégis szükség van ilyesmire az alkalmazásunkban, jobb azt afféle külső erőforrásként megvalósítani, és a korábban említett üzenetsoros megoldással kezelni.}
+
+\subsection{Összehasonlítás}
+
+\begin{table}[h]
+\centering
+\caption{A felvázolt keretrendszerek összehasonlítása (2/1)}
+\label{tab:minta}
+\begin{tabular}{|l|c|c|}
+\hline
+Rendszer & Íródott & Cross-platform\\
+\hline
+Vue.js & JavaScript & Támogatja\\
+\hline
+Angular & JavaScript & Támogatja\\
+\hline
+Node.js & C/C++/JavaScript & Támogatja\\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}[h]
+\centering
+\caption{A felvázolt keretrendszerek összehasonlítása (2/2)}
+\label{tab:minta}
+\begin{tabular}{|l|c|c|}
+\hline
+Rendszer & DOM & Erősség\\
+\hline
+Vue.js & Használ (virtuálisat) & Single-page alkalmazások, felhasználói felületek\\
+\hline
+Angular & Használ & Single-page alkalmazások\\
+\hline
+Node.js & Nem használ & Skálázható webszerverek\\
+\hline
+\end{tabular}
+\end{table}
+
+\Section{Adatbázisrendszerek}
+
+Adatbázisrendszereken belül két nagy csoportot tudunk megkülönböztetni:
+\begin{itemize}
+\item SQL, és
+\item NoSQL adatbázisok.
+\end{itemize}
+Az SQL-alapú rendszerek táblázatok formájában tárolják az adatot, melyekben mezők, valamint rekordok találhatóak. Például, egy iskolai adatbázisban a tanulók nyilvántartása egy táblában történik, melyben változatos mezőket vesznek fel (tanuló neve, születési ideje stb.). Egy tanuló adatait tartalmazó sort rekordnak nevezünk. Fontos még megemlíteni, hogy elsődleges kulcsot erősen ajánlott használni az ilyen, és hasonló jellegű adatbázisokban. Elsődleges kulcsnak nevezzük azt a mezőt, mely a tábla rekordjait egyértelműen meghatározza. Ebben az esetben az előző példában elsődleges kulcs szerepét veheti fel a tanulók diákigazolvány száma.
+
+Ezzel szemben a NoSQL (a nevéből is adódóan) nem SQL-alapú, vagyis nem táblákban tárolják az adatokat. Legtöbbször dokumentumok formájában tárolnak adatot. Ezen belül is léteznek különböző megoldások a rendszerezés tekintetében, így például kollekciók, címkék, vagy akár metainformációk alapján is rendezhetjük az adatbázisunkat. Általánosságban elmondható, hogy JSON-szerű formátumban tárolnak. Ebből adódik, hogy a lekérdezések változatossága leszűkül, cserébe viszont nagyobb teljesítményre, valamint skálázhatóságra lesz képes.
+
+\subsection{MySQL}
+
+A MySQL egy (a nevéből is adódóan) SQL-alapú relációs adatbázis-kezelő szerver (RDBMS, Adatbáziskezelés I. tárgyból foglalkoztunk ezzel).
+Ez az egyik legelterjedtebb adatbázis-kezelő, mivel ingyenesen elérhető bárki számára szabad szoftverlicenszen keresztül, valamint számos platformon és programozási nyelvvel kompatibilis a használata.
+Elsődlegesen parancssoros kezelői interfészen (CLI-n) keresztül használható, viszont létezik hozzá grafikus felhasználói felület (GUI), melyet elérhetünk a MySQL hivatalos weboldaláról [6].
+
+Alább olvasható egy rövid leírás a MySQL általános jellemzőiről :\\
+
+\noindent\textit{\textbf{\large{MySQL}}}\\
+
+\textit{A MySQL egy többfelhasználós, többszálú, SQL-alapú relációs adatbázis-kezelő szerver.}
+
+\textit{A szoftver eredeti fejlesztője a svéd MySQL AB cég, amely kettős licenceléssel tette elérhetővé a MySQL-t; választható módon vagy a GPL szabad szoftver licenc, vagy egy zárt (tulajdonosi) licenc érvényes a felhasználásra. 2008 januárjában a Sun felvásárolta 800 millió dollárért a céget. 2010. január 27-én a Sunt felvásárolta az Oracle Corporation,[2] így a MySQL is az Oracle tulajdonába került.}
+
+\textit{A MySQL az egyik legelterjedtebb adatbázis-kezelő, aminek egyik oka lehet, hogy a teljesen nyílt forráskódú LAMP (Linux–Apache–MySQL–PHP) összeállítás részeként költséghatékony és egyszerűen beállítható megoldást ad dinamikus webhelyek szolgáltatására.}\\
+
+\noindent\textit{\textbf{Elérhetősége programnyelvekből}}\\
+
+\textit{Egyedi illesztőfelületekkel az adatbázis-kezelő elérhető C, C++ , C}\#\textit{, Delphi, Eiffel, Smalltalk, Java, Lisp, Perl, PHP, Python, Ruby és Tcl programozási nyelvvel. Egy MyODBC nevű ODBC interfész további, ODBC-t kezelő nyelvek számára is hozzáférhetővé teszi az adatbázis-kezelőt. A MySQL számára az ANSI C a natív nyelv.}\\
+
+\noindent\textit{\textbf{Adminisztrációja}}\\
+
+\textit{A MySQL adatbázisok adminisztrációjára a mellékelt parancssori eszközöket (mysql és mysqladmin) használhatjuk. A MySQL honlapjáról grafikus felületű adminisztráló eszközök is letölthetők: MySQL Administrator és MySQL Query Browser.}
+
+\textit{Széles körben elterjedt és népszerű adminisztrációs eszköz a PHP nyelven írt, nyitott forráskódú phpMyAdmin. A phpMyBackupPro (amelyet szintén PHP-ban írtak) adatbázisok (akár időzített, ismétlődő) mentésére szolgál eszközül.}
+
+
+
+\subsection{Microsoft SQL Server}
+
+A Microsoft SQL Server a világszerte híres Microsoft cég által fejlesztett relációs adatbázis-kezelő rendszer.
+Természetesen elsősorban Microsoft alapú rendszerekre tervezték, így a lefedettsége kevésbé szerteágazó a MySQL-hez képest. Viszont rengeteg szolgáltatással kompenzálja ezt a hátulütőjét.
+A cég ismeretes arról, hogy különböző (például „Standard”, vagy „Enterprise”) kiadások formájában bocsátja piacra termékeit, hogy a felhasználók minél szélesebb körét tudja kiszolgálni, és ez az említett SQL Server esetében sincs másképp. A Microsoft hivatalos weboldalán [7] tájékozódhatunk az elérhető kiadásokról, valamint tulajdonságaikról.
+
+Itt olvasható egy kis bemutatás az adatázisról \cite{mssqlcikk}:\\
+
+\noindent\textit{\textbf{\large{Mi az SQL Server?}}}\\
+
+\textit{Ebben az oktatóanyagban megismerjük, hogy milyen szoftver ez, hogyan tudjuk az SQL-t alkalmazni a rendszerünkben annak kihasználására, és hogyan lehet az Ön számára működni annak érdekében, hogy megkönnyítse a feladatát. Bár röviden áttekintjük az SQL szervert, hadd mondjam el, hogy az SQL adatbázis-kezelő rendszer. Most az volt az oka, hogy rövid ötletet kellett adnom neked az SQL szerverről: az, hogy mielőtt továbblépnénk, tudnod kell, mi az adatbázis.}
+
+\textit{Tehát azoknak, akik nem tudják, az adatbázis úgy definiálható, mint a számítógépen elektronikusan tárolt, bőséges adatgyűjtemény. Olyan platformot biztosít nekünk, amelyet általában ugyanazon entitás adatainak tárolására használnak, ahol a követelményeinknek megfelelően frissíthetjük és kezelhetjük az adatokat. Most már tudja, hogy mi az adatbázis, és itt az ideje, hogy felfedezzük az SQL szervert!}\\
+
+\noindent\textit{\textbf{Meghatározás}}\\
+
+\textit{Ez egy relációs adatbázis-kezelő rendszer, amelyet a Microsoft fejlesztett ki 1988-ban. Valójában egy háttér alkalmazás, amely lehetővé teszi az adatok tárolását és feldolgozását. Egyszerűen fogalmazva, platformot kínál nekünk, ahol frissíthetjük, módosíthatjuk és kezelhetjük az adatokat. Relacionális adatbázis-kezelő rendszernek nevezzük annak jellege miatt, hogy az adatokat táblákban tárolja, ahol a táblák ugyanazon entitás adatait tárolják.}\\
+
+\noindent\textit{\textbf{Hogyan könnyíti meg az SQL Server a munkát?}}\\
+
+\textit{Nagyon hasznos, ha az adatokat a háttérrendszerben tároljuk annak feldolgozása érdekében. Egy nagyon egyszerű felülettel rendelkezik, amely segít a háttérkép-fejlesztőnek, hogy sokkal inkább az adatok gondozására összpontosítson, ahelyett, hogy félne az adatok működésétől. Mivel a Microsoft terméke, a .Net keret könnyen integrálható vele, mivel ugyanabba a szervezetbe tartozik. Az adatok tárolásának más eszközeivel összehasonlítva, például az Excel, a szöveg és így tovább, az adatbázist mindig előnyben részesítik, mivel nagyszerű adatfeldolgozási képességgel rendelkezik, magas szintű biztonságot nyújt, és főleg nagy adattárolási képessége miatt.}
+
+\textit{[...]}\\
+
+\noindent\textit{\textbf{Az SQL Server előnyei}}\\
+
+\textit{Számos pluszpont van az SQL szerver használatához az egyéb adattárolási eszközökkel szemben. Néhányat az alábbiakban felsoroljuk.}
+\textit{
+\begin{itemize}
+\item{\textbf{Adatfeldolgozás} - Az SQL szerver lehetővé teszi az adattárolások feldolgozását a kívánt kimenet előállítása érdekében. Az adatok kiszámíthatóak voltak az SQL szerver segítségével.}
+\item{\textbf{Nagy tárhely} - nagyszámú adat tárolható az SQL szerverben. Magas tárolókapacitása miatt ez a legjobb a szervezetben történő adattárolás során.}
+\item{\textbf{Integráció a kezelőfelülettel} - Az SQL szervert integrálhatják a kezelőfelület alkalmazásba is, hogy a dinamikus adatcsere mechanizmusát biztosítsák. Nagyon gyakran használják a webes alkalmazásokkal való integrációban.}
+\item{\textbf{Könnyen csatlakoztatható a.Net-hez} - Mivel az SQL szerver és a.Net keretrendszer egyaránt a Microsofthoz tartozik, mindkettő nagyon könnyen csatlakoztatható. Az SQL szerver nagyon jól működik vagy simán működik, ha összekapcsolják a .Net webhelyen kifejlesztett alkalmazással.}
+\end{itemize}}
+
+\noindent\textit{\textbf{Ki a megfelelő közönség az SQL Server technológiák megtanulásához?}}\\
+
+\textit{Azok az emberek, akik érdeklődnek a háttérfejlesztés karrierjének növeléséről, nagyszerű közönség lehetnek az SQL szerver technológiába való mély merüléshez. Ez a technológia fantasztikus növekedési lehetőséget is kínál, amelyet várhatóan tovább fog tartani az e-kereskedelem és a közösségi média exponenciális növekedése mellett.}\\
+
+\noindent\textit{\textbf{Következtetés}}\\
+
+\textit{Nagyon rövid és éles szavakkal, az SQL szerver az az eszköz, amelyet egy relációs adatbázis-kezelő rendszer mechanizmusának megvalósításához használnak. Ez lehetővé teszi a fejlesztőknek, hogy dolgozzanak az adatokkal annak érdekében, hogy jó élményt nyújthassanak a felhasználó számára. A szervezetekben az SQL szerver az adatfeldolgozás legelőnyösebb eszköze, mivel nagy mennyiségű adat kezelésére képes.}
+
+\subsection{MongoDB}
+
+A MongoDB kitűnik az előbbi két adatbázis-kezelő közül azzal, hogy az ún. NoSQL adatbázisszerverek közé tartozik. Csoportjának legelterjedtebb adatbáziskezelője. Dokumentumorientált, az adatokat JSON-szerű formátumban tárolja. 
+A Microsoft SQL Server-hez hasonlóan itt is különböző kiadások érhetőek el a potenciális felhasználók számára, attól függően, hogy milyen, valamint mekkora méretű projektet terveznek megvalósítani.
+
+Alább található egy rövid bemutató a rendszerről \cite{mongodbcikk}:\\
+
+\noindent\textit{\textbf{\large{NoSQL adatbázisok}}}\\
+
+\textit{A NoSQL adatbázisok a relációs sémától eltérően működő adatbázisok összefoglaló neve. A név valamennyire megtévesztő, mert a fogalomnak kevés köze van az SQL nyelvhez - ehelyett a releváns különbség az adatreprezentációban és a sémában van. De mégis miért van szükségünk új fajta adatbázisokra, amikor a relációs adatbázisok régóta jól használhatóak? Egy kis méretű adatbázis egyszerű sémával könnyen leírható relációs modellben, még kényelmes is. De az alkalmazásaink fejlődnek, egyre több funkciót kell ellátniuk, ezzel együtt komplexebbé válik a séma is, illetve egyre több adatot kell eltárolni és nő az adatbázis. Ez egy bizonyos határ felett komplikálttá válik.}
+
+\textit{A relációs adatbázisok hátránya, hogy a folyamatos változások, séma változtatást igényelnek. Ahhoz, hogy ezt karban tudjuk tartani folyamatosan migrálni kell az adatokat és ez nem egyszerű feladat. Továbbá teljesítmény problémákkal, azaz inkább konzisztencia- és skálázási problémákkal járhat, ha relációs adatbázist használunk - ezzel azonban nem foglalkozunk mélyebben.}
+
+\textit{Ezekre a problémákra a NoSQL adatbázisok nyújtanak megoldást. Ebben a világban elhagyjuk a szigorú sémákat, helyette egy flexibilis sémát fogunk alkalmazni. Azaz nem lesznek erős elvárásaink az adatbázisban tárolt adatokkal szemben.}\\
+
+\noindent\textit{\textbf{A MongoDB alap koncepciói}}\\
+
+\textit{A MongoDB egy kliens-szerver architektúrájú nem-relációs adatbázis. A kép jobb oldalán látható a mongod, azaz Mongo démon, vagyis az a processz, ami az adatbázis elérését biztosítja. A másik oldal a mi alkalmazásunk, ahonnan a kliens kapcsolódik a szerverhez egy hálózati kapcsolaton keresztül. Ez a hálózati kapcsolat az ún. wire protocol-on keresztül történik, ez a MongoDB saját protokollja. Ebben a protokollban JSON formájú adat kommunikáció zajlik binárisan (azaz BSON).}\\
+
+\noindent\textit{\textbf{\large{A MongoDB architechtúrája}}}\\
+
+\noindent\textit{\textbf{Logikai felépítés}}\\
+
+\textit{Egy MongoDB-alapú adatbázis rendszer legfelső rétege az ún. klaszter, ebbe szervezzük a szervereket. Mi klaszterekkel ebben a tárgyban nem foglalkozunk, azok a skálázás eszközei. A második szint a szerver szintje (a mongod processz), ami alatt az adatbázis foglal helyet. Egy szerver/klaszter több adatbázist tárolhat. Az adatbázisok pedig gyűjteményekből (collection) épülnek fel. Ha a relációs adatbázisokkal meg akarjuk feleltetni, akkor a gyűjtemények a táblák megfelelői, ezen belül a sorok/rekordok pedig a gyűjteményben tárolt dokumentumok lesznek.}
+
+\textit{Nézzük ezeket pontosabban.}\\
+
+\noindent\textit{\textbf{Dokumentum}}\\
+
+\textit{A dokumentum a MongoDB alap tárolási egysége. Egy dokumentum egy JSON (jellegű) fájl, tehát kulcs-érték párokat tartalmaz. Maga a MongoDB BSON-ként, bináris reprezentációként tárolja mindezt.}
+
+
+\begin{verbatim}
+{
+    name: "sue",
+    age: 26,
+    status: "A",
+    groups: [ "news", "sports"]
+}
+\end{verbatim}
+
+\textit{Kulcsoknak többnyire bármilyen szabad szöveget választhatunk, de a neveknek egyedinek kell lenniük és nem kezdődhetnek a} \${} \textit{karakterrel. A nevek case sensitive-ek. Az érték lehet szöveg, szám, dátum, bináris, beágyazott elem, null, vagy akár a fenti példában a groups kulcsnál láthatóan tömb is - relációs adatbázisban ezt így nem lehet reprezentálni.}
+
+\textit{Az objektum orientált világban egy dokumentum felel meg egy objektumnak. Fontos megkötés, hogy a dokumentumok maximális mérete 16MB lehet, és ez nem konfigurálható érték.}\\
+
+\noindent\textit{\textbf{Gyűjtemény}}\\
+
+\textit{Relációs tábla analógiája a gyűjtemény, de nincs sémája, így ezeket létrehozni, definiálni se kell, első használatkor a rendszer automatikusan létrehozza őket. Úgy fogalmazhatjuk meg, hogy a gyűjtemény a "hasonló" dokumentumok gyűjtőhelye. Bár nincs séma, indexeket ennek ellenére definiálhatunk a gyűjteményeken, amely a gyors keresést fogják segíteni. Séma hiányában nincs tartományi integritási kritérium, tehát például a helyes adattípusok és tartományi kritériumok biztosításában az adatbázis nem nyújt segítséget.}\\
+
+\noindent\textit{\textbf{Adatbázis}}\\
+
+\textit{Az adatbázis ugyanazt a célt szolgálja, mint relációs adatbázisban. Ez fogja össze az alkalmazás adatait logikailag. Illetve hozzáférési jogosultságokat adatbázis szinten tudunk adni. Az adatbázisok neve case sensitive és konvenció szerint tipikusan csupa kisbetű.}\\
+
+\noindent\textit{\textbf{Kulcs}}\\
+
+\textit{Minden dokumentum egyértelmű azonosítója az \_id mező, más kulcsot nem tudunk definiálni. Ezt a mezőt beszúráskor nem szükséges explicit megadni (de lehet), tipikusan a kliens driver vagy a szerver generálja (alapértelmezésben egy 12 bájtos ObjectId-t készít).}
+
+\textit{Az \_id mezőtől függetlenül egyediséget indexek segítségével tudunk garantálni. \newline Amennyiben szükséges, definiálhatunk tehát más, kulcs-szerű mezőket is. Az így definiált egyedi mezők lehetnek összetettek is (tehát lehet több mező együttes egyediségét előírni).}
+
+\textit{Külső kulcs hivatkozások MongoDB-ben nincsenek. Tudunk hivatkozni más dokumentumokra azok kulcsainak bemásolásával, azonban ezekre a rendszer nem vállal garanciát (pl. a hivatkozott dokumentum törölhető).}
+
+\subsection{Összehasonlítás}
+
+\begin{table}[h]
+\centering
+\caption{A felvázolt adatbáziskezelők összehasonlítása (2/1)}
+\label{tab:minta}
+\begin{tabular}{|l|c|c|}
+\hline
+Adatbázis & Rendszertípus &  Kezelőfelület\\
+\hline
+MySQL & SQL & Elsődlegesen parancssoros\\
+\hline
+Microsoft SQL & SQL & Elsődlegesen grafikus\\
+\hline
+MongoDB & NoSQL & Elsődlegesen parancssoros\\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}[h]
+\centering
+\caption{A felvázolt adatbáziskezelők összehasonlítása (2/2)}
+\label{tab:minta}
+\begin{tabular}{|l|c|c|}
+\hline
+Adatbázis & Alkalmas &  Séma\\
+\hline
+MySQL & Struktúrált adatokhoz & Fix\\
+\hline
+Microsoft SQL & Struktúrált adatokhoz & Fix\\
+\hline
+MongoDB & Félstruktúrált adatokhoz & Dinamikus, opcionális\\
+\hline
+\end{tabular}
+\end{table}

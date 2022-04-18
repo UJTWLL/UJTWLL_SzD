@@ -1,0 +1,356 @@
+\Chapter{Megvalósítás}
+
+Ez a fejezet mutatja be a megvalósítás lépéseit.
+Itt lehet az esetlegesen előforduló technikai nehézségeket említeni.
+Be lehet már mutatni a program elkészült részeit.
+
+Meg lehet mutatni az elkészített programkód érdekesebb részeit.
+(Az érdekesebb részek bemutatására kellene szorítkozni.
+Többségében a szöveges leírásnak kellene benne lennie.
+Abból lehet kiindulni, hogy a forráskód a dolgozathoz elérhető, azt nem kell magába a dolgozatba bemásolni, elegendő csak behivatkozni.)
+
+A stílusfájlok a \texttt{styles} jegyzékben találhatók.
+A stílusok között szerepel még C++, Java és Rust stílusfájl.
+Ezek használatához a \texttt{dolgozat.tex} fájl elején \texttt{usepackage} paranccsal hozzá kell adni a stílust, majd a stílusfájl nevével megegyező környezetet lehet használni.
+
+Stílusfájlokból elegendő csak annyit meghagyni, amennyire a dolgozatban szükség van.
+Más, C szintaktikájú nyelvekhez (mint például a JavaScript és C\#) a Java vagy C++ stílusfájlok átszerkesztésére van szükség.
+(Elegendő lehet csak a fájlnevet átírni, és a fájlban a környezet nevét.)
+
+Nyers adatok, parancssori kimenetek megjelenítéséhez a \texttt{verbatim} környezetet lehet használni.
+\begin{verbatim}
+$ some commands with arguments
+1 2 3 4 5
+$ _
+\end{verbatim}
+
+A kutatás jellegű témáknál ez a fejezet gyakorlatilag kimaradhat.
+Helyette inkább a fő vizsgálati módszerek, kutatási irányok kaphatnak külön-külön fejezeteket.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 4 . 1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Előkészületek}
+
+Első lépésben szükségünk van egy olyan fejlesztőkörnyezetre, mely rendelkezik terminállal. Választásom a \textit{Visual Studio Code} nevű környezetre esett. Egyszerű, segítőkész, könnyen átlátható fejlesztőkörnyezetről beszélünk, mely számos programozási nyelvet támogat, illetve segítséget nyújt használatukkor.
+
+Az előző fejezetben összehasonlításra került néhány potenciális rendszer, jómagam pedig a \textit{Node.js} mellett döntöttem, abból az egyszerű okból kifolyólag, hogy ezt ajánlotta a témavezetőm, valamint ez volt a legszimpatikusabb számomra. Következő lépésben üzembe kell helyeznünk az említett keretrendszert, melyben a programot írjuk. A rendszert a hivatalos weboldaláról ([8]) érhetjük el. Letöltés és telepítés után rendelkezésünkre is áll a szoftver. Első lépésben konfigurálnunk kell a program "szívét", a \textit{package.json} fájlt. Ez tartalmazza a fontos metaadatokat a projektünkhöz (például a program belépési pontját), ezek közül is kiemelve a "függőségeket" (dependency-ket). A függőségek azt jelölik, hogy milyen modulokra (és azok mely verzióira) van szükség a program teljesértékű futtatásához. A konfigurálásához az alábbi parancsot kell begépelnünk:
+
+\begin{verbatim}
+$ npm init
+\end{verbatim}
+
+A folyamaton belül, pár további változó megadása után már ténylegesen készen áll a projektünk.
+
+Előreláthatólag szükségünk lesz modulokra, így (a megfelelő mappába való elnavigálás után) a következő parancsot kell begépelnünk a terminálba:
+
+\begin{verbatim}
+$ npm install <modulnev>
+\end{verbatim}
+
+Telepítés után a függőség bekerül a \textit{package.json} fájlba, így a rendszer tudni fogja, hogy a megadott modult telepíteni kell használat előtt (abba az esetben, ha például más mappából futtatjuk a projektet).
+
+Ha minden készen áll a használatra, akkor a lentebb látható paranccsal futtathatjuk a programunkat:
+
+\begin{verbatim}
+$ node <fajl.kiterjesztes>
+\end{verbatim}
+
+Ezzel készen is vagyunk a Node.js telepítésével, viszont még szükségünk lesz további előkészületekre.
+
+Ahogyan webes keretrendszert, úgy adatbázist is választani kell. A választásom pedig a \textit{MongoDB}-re esett, mégpedig azért, mert eddig csak SQL alapú rendszerekkel volt dolgom (Oracle SQL, MySQL), és ki szerettem volna próbálni valami újat, továbbá azért is, mert Webtechnológiák II tárgyból még hasznát vehetem ennek a rendszernek.
+
+Ahogy a Node.js-t, úgy a MongoDB-t is a hivatalos weboldaláról érhetjük el ([9]). Ebben az esetben is telepítésre, valamint installációra lesz szükség. Telepítés után pedig csatlakoznunk kell az adott adatbázishoz. Ezt elősegítendő, a program rendelkezik egy saját parancssoros felülettel. Itt az alábbi parancsot kell megadnunk:
+
+\begin{verbatim}
+$ mongod
+\end{verbatim}
+
+Ennek hatására a konfigurációs fájl (\textit{mongo.cfg}) alapján csatlakozik az adatbázishoz, így a Node.js-ből is hozzáférhetünk a csatlakoztatott adatbázishoz, és annak tartalmához (például a kollekciókhoz).
+
+Említést érdemel egy további alkalmazás, mely nagy segítséget nyújt az applikációnk tesztelésében. Ez pedig nem más, mint a \textit{Postman}. Ez az asztali alkalmazás képes - többek között - felhasználói adatbevitelt szimulálni, így tesztelhetjük a webapplikációnkat különböző kérések elküldésével. Például bejelentkezési folyamatot így  futtathatunk:
+
+\begin{enumerate}
+\item{Be kell írnunk az URL-t, melyre tesztelni szeretnénk, valamint a kérés típusát (\texttt{get} és \texttt{post} típusokat különböztetünk itt meg, mivel ez a két leggyakrabban alkalmazott metódus).}
+\item{Meg kell adnunk a küldendő adatokat. Ezek elég változatosak lehetnek, leggyakrabban \texttt{header} és \texttt{body} paramétereket és értékeiket adunk át.}
+\item{Végül pedig a "\textit{Küldés}" gombbal elküldjük a kérést a megadott szerverre.}
+\end{enumerate}
+
+Küldés után a válaszablakban találhatjuk a kérés eredményeit. Itt láthatjuk például a HTTP válasz státuszkódját, a futás idejét miliszekundumokban, viszont a legfontosabb a válaszkód, melyet akár többféle nyelven tudjuk megjeleníteni. E kód segítségével tudjuk ellenőrizni azt, hogy valóban helyesen működik-e a programunk.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 4 . 2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{A program általános jellemzői}
+
+A weboldalak mind HTML nyelvben íródnak, viszont \textit{.ejs} kiterjesztésűek. Ennek az az oka, hogy egy bizonyos \textit{EJS view engine}-t alkalmazunk. Ennek okát a későbbiekben kifejtjük. A weboldalak stílusát CSS stíluslapokkal írjuk meg. Külön témát alkotunk a bejelentkezési oldalra (kék), a felhasználói-, adminisztrátori felületekre, illetve a sikeres műveletet értesítő oldalakra (zöld), valamint a hibajelző oldalakra (piros).
+
+A továbbiakban fontos megjegyezni, hogy az átirányításokat \textit{Express} rendszerrel hajtjuk végre. Szándékosan nem modulként hivatkozunk rá, hiszen ez egy, a Node.js számára fejlesztett backend keretrendszer, mely nagyban megkönnyíti a webapplikációk fejlesztésének menetét. Telepíteni viszont modulként kell:
+
+\begin{verbatim}
+$ npm install express
+\end{verbatim}
+
+Ahogyan már említettük, az Express végzi az átirányításokat (is). Például:
+
+\begin{javascript}
+app.get('/invalid', function(req, res) {
+  res.render("invalid");
+});
+\end{javascript}
+
+Ebben a példában a "\textit{/invalid}" nevű oldalra navigálás esetén az "\textit{invalid}" nevű fájlt tölti be a rendszer. Itt viszont vissza kell térnünk a .ejs kiterjesztésre. Ugyanis az Express HTML oldalakat nem tud betölteni. Emiatt kell használnunk az EJS-t, amely viszont megköveteli, hogy \textit{.html} helyett \textit{.ejs} legyen az oldalak kiterjesztése. Ez lényegében semmilyen változtatással nem jár, szintaktikájuk (ebben az esetben teljesen) megegyezik.
+
+Szóba került a munkamenet-menedzselés is. Ezt az Express egyik alrendszerével, az \textit{Express-session}-nel, valamint a \textit{Cookie-parser} nevű modullal oldjuk meg. Míg az előbbi magát a munkamenetet kezeli, az utóbbi segítségével tudjuk módosítani a sütiket (példának okáért a sütik elévülési idejét - ez határozza meg a munkamenet hosszát, mely esetünkben 30 perc).
+
+A projekten belüli navigációt, illetve útvonalkezelést a \textit{Path} nevű modullal végezzük. E modul képes többek között fájlok kiterjesztését, kiterjesztés nélküli nevét ("basename") lekérdezni, útvonalak abszolút voltát, vagy akár két útvonal közti relatív útvonalat meghatározni. Nekünk a \texttt{resolve()} függvény lesz segítségünkre, mellyel az argumentumként megadott útvonalat és más mappákat lehet abszolút útvonalként beállítani. Emellett a \texttt{join()} metódus is hasznunkra lesz, mivel ezzel útvonalakat lehet összevonni. Továbbá egy bizonyos \texttt{\_\_dirname} változót is biztosít számunkra a modul, mely a futtatás helyét tárolja (mindig azt az útvonalat veszi fel értékként, amelyből futtattuk a programot).
+
+Igényt tartunk még a \textit{Formidable} modulra is. Ez lehetővé teszi számunkra, hogy bejövő (felhasználó által elküldött, így rendelkezésünkre bocsátott), főleg fájlfeltöltési űrlapokat kezeljünk. Leglényegesebb funkciója a \texttt{parse()} függvény. Ezzel tudjuk a kapott űrlapot értelmezni, mind a kiválasztott fájl(ok), mind a hozzá kapcsolódó mezők szempontjából.
+
+Végül pedig beimportáljuk az \textit{fs} nevű modult. Ezen modullal fájlműveleteket végezhetünk, például:
+\begin{itemize}
+\item{Fájl létrehozása}
+\item{Fájl létezésének ellenőrzése}
+\item{Fájl módosítása}
+\item{Fájl törlése}
+\item{Fájl átnevezése}
+\end{itemize}
+Számunkra a fájlfeltöltés folyamatában lesz hasznos. Erre a feltöltés részletezésénél térünk vissza.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 4 . 3 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{A program felépítése}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 4 . 3 . 1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{A szerver konfigurációja}
+
+Az applikációnk forráskódja elején a modulok importálása található. Ezután a szerver konfigurációja következik.
+
+Első körben definiáljuk a munkamenethez szükséges paramétereket az Express-session segítségével:
+\begin{itemize}
+\item{\textbf{secret}: A munkamenet egyedi azonosító kulcsa. Ez általában egy bonyolult, véletlenszerűen generált string, melyet nem szabad nyilvánosságra hozni.}
+\item{\textbf{saveUninitialized}: Egy boolean (logikai) típusú változó, mely jelzi, hogy az \textit{uninitialized} (létrehozott, de értékeket nem hordozó) munkamenetek mentésre kerüljenek-e, vagy sem.}
+\item{\textbf{resave}: Szintén egy logikai értéket hordoz. Ez határozza meg, hogy mi történjen akkor, ha egy kérés során nem módosul a munkamenet. \texttt{True} érték esetén mentésre kerül, \texttt{false} esetén viszont nem. Versengéses kérések esetén (például amikor a felhasználó több párhuzamos kérést küld a szerver felé) a \textit{false} a jobb választás.}
+\item{\textbf{cookie}: Itt tudjuk módosítani a sütik változóit. Mi csak egyetlen változót állítunk be, a \texttt{magAge}-et. Ez határozza meg a süti (ezzel együtt a munkamenet) lejáratát. A mi esetünkben ez az érték fél óra.}
+\end{itemize}
+
+\noindent
+A következő lépésben az Express működését szabályozzuk.
+
+Az Express \texttt{json()} metódusa egy úgynevezett "middleware" metódus, melynek segítségével JSON-ként tudjuk értelmezni a bejövő kéréseket. Ennek a funkciónak köszönhető többek között az is, hogy a \texttt{req} változót és annak paramétereit használni tudjuk.
+
+A következő metódus, melyet igénybe veszünk, a \texttt{urlencoded()}. Ez szintén egy middleware funkció, mely meghatározza, hogy csak UTF-8 kódolású oldalakat értelmezünk.
+
+Ezután a \texttt{static()} függvényt hívjuk meg. Ezzel határozzuk meg, hogy melyik mappából töltsük be a futáshoz szükséges eszközöket (ebben az esetben, az EJS-eket, a stílusokat, valamint a letölthető tartalmat).
+
+Következik az átirányítást kezelő motor konfigurációja. Ezt az Express \texttt{set()} metódusával tudjuk beállítani. A konfiguráció két fontos lépést foglal magában:
+\begin{itemize}
+\item{Beállítjuk a \texttt{view engine} paramétert. Mi az EJS-t használjuk, így az értékét erre állítjuk.}
+\item{Majd pedig meghatározzuk a \texttt{view} változót, ennek értékét az EJS fájlok főmappájában határozzuk meg}
+\end{itemize}
+
+Utolsó változtatásként pedig meghívjuk a Cookie-parser modult.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 4 . 3 . 2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Autentikáció}
+
+A program következő részében az autentikációval foglalkozunk. Ez egy \texttt{post} kérés, mely azt jelenti, hogy adatot küldünk a szervernek, mivel új adatot szeretnénk feltölteni, vagy meglévőt szeretnénk módosítani. Itt a bevitt adat hosszára, illetve típusára vonatkozó megkötések nincsenek. Az URL-ben nem jelenik meg a küldött adat, ezáltal a böngésző előzményei közt sem tárolódik. Az előző tények miatt érzékeny (fontos/titkos) adatokat érdemesebb post metódussal küldeni. Ennek értelmében tehát az autentikációt is post metódussal kezeljük.
+
+A \textit{login.ejs} fájlban létrehozzuk a bejelentkezési űrlapot, melynek \texttt{action} paraméterét \textit{post}-ra állítjuk, így jelezve azt, hogy az űrlap post metódussal kerül küldésre. Az űrlap két \texttt{<input>} mezőből áll, egy a felhasználónak, egy a jelszónak,  előbbi \texttt{text}, utóbbi \texttt{password} típusú. A text mezőben minden karakter megjelenik, míg a jelszó mezőben csillagok jelennek meg, a titkosítást elősegítendő. Az űrlaphoz tartozik még a \textit{Bejelentkezés} gomb is, mellyel az űrlap tartalma elküldhető.
+
+Az elküldött űrlapot az applikációnkban kezeljük. Először is bekérjük a felhasználó által bevitt adatokat, a nevet és a jelszót. Kiíratjuk a konzolra a felhasználói adatokat, majd csatlakozunk az adatbázishoz, ahol első körben rákeresünk a felhasználónévre. Abban az esetben, ha nem létezik, hibaüzenetet küldünk. Ha mégis létezik, a már említett bcrypt modul segítségével összehasonlítjuk a begépelt jelszót az adatbázisban szereplő, kódolt jelszóval. Magától értetődő, hogy abban az esetben, ha nem egyeznek, szintén hibaüzenetet küldünk a felhasználónak. Egyezőség esetén viszont eltároljuk a munkamenet adatait (például a felhasználónevet), a Cookie-parser modul legenerálja a felhasználóhoz tartozó süti-adatokat (így a nagy jelentősséggel bíró lejárati dátumot is), végül pedig átirányít a megfelelő oldalra (a "nem-admin" felhasználókat a főoldalra, az adminisztrátort pedig a felhasználó hozzáadása oldalra.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 4 . 3 . 3 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{A hallgatói felület}
+
+Amint azt már korábbi fejezetekben részleteztük, a felhasználók (bejelentkezés után) képesek lesznek:
+
+\begin{itemize}
+\item{böngészni fájlok között}
+\item{letölteni fájlokat, programokat, illetve}
+\item{feltölteni saját tartalmat.}
+\end{itemize}
+
+Ezen lehetőségeket szemlélteti az alábi use-case diagram:
+
+\begin{figure}[h]
+	\centering
+		\includegraphics[width=10truecm, height=7truecm]{images/felhasznalo_use_case.png}
+	\caption{A felhasználói felület}
+	\label{fig:login}
+\end{figure}
+
+Az alkalmazás használata során elsőkörben a bejelentkezési felülettel találkoznak a hallgatók/felhasználók (\ref{fig:login}. ábra). 
+
+\begin{figure}[h]
+	\centering
+		\includegraphics[width=10truecm, height=7truecm]{images/bejelentkezes.png}
+	\caption{A bejelentkezési felület}
+	\label{fig:login}
+\end{figure}
+
+\newpage
+
+Az autentikáció egy úgynevezett \textit{middleware}-en keresztül történik. Először a \textit{login.ejs} fájlból lekérjük az oldal használójától a beírt felhasználónevet, valamint a jelszót. Egyik mező sem maradhat üresen, mivel ez esetben az oldal nem enged továbblépni. Ezt követően a program csatlakozik az adatbázishoz, és lekérdezi, hogy a megadott felhasználónévvel létezik-e dokumentum. Amennyiben nem létezik, úgy hibaüzenetet küldünk a felhasználónak (\ref{fig:loginError}. ábra). Ha létezik, a már említett bcrypt modul segítségével összehasonlítjuk a begépelt jelszót az adatbázisban szereplő, kódolt jelszóval. Magától értetődő, hogy abban az esetben, ha nem egyeznek, szintén hibaüzenetet küldünk a felhasználónak. Egyezőség esetén viszont eltároljuk a munkamenet adatait (például a felhasználónevet), a cookie-parser modul legenerálja a felhasználóhoz tartozó süti-adatokat (így a nagy jelentősséggel bíró lejárati dátumot is), végül pedig átirányít a megfelelő oldalra (a "nem-admin" felhasználókat a főoldalra (\ref{fig:homeMenu}. ábra), az adminisztrátort pedig a felhasználó hozzáadása oldalra).
+
+\begin{figure}[h]
+	\centering
+		\includegraphics[width=10truecm, height=7truecm]{images/nincs_felhasznalo.png}
+	\caption{Nem létező felhasználó esetén megjelenő hibaüzenet}
+	\label{fig:loginError}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+		\includegraphics[width=10truecm, height=7truecm]{images/fooldal.png}
+	\caption{A főoldal menüje}
+	\label{fig:homeMenu}
+\end{figure}
+
+A fiókok adatait egy MongoDB kollekcióban tároljuk. Ennek egy nagyon kézenfekvő, grafikus reprezentációját nyújtja a Mongodb \textit{Atlas} szolgáltatása (\ref{fig:atlas}. ábra). Az említett kollekción belül minden egyes dokumentumnak három mezőértéke van:
+
+\begin{itemize}
+\item{\textit{id}}: Ez a MongoDB által automatikusan generált index. Ez alapján a kollekció minden egyes dokumentuma egyértelműen meghatározható.
+\item{\textit{név}}: Ez a mező a felhasználói fiók nevét tárolja el, egyszerű string formátumban.
+\item{\textit{jelszó}}: Ez pedig a titkosított jelszó, ez a Node.js \textit{bcrypt} nevű moduljának köszönhető.
+\end{itemize}
+
+Az előbb említett bcrypt modul segítségével egy karakterlánc több ciklusban (többszörösen) titkosítható, valamint a titkosított szó, vagy szövegrészlet visszaalakítható egyszerű string formátumba. Továbbá képes arra, hogy titkosított, illetve nem titkosított string-et összehasonlítson, mely funkcióját az adatbázisból való jelszólekérdezés után hasznosítunk.
+
+\begin{figure}[h]
+	\centering
+		\includegraphics[width=12truecm, height=7truecm]{images/atlas.png}
+	\caption{A MongoDB Atlas felülete}
+	\label{fig:atlas}
+\end{figure}
+
+Sikeres bejelentkezés esetén a főoldalon találják magukat a hallgatók (\ref{fig:homeMenu}. ábra). Fontos megjegyezni, hogy a munkafolyamat a bejelentkezés pillanatától számított 30 perc múlva kiléptet, és újabb bejelentkezési folyamat után enged vissza (\ref{fig:invalid}. ábra). Továbbá, a \textit{Kijelentkezés} gombra kattintva - azon kívül, hogy átirányít a bejelentkezési felületre - véget ér a munkafolyamat.
+
+\begin{figure}[h]
+	\centering
+		\includegraphics[width=10truecm, height=7truecm]{images/lejart_munkamenet.png}
+	\caption{A munkamenet lejáratát jelző hibaüzenet}
+	\label{fig:invalid}
+\end{figure}
+
+A főoldalon a legördülő menü lesz a felhasználók segítségére, ugyanis ezen keresztül történik a navigáció. Maga a menü egyszerű, gombokból (\texttt{<button>}-okból) áll, melyeket stíluslapok segítségével kényelmesebbé, esztétikusabbá alakítunk.
+
+A menün való navigálás során a felhasználók - többek között - megtalálhatják a feltöltött tartalmakat. Ezek csoportokba szedve elérhetőek az oldalon. Ennek megvalósítása a .ejs fájlokon keresztül zajlik. Említésre került már, hogy a .ejs és a .html fájloknak túlnyomórészt megegyezik a szintaktikája. A mi esetünkben teljesen megegyeznek, ezért hagyatkozhatunk a HTML nyelvre. Ebben a nyelvben az \texttt{<a>} tag segítségével hozhatunk létre linkeket, ám ezek elsődlegesen megnyitják a behivatkozott fájlt. Viszont, ha hozzáadjuk a nyitó tag-be a \texttt{download} kulcsszót, úgy a linkre kattintás hatására letöltődik a hivatkozott fájl.
+
+A felhasználóknak továbbá lehetőségük van arra is, hogy feltöltsenek saját tartalmat is az oldalra.
+
+A fájlfeltöltés kezelése például így zajlik:
+
+\begin{javascript}
+app.post('/fileupload', async (req, res, next) => {
+  const form = new formidable.IncomingForm();
+  form.parse(req, function(err, fields, files){
+    if(files.fileUp.originalFilename == ""){
+      res.redirect('nofile');
+    }
+    else{
+      var uploadPath = path.join(__dirname, "views", "files",
+"uploads", files.fileUp.originalFilename);
+      var oldPath = files.fileUp.filepath;
+      var rawData = fs.readFileSync(oldPath);
+      if(fs.existsSync(uploadPath)){
+        res.redirect('fileexists');
+      }
+      else{
+        fs.writeFile(uploadPath, rawData, function(err){
+          res.redirect('uploadsuccess');
+          console.log("File successfully uploaded");
+        })
+      }
+    }
+  })
+});
+\end{javascript}
+
+Ezt a folyamatot egy kicsit alaposabban áttekintjük. Mindenekelőtt fontos megjegyezni, hogy ebben a metódusban megjelenik a Node.js egyik nagy erőssége: az \textit{aszinkron kezelés}, melyet az "\texttt{asnyc}" kulcsszóval érhetünk el. Tudniillik, a Node.js folyamatai egy szálon futnak. Ugyanakkor, míg a legtöbb rendszer kérés esetén megvárja a választ, és csak utána dolgozza fel a következő kérést, addig a Node.js a kéréseket folyamatosan dolgozza fel, nem vár válaszokra, ezzel megvalósítva a blokkolásmentes folyamatkezelést. Ez pedig nagyban hozzájárul a rendszer skálázhatóságához.
+
+A forráskódból látszik, hogy először a \textit{formidable} modul segítségével lekérjük az űrlapot, melyet a felhasználó kitöltött (kiválasztotta a feltölteni kívánt fájlt). Ezután feldolgozzuk az űrlapot. Hibaellenőrzést végzünk, vagyis amennyiben a fájlnak nincs neve (a felhasználó nem választott ki fájlt), úgy hibaüzenetet küldünk. Ellenkező esetben megvizsgáljuk, hogy létezik-e azonos fájlnévvel dokumentum. Ebben segtségünkre lesz az \textit{fs} modul, melynek segítségével navigálhatunk a projektünkön belül. Ha egyezést talál a program, szintén hibaüzenetet küldünk a felhasználónak. Viszont ha egyedi a fájlnév, akkor az fs modul használatán keresztül bemásoljuk a fájlt a projektünk egyik almappájába, valamint visszajelzést küldünk a feltöltési folyamat sikerességéről.
+
+Amennyiben nem szándékozunk tovább tevékenykedni az oldalon, úgy az alkalmazás jobb felső sarkában található \textit{kijelentkezés} gombbal visszatérhetünk a bejelentkezési oldalra, ezzel együtt lezárjuk a munkamenetet.
+
+\subsection{Az adminisztrátori felület}
+
+A megfelelő felhasználóba való bejelentkezés után a program automatikusan az adminisztrátori felületbe továbbít minket (\ref{fig:admin}. ábra)
+
+\begin{figure}[h]
+	\centering
+		\includegraphics[width=12truecm, height=7truecm]{images/admin_oldal.png}
+	\caption{Az adminisztrátori felület}
+	\label{fig:admin}
+\end{figure}
+
+Itt az adminisztrátornak lehetősége van:
+
+\begin{itemize}
+\item{felhasználót hozzáadni,}
+\item{felhasználó meglévő adatait módosítani, valamint}
+\item{felhasználói fiókot törölni}
+\end{itemize}
+
+Ezen műveletek során szintén a MongoDB adatbázis adott kollekciójával rendelkezik, ezen belül hajtja végre a műveleteket. Hozzáadás során a program ellenőrzi, hogy létezik-e a megadott felhasználónévvel fiók. Amennyiben létezik, úgy hibaüzenetet küld a rendszer, és visszatér az előző oldalra. A módosítás művelete közben szintén a felhasználói fiók jelenlétét ellenőrzi az alkalmazás. Könnyű belátni, hogy itt a fiók meglétére van szükség, ugyanis, ha nem létezik fiók, úgy nem tudjuk az adatait módosítani. Hasonló ellenőrzés zajlik le felhasználó törlése során is. Nem hagyhatjuk figyelmen kívül azt sem, hogy - ahol szükséges, - a jelszavak egyezőségét is figyelni kell.
+
+Példának okáért a felhasználó hozzáadását az alábbi programrészlet szemlélteti:
+
+\begin{javascript}
+app.post('/add', function(req, res, next) {
+
+  var addUser = req.body.addUName,
+      addPW = req.body.addPW,
+      addPWAgain = req.body.addPWAgain;
+  var addObj = { username: addUser,
+password: bcrypt.hashSync(addPW, 10) };
+
+  if(addPW != addPWAgain){
+    console.log("Passwords don't match!");
+    res.redirect('/notmatching');
+  }
+  else{
+    MongoClient.connect('mongodb+srv://jokermta:QTIq5re1999@szdcluster.4fntd.mongodb.net/test?retryWrites=true&w=majority', {
+      useUnifiedTopology: true,
+      useNewUrlParser: true,
+    }).then((db) => {
+      var dbo = db.db("test");
+      dbo.collection("profiles").findOne({ username:addUser })
+.then((collection) => {
+        if (collection) {
+          console.log("User already exists!");
+          res.redirect('/userexists');
+        }
+        else{
+          MongoClient.connect('mongodb+srv://jokermta:QTIq5re1999@szdcluster.4fntd.mongodb.net/test?retryWrites=true&w=majority', {
+            useUnifiedTopology: true,
+            useNewUrlParser: true,
+          }).then((db) => {
+            var dbo = db.db("test");
+            dbo.collection("profiles").insertOne(addObj)
+.then((collection) => {
+              console.log("User added!");
+              res.redirect('/dbsuccess');
+            })
+          });
+        }
+      }).catch(err => {
+        console.log('DB Connection Error: ${err.message}');
+        res.redirect('/notfound');
+      }).finally(() => {
+        console.log('Close DB');
+        db.close();
+      })
+    });
+  }
+});
+\end{javascript}
+
+Érdemes megjegyezni azt a tényt, hogy munkamenet szempontjából az adminisztrátort is felhasználóként kezeljük! Ez azt jelenti, hogy a bejelentkezéstől számított 30 perc után az adminisztrátort is kijelentkezteti a program, és újra be kell jelentkeznie.
