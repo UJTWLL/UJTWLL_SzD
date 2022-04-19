@@ -227,7 +227,7 @@ Ez a metódusa \textit{/programmeupload} oldalon történik, viszont a feltölt�
 
 \subsection{Címek}
 
-Az alkalmazás eddigi részében kizárólag \texttt{post} metódust használtunk. Ezután viszont csak \texttt{get}-re lesz szükségünk, mivel ezekben a kérésekben a szerverről kérünk le adatot. További jellemzői közé tartozik még, hogy a \texttt{post}-tal ellentétben ezek az oldalak könyvjelzőként menthetőek, valamint újratöltésükkor nem ütközünk problémába (\texttt{post} kérés újratöltése esetén az adatok újra elküldésre kerülnek, például \textbf{netbankon belüli tranzakciós kérés oldalának újratöltése esetén a tranzakció megismétlődik}, ezt kiküszöbölendő a böngésző értesítést küld ilyen esetben). Továbbá a küldés paraméterei megjelennek a böngésző címében, illetve mentésre kerülnek a böngésző előzményei közt. Ebből kifolyólag érzékeny adat továbbításakor nem érdemes ezt a metódust használni!
+Az alkalmazás eddigi részében kizárólag \texttt{post} metódust használtunk az \textit{Express} modullal, ezután viszont csak \texttt{get}-re lesz szükségünk, mivel ezekben a kérésekben a szerverről kérünk le adatot. További jellemzői közé tartozik még, hogy a \texttt{post}-tal ellentétben ezek az oldalak könyvjelzőként menthetőek, valamint újratöltésükkor nem ütközünk problémába (\texttt{post} kérés újratöltése esetén az adatok újra elküldésre kerülnek, például \textbf{netbankon belüli tranzakciós kérés oldalának újratöltése esetén a tranzakció megismétlődik}, ezt kiküszöbölendő a böngésző értesítést küld ilyen esetben). Továbbá a küldés paraméterei megjelennek a böngésző címében, illetve mentésre kerülnek a böngésző előzményei közt. Ebből kifolyólag érzékeny adat továbbításakor nem érdemes ezt a metódust használni!
 
 A címeket funkciójuk alapján különböző csoportokba osztjuk:
 
@@ -253,16 +253,16 @@ Ide soroljuk azokat az oldalakat, melyek között a (bejelentkezett) felhasznál
 \item{feltölteni saját tartalmat.}
 \end{itemize}
 
-Ezen lehetőségeket szemlélteti az alábi use-case diagram:
+Ezen lehetőségeket szemlélteti az alábbi use-case diagram:
 
 \begin{figure}[h]
 	\centering
-		\includegraphics[width=10truecm, height=7truecm]{images/felhasznalo_use_case.png}
+		\includegraphics[width=15truecm, height=10truecm]{images/felhasznalo_use_case.png}
 	\caption{A felhasználói felület}
-	\label{fig:login}
+	\label{fig:userusecase}
 \end{figure}
 
-A navigációt az oldal felső részében található zöld menü segítségével végezhetik a felhasználók. A menü felett jelenik meg annak az oldalnak a neve, melyen a felhasználó éppen tartózkodik. A CSS stíluslap szerint a kurzor menüpontokra való húzása (\texttt{hover}) esetén a kijelölt menüpont szürke kiemelő színt kap, így megkülönböztetve a menüpontokat. A \textit{Fájlok}, valamint a \textit{Programok} menüpontok \textit{hover} eseménye esetén legördülnek, és két almenüpont válik előrhetővé számunkra: a \textit{Fájlok} menüpontból a \textit{Tananyagok} és a \textit{Feltöltés}, a \textit{Programok} menüpontból pedig a \textit{Demonstrációk} és a \textit{Feltöltés} almenüpontok jelennek meg. Az almenüpontok háttérszíne fekete, kijelőlés esetén viszont ugyanazt a szürkés árnyalatot kapják, mint a főmenüpontok. Kattintás hatására pedig a tényleges navigáció zajlik le:
+A navigációt az oldal felső részében található zöld menü segítségével végezhetik a felhasználók. A menü felett jelenik meg annak az oldalnak a neve, melyen a felhasználó éppen tartózkodik. A \textit{mainStyle.css} nevű CSS stíluslap adja ezen oldalak kinézetét, mely szerint a kurzor menüpontokra való húzása (\texttt{hover}) esetén a kijelölt menüpont szürke kiemelő színt kap, így megkülönböztetve a menüpontokat. A \textit{Fájlok}, valamint a \textit{Programok} menüpontok \textit{hover} eseménye esetén legördülnek, és két almenüpont válik előrhetővé számunkra: a \textit{Fájlok} menüpontból a \textit{Tananyagok} és a \textit{Feltöltés}, a \textit{Programok} menüpontból pedig a \textit{Demonstrációk} és a \textit{Feltöltés} almenüpontok jelennek meg. Az almenüpontok háttérszíne fekete, kijelőlés esetén viszont ugyanazt a szürkés árnyalatot kapják, mint a főmenüpontok. Kattintás hatására pedig a tényleges navigáció zajlik le. Attól függően, hogy melyik menüpontra kattintottunk, a navigáció változatos lehet:
 
 \begin{itemize}
 \item{\textbf{Főoldal}: Navigáció a "\textit{/home}" oldalra}
@@ -274,15 +274,43 @@ A navigációt az oldal felső részében található zöld menü segítségéve
 
 \noindent{\textbf{\large{Adminisztrációs felület oldalai}}}\\
 
-aaa\\
+Ide azokat az oldalakat soroljuk, melyek között az adminisztrátor böngészni tud. Ezen oldalakon az adminisztrátornak lehetősége van:
+
+\begin{itemize}
+\item{felhasználót hozzáadni,}
+\item{felhasználó meglévő adatait módosítani, valamint}
+\item{felhasználói fiókot törölni}
+\end{itemize}
+
+A megfelelő felhasználóba való bejelentkezés után a program automatikusan az adminisztrátori felületbe továbbít minket. Az itt rendelkezésünkre álló lehetőségeket szemlélteti az alább található use-case diagram:
+
+\begin{figure}[h]
+	\centering
+		\includegraphics[width=15truecm, height=10truecm]{images/adminisztrator_use_case.png}
+	\caption{Az adminisztrátori felület}
+	\label{fig:adminusecase}
+\end{figure}
+
+A felület stílusa megegyezik a felhasználói felület stílusával, mivel ezen oldalak is a \textit{mainStyle.css} stíluslapot használják. A főmenüpontok zöldek, a jelenlegi oldalt jelző cím szürke, menüpont kijeöléskor pedig szürke hátteret kapnak. Itt nincsenek almenüpontok, csak három főmenüpont:
+
+\begin{itemize}
+\item{\textbf{Felhasználó hozzáadása}: Navigáció az "\textit{/adminadd}" oldalra}
+\item{\textbf{Felhasználó módosítása}: Navigáció az "\textit{/adminmodify}" oldalra}
+\item{\textbf{Felhasználó törlése}: Navigáció az "\textit{/adminremove}" oldalra}
+\end{itemize}
 
 \noindent{\textbf{\large{Sikerességet visszajelző oldalak}}}\\
 
-aaa\\
+Ide tartoznak azok az oldalak, melyek a sikeres műveletek (például adatbázis sikeres frissítése) után kerülnek megjelenítésre. Ezek mindegyike a \textit{successStyle.css} nevű stíluslapot veszi igénybe. Ebbe a kategóriába soroljuk:
+
+\begin{itemize}
+\item{\textbf{Adatbázis sikeres frissítése}: Navigáció a "\textit{/dbsuccess}" oldalra. Ide az adminisztrátor oldalán található \textit{Felhasználó hozzáadása}, \textit{/Felhasználó módosítása}, valamint a \textit{/Felhasználó törlése} műveletek sikeres elvégzése után jutunk el.}
+\item{\textbf{Feltöltés sikeres}: Navigáció az "\textit{/uploadsuccess}" oldalra. A \textit{/fileupload}, illetve a \textit{/programmeupload} oldalakon elvégezhető feltöltés (végbement, sikeres) művelete után jelenik meg a felhasználók számára ez az oldal.}
+\end{itemize}
 
 \noindent{\textbf{\large{Hibajelző oldalak}}}\\
 
-aaa
+Ebbe a csoportba tartoznak azok az oldalak, melyek a hibás műveleteket jelzik vissza, vagy elkerülendő problémák miatt van szükség rájuk.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 4 . 3 . 6 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
