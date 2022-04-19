@@ -164,9 +164,127 @@ A program következő részében az autentikációval foglalkozunk. Ez egy \text
 
 A \textit{login.ejs} fájlban létrehozzuk a bejelentkezési űrlapot, melynek \texttt{action} paraméterét \textit{post}-ra állítjuk, így jelezve azt, hogy az űrlap post metódussal kerül küldésre. Az űrlap két \texttt{<input>} mezőből áll, egy a felhasználónak, egy a jelszónak,  előbbi \texttt{text}, utóbbi \texttt{password} típusú. A text mezőben minden karakter megjelenik, míg a jelszó mezőben csillagok jelennek meg, a titkosítást elősegítendő. Az űrlaphoz tartozik még a \textit{Bejelentkezés} gomb is, mellyel az űrlap tartalma elküldhető.
 
-Az elküldött űrlapot az applikációnkban kezeljük. Először is bekérjük a felhasználó által bevitt adatokat, a nevet és a jelszót. Kiíratjuk a konzolra a felhasználói adatokat, majd csatlakozunk az adatbázishoz, ahol első körben rákeresünk a felhasználónévre. Abban az esetben, ha nem létezik, hibaüzenetet küldünk. Ha mégis létezik, a már említett bcrypt modul segítségével összehasonlítjuk a begépelt jelszót az adatbázisban szereplő, kódolt jelszóval. Magától értetődő, hogy abban az esetben, ha nem egyeznek, szintén hibaüzenetet küldünk a felhasználónak. Egyezőség esetén viszont eltároljuk a munkamenet adatait (például a felhasználónevet), a Cookie-parser modul legenerálja a felhasználóhoz tartozó süti-adatokat (így a nagy jelentősséggel bíró lejárati dátumot is), végül pedig átirányít a megfelelő oldalra (a "nem-admin" felhasználókat a főoldalra, az adminisztrátort pedig a felhasználó hozzáadása oldalra.
+Az elküldött űrlapot az applikációnkban kezeljük. Először is bekérjük a felhasználó által bevitt adatokat, a nevet és a jelszót. Kiíratjuk a konzolra a felhasználói adatokat, majd csatlakozunk az adatbázishoz, ahol első körben rákeresünk a felhasználónévre. Abban az esetben, ha nem létezik, hibaüzenetet küldünk. Ha mégis létezik, a bcrypt modul segítségével összehasonlítjuk a begépelt jelszót az adatbázisban szereplő, kódolt jelszóval. Magától értetődő, hogy abban az esetben, ha nem egyeznek, szintén hibaüzenetet küldünk a felhasználónak. Egyezőség esetén viszont eltároljuk a munkamenet adatait (például a felhasználónevet), a Cookie-parser modul legenerálja a felhasználóhoz tartozó süti-adatokat (így a nagy jelentősséggel bíró lejárati dátumot is), végül pedig átirányít a megfelelő oldalra (a "nem-admin" felhasználókat a főoldalra, az adminisztrátort pedig a felhasználó hozzáadása oldalra.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 4 . 3 . 3 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Adminisztrátori műveletek}
+
+Következőleg az adminisztrátori műveletek kezelését határozzuk meg. Fontos megjegyezni, hogy mivel mindhárom művelet adatot oszt meg a szerverrel, ezért ezek mindegyike \texttt{post} metódusként kezelendő.\\
+
+\noindent{\textbf{\large{Felhasználó hozááadása}}}\\
+
+Első lépésként az \textit{adminadd.ejs} fájlban létrehozzunk a megfelelő űrlapot, az \texttt{action} paraméterét pedig \textit{post}-ra állítjuk. Az űrlap tartalma:
+
+\begin{itemize}
+\item{\textbf{Felhasználónév}: Egy text típusú \texttt{<input>} mező, ide kerül a hozzáadandó felhasználó neve.}
+\item{\textbf{Jelszó}: Password típusú \texttt{<input>} mező, ez a leendő felhasználó jelszavát tartalmazza.}
+\item{\textbf{Jelszó újra}: Password típusú \texttt{<input>} mező, a jelszó helyes bevitele miatt van szükség erre.}
+\item{\textbf{Hozzáadás}: Egy \texttt{submit} típusú input-gomb, a kitöltött űrlapot ennek segítségével tudjuk elküldeni a szervernek.}
+\end{itemize}
+
+Elküldés után az applikációban kezelhetjük a felhasználói fiók hozzáadásának folyamatát.
+
+Itt először különböző változókban eltároljuk a felhasználó által bevitt adatokat: a felhasználónevet, a jelszót, valamint az újbóli jelszóbevitelt. Ezután ellenőrzést hajtunk végre a jelszó mezőkön. Ha nem egyeznek, az adminisztrátor \textit{"A jelszavak nem egyeznek!"} hibaüzenetet kapja meg, majd vissza kell lépnie. Egyezés esetén csatlakozunk az adatbázishoz, és egy \texttt{findOne()} lekérdezésen keresztül megvizsgáljuk, hogy létezik-e az adott névvel felhasználói fiók. Ezzel lezárjuk az első lekérdezést. Ha létezik, szintén hibaüzenet kerül megjelenítésre (\textit{Már létezik ilyen felhasználói fiók!}). Ha nem létezik, elindítjuk a második lekérdezést, mely viszont már \texttt{insertOne()} típusú, ugyanis ezzel tudjuk beilleszteni a dokumentumba a felhasználói fiókot. Ezután a sikeres fiók-hozzáadásról üzenetet kapunk, majd visszalépünk az adminisztrációs felületre.\\
+
+\noindent{\textbf{\large{Felhasználó módosítása}}}\\
+
+Az előző metódushoz hasonlóan először az adatbeviteli felületet hozzuk létre (\textit{adminmodify.ejs}). Ugyanazokat a beviteli mezőket tartalmazza, mint a fiók hozzáadása, viszont az itt található mezők azonosítója más, a megkülönböztethetőség végett (Például a hozzáadás folyamatában a felhasználónevet tartalmazó mező azonosítója \texttt{addUName}, míg a módosításban található felhasználónév-mező azonosítója \texttt{modifyUName}).
+
+Adatfeltöltés, és elküldés után az alkalmazásban folytatjuk a kezelést.
+
+Változókban eltároljuk a felhasználó által beírt adatokat. Az első lépés itt is a jelszavak egyezőségének ellenőrzése. Ha nem egyeznek, hibaüzenetet küldünk. Ha egyeznek, inicializáljuk az első csatlakozást a szerverhez, aholis a felhasználónév meglétét ellenőrizzük. Ha nem létezik, hibaüzenetet küldünk, mivel csak meglévő felhasználói fiókot tudunk módosítani. Amennyiben létezik, egy \texttt{updateOne()} típusú lekérdezéssel módosítjuk a felhasználói fiók adatait. Visszajelzést küldünk a sikeres módosításról, majd visszalépünk az oldalra.\\
+
+\noindent{\textbf{\large{Felhasználó eltávolítása}}}\\
+
+Itt már csak egy felhasználónévre (és természetesen a \textit{Törlés} gombra) lesz szükségünk, hiszen a név alapján egyértelműen meghatározható, melyik fiókot szeretnénk eltávolítani a dokumentumból. Így az \textit{adminremove.ejs}-ben található űrlap csak a felhasználónévhez szükséges \texttt{<input>} mezőt, valamint az elküldést intéző gombot tartalmazza.
+
+A következő lépés már ismert. Felhasználói adatbevitel, madj pedig elküldés. Továbbiakban az applikáció foglalkozik a metódussal.
+
+A törlendő felhasználói fiók nevének változóban történő eltárolása után csatlakozunk az adatbázishoz, majd \texttt{findOne()} típusú lekérdezéssel rákeresünk a felhasználónévre. Ha a keresés nem járt sikerrel, hibaüzenet jelenik meg. Találat esetén egy új csatlakozást kezdeményezünk, ahol már \texttt{deleteOne()} típusú lekérdezés segítségével töröljük az adott névhez tartozó felhasználói fiókot. Sikeres adattörlés esetén visszajelzést küldünk az adminisztrátornak, majd visszalépünk.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 4 . 3 . 4 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Fájlfeltöltés}
+
+A következőekben a fájlok feltöltésének kezelését részletezzük. Az eddigiekhez hasonlóan - tekintettel arra, hogy ez a művelet is adatot oszt meg a szerverrel - ez a metódus is \texttt{post} típusú.\\
+
+\noindent{\textbf{\large{Fájl feltöltése}}}\\
+
+A folyamat a \textit{/fileupload} oldalon zajlik. Első körben a \textit{formidable} modul segítségével letároljuk a beérkező űrlapot, mely tartalmazza a feltöltendő fájlt. Ezután a modul \texttt{parse()} metódusát vesszük igénybe, ezzel értelmezzük és dolgozzuk fel az űrlap tartalmát. Alapvető hibaellenőrzést végzünk: Amennyiben a fájl neve megegyezik az üres string-gel (nincs fájlnév, azaz nincs kiválasztott fájl), úgy hibaüzenetet küldünk a felhasználónak (\textit{Nincs kiválasztott fájl!}). Ellenkező esetben először változókban eltároljuk:
+\begin{itemize}
+\item{a fájl(ok) feltöltésének mappáját (\textit{./views/files/uploads/}), a leendő fájlnévvel és kiterjesztésével együtt (a feltöltési útvonalat a \textit{path} modul segítségével hozzuk létre),}
+\item{az eredeti fájl elérési útvonalát, és}
+\item{az eredeti fájl tartalmát az \textit{fs} fájlkezelő modul \texttt{readFileSync()} függvénye segítségével.}
+\end{itemize}
+Következő lépésben szintén az \textit{fs} modul lesz hasznunkra, most a \texttt{existsSync()} metódust hívjuk meg, ennek segítségével a fájlok feltöltésének mappáját vizsgáljuk, azt keresve, hogy van-e a mappában azonos nevű fájl. Ha létezik ilyen, megakadályozzuk a feltöltést, és hibaüzenetet küldünk (\textit{Már létezik ilyen nevű fájl!}), így kiszűrve az azonos nevű fájlok feltöltésének problémáját. Viszont ha nem létezik, szabad az út a feltöltéshez. Még egyszer az \textit{fs} modult hívjuk segítségül, majd a \texttt{writeFile()} funkcióját meghívva a változóban korábban már eltárolt feltöltési útvonalra kiírunk egy új fájlt, és feltöltjük az eredeti fájl \texttt{readFileSync()} által feldolgozott tartalmával.\\
+
+\noindent{\textbf{\large{Program feltöltése}}}\\
+
+Ez a metódusa \textit{/programmeupload} oldalon történik, viszont a feltöltés kezelése szinte azonos a fájlfeltöltéssel. Az űrlap tartalmának változóban történő letárolása után a kiválasztott fájl ellenőrzését vizsgáljuk. Ha van kiválasztott fájl az űrlapban, letároljuk a fájlfeltöltéshez hasonlóan 3 változóban a feltöltés helyét (\textit{./views/programmes/uploads/}), fájlnévvel és kiterjesztéssel együtt, az eredeti elérési útvonalat, valamint az eredeti fájl tartalmát. Keresünk a mappában azonos nevű fájlt. Ha egyedi a fájlnév, akkor az eredeti fájl tartalmát kimásoljuk az általunk létrehozott, új fájlba, majd a sikeres feltöltő művelet után visszajelzést küldünk.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 4 . 3 . 5 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Címek}
+
+Az alkalmazás eddigi részében kizárólag \texttt{post} metódust használtunk. Ezután viszont csak \texttt{get}-re lesz szükségünk, mivel ezekben a kérésekben a szerverről kérünk le adatot. További jellemzői közé tartozik még, hogy a \texttt{post}-tal ellentétben ezek az oldalak könyvjelzőként menthetőek, valamint újratöltésükkor nem ütközünk problémába (\texttt{post} kérés újratöltése esetén az adatok újra elküldésre kerülnek, például \textbf{netbankon belüli tranzakciós kérés oldalának újratöltése esetén a tranzakció megismétlődik}, ezt kiküszöbölendő a böngésző értesítést küld ilyen esetben). Továbbá a küldés paraméterei megjelennek a böngésző címében, illetve mentésre kerülnek a böngésző előzményei közt. Ebből kifolyólag érzékeny adat továbbításakor nem érdemes ezt a metódust használni!
+
+A címeket funkciójuk alapján különböző csoportokba osztjuk:
+
+\begin{itemize}
+\item{bejelentkezési oldal}
+\item{felhasználói felület oldalai}
+\item{adminisztrációs felület oldalai}
+\item{sikerességet visszajelző oldalak}
+\item{hibát jelző oldalak}
+\end{itemize}
+
+\noindent{\textbf{\large{Bejelentkezési oldal}}}\\
+
+Ide egyetlen oldal tartozik, a bejelentkezési oldal, mely egyben az URL gyökerét is jelzi (vagyis, domain név betöltése esetén ez jelenik meg). Elérési útvonala "\textit{/}". Ezen az oldalon tudnak a felhasználók (és az adminisztrátor) bejelenkezni a megfelelő oldalra (a felhasználók a \textit{home} nevű főoldalra, az adminisztrátor pedig az \textit{/adminadd} oldalra).\\
+
+\noindent{\textbf{\large{Felhasználói felület oldalai}}}\\
+
+Ide soroljuk azokat az oldalakat, melyek között a (bejelentkezett) felhasználók navigálni tudnak. Amint azt már korábbi fejezetekben részleteztük, a felhasználók képesek lesznek:
+
+\begin{itemize}
+\item{böngészni fájlok között}
+\item{letölteni fájlokat, programokat, illetve}
+\item{feltölteni saját tartalmat.}
+\end{itemize}
+
+Ezen lehetőségeket szemlélteti az alábi use-case diagram:
+
+\begin{figure}[h]
+	\centering
+		\includegraphics[width=10truecm, height=7truecm]{images/felhasznalo_use_case.png}
+	\caption{A felhasználói felület}
+	\label{fig:login}
+\end{figure}
+
+A navigációt az oldal felső részében található zöld menü segítségével végezhetik a felhasználók. A menü felett jelenik meg annak az oldalnak a neve, melyen a felhasználó éppen tartózkodik. A CSS stíluslap szerint a kurzor menüpontokra való húzása (\texttt{hover}) esetén a kijelölt menüpont szürke kiemelő színt kap, így megkülönböztetve a menüpontokat. A \textit{Fájlok}, valamint a \textit{Programok} menüpontok \textit{hover} eseménye esetén legördülnek, és két almenüpont válik előrhetővé számunkra: a \textit{Fájlok} menüpontból a \textit{Tananyagok} és a \textit{Feltöltés}, a \textit{Programok} menüpontból pedig a \textit{Demonstrációk} és a \textit{Feltöltés} almenüpontok jelennek meg. Az almenüpontok háttérszíne fekete, kijelőlés esetén viszont ugyanazt a szürkés árnyalatot kapják, mint a főmenüpontok. Kattintás hatására pedig a tényleges navigáció zajlik le:
+
+\begin{itemize}
+\item{\textbf{Főoldal}: Navigáció a "\textit{/home}" oldalra}
+\item{\textbf{Fájlok/Tananyagok}: Navigáció a "\textit{/files}" oldalra}
+\item{\textbf{Fájlok/Feltöltés}: Navigáció a "\textit{/fileupload}" oldalra}
+\item{\textbf{Programok/Demonstrációk}: Navigáció a "\textit{/programmes}" oldalra}
+\item{\textbf{Programok/Feltöltés}: Navigáció a "\textit{/programmeupload}" oldalra}
+\end{itemize}
+
+\noindent{\textbf{\large{Adminisztrációs felület oldalai}}}\\
+
+aaa\\
+
+\noindent{\textbf{\large{Sikerességet visszajelző oldalak}}}\\
+
+aaa\\
+
+\noindent{\textbf{\large{Hibajelző oldalak}}}\\
+
+aaa
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 4 . 3 . 6 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{A hallgatói felület}
 
