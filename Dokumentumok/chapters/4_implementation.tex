@@ -6,7 +6,18 @@
 
 \section{Előkészületek}
 
-Első lépésben szükségünk van egy olyan fejlesztőkörnyezetre, mely rendelkezik terminállal. Választásom a \textit{Visual Studio Code} nevű környezetre esett. Egyszerű, segítőkész, könnyen átlátható fejlesztőkörnyezetről beszélünk, mely számos programozási nyelvet támogat, illetve segítséget nyújt használatukkor.
+\subsection{Visual Studio Code}
+
+Első lépésben szükségünk van egy olyan fejlesztőkörnyezetre, mely rendelkezik terminállal. Választásom a \textit{Visual Studio Code} nevű környezetre esett. Egyszerű, segítőkész, könnyen átlátható fejlesztőkörnyezetről beszélünk, mely számos programozási nyelvet támogat, illetve segítséget nyújt használatukkor (\ref{fig:vscode}).
+
+\begin{figure}[h]
+	\centering
+		\includegraphics[width=15truecm, height=7truecm]{images/vscode.png}
+	\caption{A Visual Studio Code felülete}
+	\label{fig:vscode}
+\end{figure}
+
+\subsection{Node.js}
 
 Az előző fejezetben összehasonlításra került néhány potenciális rendszer, jómagam pedig a \textit{Node.js} mellett döntöttem, abból az egyszerű okból kifolyólag, hogy ezt ajánlotta a témavezetőm, valamint ez volt a legszimpatikusabb számomra. Következő lépésben üzembe kell helyeznünk az említett keretrendszert, melyben a programot írjuk. A rendszert a hivatalos weboldaláról érhetjük el. Letöltés és telepítés után rendelkezésünkre is áll a szoftver. Első lépésben konfigurálnunk kell a program "szívét", a \textit{package.json} fájlt. Ez tartalmazza a fontos metaadatokat a projektünkhöz (például a program belépési pontját), ezek közül is kiemelve a "függőségeket" (dependency-ket). A függőségek azt jelölik, hogy milyen modulokra (és azok mely verzióira) van szükség a program teljesértékű futtatásához. A \textit{package.json} konfigurálásához az alábbi parancsot kell begépelnünk:
 
@@ -32,6 +43,8 @@ $ node <fajl.kiterjesztes>
 
 Ezzel készen is vagyunk a Node.js telepítésével, viszont még szükségünk lesz további előkészületekre.
 
+\subsection{MongoDB}
+
 Ahogyan webes keretrendszert, úgy adatbázist is választani kell. A választásom pedig a \textit{MongoDB}-re esett, mégpedig azért, mert eddig csak SQL alapú rendszerekkel volt dolgom (Oracle SQL, MySQL), és ki szerettem volna próbálni valami újat, továbbá azért is, mert Webtechnológiák II tárgyból még hasznát vehetem ennek az adatbázisrendszernek.
 
 Ahogy a Node.js-t, úgy a MongoDB-t is a hivatalos weboldaláról érhetjük el. Ebben az esetben is telepítésre, valamint installációra lesz szükség. Telepítés után pedig csatlakoznunk kell az adott adatbázishoz. Ezt elősegítendő, a program rendelkezik egy saját parancssoros felülettel. Itt az alábbi parancsot kell megadnunk:
@@ -42,7 +55,20 @@ $ mongod
 
 Ennek hatására a konfigurációs fájl (\textit{mongo.cfg}) alapján csatlakozik az adatbázishoz, így a Node.js-ből is hozzáférhetünk a csatlakoztatott adatbázishoz, és annak tartalmához (például a kollekciókhoz).
 
-Említést érdemel egy további alkalmazás, mely nagy segítséget nyújt az applikációnk tesztelésében. Ez pedig nem más, mint a \textit{Postman}. Ez az asztali alkalmazás képes - többek között - felhasználói adatbevitelt szimulálni, így tesztelhetjük a webapplikációnkat különböző kérések elküldésével. Például bejelentkezési folyamatot így  futtathatunk:
+\subsection{Egyéb potenciálisan hasznos programok}
+
+Említést érdemel egy további alkalmazás, mely nagy segítséget nyújt az applikációnk tesztelésében. Ez pedig nem más, mint a \textit{Postman}. Ez az asztali alkalmazás képes - többek között - felhasználói adatbevitelt szimulálni, így tesztelhetjük a webapplikációnkat különböző kérések elküldésével (\ref{fig:postman}).
+
+\newpage
+
+\begin{figure}[h]
+	\centering
+		\includegraphics[width=12truecm, height=7truecm]{images/postman.png}
+	\caption{A Postman grafikus felülete}
+	\label{fig:postman}
+\end{figure}
+
+Például bejelentkezési folyamatot így futtathatunk:
 
 \begin{enumerate}
 \item{Be kell írnunk az URL-t, melyre tesztelni szeretnénk, valamint a kérés típusát (\texttt{get} és \texttt{post} típusokat különböztetünk itt meg, mivel ez a két leggyakrabban alkalmazott metódus).}
@@ -51,6 +77,19 @@ Említést érdemel egy további alkalmazás, mely nagy segítséget nyújt az a
 \end{enumerate}
 
 Küldés után a válaszablakban találhatjuk a kérés eredményeit. Itt láthatjuk például a HTTP válasz státuszkódját, a futás idejét miliszekundumokban, viszont a legfontosabb a válaszkód, melyet akár többféle nyelven tudjuk megjeleníteni. E kód segítségével tudjuk ellenőrizni azt, hogy valóban helyesen működik-e a programunk.
+
+\subsection{MongoDB Atlas}
+
+Említésre került, hogy a MongoDB applikációja alapvetően parancssoros felületű. Ennek értelmében a csatlakoztatott adatbázist és annak tartalmát (például a kollekcióit) szintén parancssoros felületen keresztül érhetjük el. Amennyiben viszont igényünk van rá, megtehetjük mindezt grafikus felületen is. Ezt a \textit{MongoDB Atlas} nevű webalkalmazás teszi lehetővé (\ref{fig:atlas}. ábra).
+
+\newpage
+
+\begin{figure}[h]
+	\centering
+		\includegraphics[width=12truecm, height=7truecm]{images/atlas.png}
+	\caption{A MongoDB Atlas felületén egy kollekció dokumentumai}
+	\label{fig:atlas}
+\end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 4 . 2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -228,8 +267,6 @@ Ide soroljuk azokat az oldalakat, melyek között a (bejelentkezett) felhasznál
 
 Ezen lehetőségeket szemlélteti az alábbi use-case diagram:
 
-\newpage
-
 \begin{figure}[h]
 	\centering
 		\includegraphics[width=15truecm, height=10truecm]{images/felhasznalo_use_case.png}
@@ -303,24 +340,7 @@ Ebbe a csoportba tartoznak azok az oldalak, melyek a hibás műveleteket jelzik 
 
 \subsection{A hallgatói felület}
 
-Amint azt már korábbi fejezetekben részleteztük, a felhasználók (bejelentkezés után) képesek lesznek:
-
-\begin{itemize}
-\item{böngészni fájlok között}
-\item{letölteni fájlokat, programokat, illetve}
-\item{feltölteni saját tartalmat.}
-\end{itemize}
-
-Ezen lehetőségeket szemlélteti az alábi use-case diagram:
-
-\begin{figure}[h]
-	\centering
-		\includegraphics[width=10truecm, height=7truecm]{images/felhasznalo_use_case.png}
-	\caption{A felhasználói felület}
-	\label{fig:login}
-\end{figure}
-
-Az alkalmazás használata során elsőkörben a bejelentkezési felülettel találkoznak a hallgatók/felhasználók (\ref{fig:login}. ábra). 
+A hallgatói felület eléréséhez először a login oldalon való bejelentkezés szükségeltetik. Így tehát a felület elérése előtt elsőkörben a bejelentkezési felülettel találkoznak a hallgatók/felhasználók (\ref{fig:login}. ábra). 
 
 \begin{figure}[h]
 	\centering
@@ -331,14 +351,7 @@ Az alkalmazás használata során elsőkörben a bejelentkezési felülettel tal
 
 \newpage
 
-Az autentikáció egy úgynevezett \textit{middleware}-en keresztül történik. Először a \textit{login.ejs} fájlból lekérjük az oldal használójától a beírt felhasználónevet, valamint a jelszót. Egyik mező sem maradhat üresen, mivel ez esetben az oldal nem enged továbblépni. Ezt követően a program csatlakozik az adatbázishoz, és lekérdezi, hogy a megadott felhasználónévvel létezik-e dokumentum. Amennyiben nem létezik, úgy hibaüzenetet küldünk a felhasználónak (\ref{fig:loginError}. ábra). Ha létezik, a már említett bcrypt modul segítségével összehasonlítjuk a begépelt jelszót az adatbázisban szereplő, kódolt jelszóval. Magától értetődő, hogy abban az esetben, ha nem egyeznek, szintén hibaüzenetet küldünk a felhasználónak. Egyezőség esetén viszont eltároljuk a munkamenet adatait (például a felhasználónevet), a cookie-parser modul legenerálja a felhasználóhoz tartozó süti-adatokat (így a nagy jelentősséggel bíró lejárati dátumot is), végül pedig átirányít a megfelelő oldalra (a "nem-admin" felhasználókat a főoldalra (\ref{fig:homeMenu}. ábra), az adminisztrátort pedig a felhasználó hozzáadása oldalra).
-
-\begin{figure}[h]
-	\centering
-		\includegraphics[width=10truecm, height=7truecm]{images/nincs_felhasznalo.png}
-	\caption{Nem létező felhasználó esetén megjelenő hibaüzenet}
-	\label{fig:loginError}
-\end{figure}
+Sikertelen bejelentkezés esetén hibaüzenettel szembesülünk. Ezt okozhatja az, hogy a felhasználónév nem található az adatbázisban, vagy az, hogy a névhez tartozó jelszó nem megfelelő. Sikeres bejelentkezési folyamat esetén viszont a hallgatói főoldalon találjuk magunkat (\ref{fig:homeMenu}. ábra).
 
 \begin{figure}[h]
 	\centering
@@ -347,24 +360,7 @@ Az autentikáció egy úgynevezett \textit{middleware}-en keresztül történik.
 	\label{fig:homeMenu}
 \end{figure}
 
-A fiókok adatait egy MongoDB kollekcióban tároljuk. Ennek egy nagyon kézenfekvő, grafikus reprezentációját nyújtja a Mongodb \textit{Atlas} szolgáltatása (\ref{fig:atlas}. ábra). Az említett kollekción belül minden egyes dokumentumnak három mezőértéke van:
-
-\begin{itemize}
-\item{\textit{id}}: Ez a MongoDB által automatikusan generált index. Ez alapján a kollekció minden egyes dokumentuma egyértelműen meghatározható.
-\item{\textit{név}}: Ez a mező a felhasználói fiók nevét tárolja el, egyszerű string formátumban.
-\item{\textit{jelszó}}: Ez pedig a titkosított jelszó, ez a Node.js \textit{bcrypt} nevű moduljának köszönhető.
-\end{itemize}
-
-Az előbb említett bcrypt modul segítségével egy karakterlánc több ciklusban (többszörösen) titkosítható, valamint a titkosított szó, vagy szövegrészlet visszaalakítható egyszerű string formátumba. Továbbá képes arra, hogy titkosított, illetve nem titkosított string-et összehasonlítson, mely funkcióját az adatbázisból való jelszólekérdezés után hasznosítunk.
-
-\begin{figure}[h]
-	\centering
-		\includegraphics[width=12truecm, height=7truecm]{images/atlas.png}
-	\caption{A MongoDB Atlas felülete}
-	\label{fig:atlas}
-\end{figure}
-
-Sikeres bejelentkezés esetén a főoldalon találják magukat a hallgatók (\ref{fig:homeMenu}. ábra). Fontos megjegyezni, hogy a munkafolyamat a bejelentkezés pillanatától számított 30 perc múlva kiléptet, és újabb bejelentkezési folyamat után enged vissza (\ref{fig:invalid}. ábra). Továbbá, a \textit{Kijelentkezés} gombra kattintva - azon kívül, hogy átirányít a bejelentkezési felületre - véget ér a munkafolyamat.
+Fontos megjegyezni, hogy a munkafolyamat a bejelentkezés pillanatától számított 30 perc múlva kiléptet, és újabb bejelentkezési folyamat után enged vissza (\ref{fig:invalid}. ábra). Továbbá, a \textit{Kijelentkezés} gombra kattintva - azon kívül, hogy átirányít a bejelentkezési felületre - véget ér a munkafolyamat.
 
 \begin{figure}[h]
 	\centering
@@ -373,43 +369,7 @@ Sikeres bejelentkezés esetén a főoldalon találják magukat a hallgatók (\re
 	\label{fig:invalid}
 \end{figure}
 
-A főoldalon a legördülő menü lesz a felhasználók segítségére, ugyanis ezen keresztül történik a navigáció. Maga a menü egyszerű, gombokból (\texttt{<button>}-okból) áll, melyeket stíluslapok segítségével kényelmesebbé, esztétikusabbá alakítunk.
-
-A menün való navigálás során a felhasználók - többek között - megtalálhatják a feltöltött tartalmakat. Ezek csoportokba szedve elérhetőek az oldalon. Ennek megvalósítása a .ejs fájlokon keresztül zajlik. Említésre került már, hogy a .ejs és a .html fájloknak túlnyomórészt megegyezik a szintaktikája. A mi esetünkben teljesen megegyeznek, ezért hagyatkozhatunk a HTML nyelvre. Ebben a nyelvben az \texttt{<a>} tag segítségével hozhatunk létre linkeket, ám ezek elsődlegesen megnyitják a behivatkozott fájlt. Viszont, ha hozzáadjuk a nyitó tag-be a \texttt{download} kulcsszót, úgy a linkre kattintás hatására letöltődik a hivatkozott fájl.
-
-A felhasználóknak továbbá lehetőségük van arra is, hogy feltöltsenek saját tartalmat is az oldalra.
-
-A fájlfeltöltés kezelése például így zajlik:
-
-\begin{javascript}
-app.post('/fileupload', async (req, res, next) => {
-  const form = new formidable.IncomingForm();
-  form.parse(req, function(err, fields, files){
-    if(files.fileUp.originalFilename == ""){
-      res.redirect('nofile');
-    }
-    else{
-      var uploadPath = path.join(__dirname, "views", "files",
-"uploads", files.fileUp.originalFilename);
-      var oldPath = files.fileUp.filepath;
-      var rawData = fs.readFileSync(oldPath);
-      if(fs.existsSync(uploadPath)){
-        res.redirect('fileexists');
-      }
-      else{
-        fs.writeFile(uploadPath, rawData, function(err){
-          res.redirect('uploadsuccess');
-          console.log("File successfully uploaded");
-        })
-      }
-    }
-  })
-});
-\end{javascript}
-
-Ezt a folyamatot egy kicsit alaposabban áttekintjük. Mindenekelőtt fontos megjegyezni, hogy ebben a metódusban megjelenik a Node.js egyik nagy erőssége: az \textit{aszinkron kezelés}, melyet az "\texttt{asnyc}" kulcsszóval érhetünk el. Tudniillik, a Node.js folyamatai egy szálon futnak. Ugyanakkor, míg a legtöbb rendszer kérés esetén megvárja a választ, és csak utána dolgozza fel a következő kérést, addig a Node.js a kéréseket folyamatosan dolgozza fel, nem vár válaszokra, ezzel megvalósítva a blokkolásmentes folyamatkezelést. Ez pedig nagyban hozzájárul a rendszer skálázhatóságához.
-
-A forráskódból látszik, hogy először a \textit{formidable} modul segítségével lekérjük az űrlapot, melyet a felhasználó kitöltött (kiválasztotta a feltölteni kívánt fájlt). Ezután feldolgozzuk az űrlapot. Hibaellenőrzést végzünk, vagyis amennyiben a fájlnak nincs neve (a felhasználó nem választott ki fájlt), úgy hibaüzenetet küldünk. Ellenkező esetben megvizsgáljuk, hogy létezik-e azonos fájlnévvel dokumentum. Ebben segtségünkre lesz az \textit{fs} modul, melynek segítségével navigálhatunk a projektünkön belül. Ha egyezést talál a program, szintén hibaüzenetet küldünk a felhasználónak. Viszont ha egyedi a fájlnév, akkor az fs modul használatán keresztül bemásoljuk a fájlt a projektünk egyik almappájába, valamint visszajelzést küldünk a feltöltési folyamat sikerességéről.
+A főoldalon a legördülő menü lesz a felhasználók segítségére, ugyanis ezen keresztül történik a navigáció, melyet a korábbi fejezetekben részleteztünk. Maga a menü egyszerű, gombokból (\texttt{<button>}-okból) áll, melyeket stíluslapok segítségével kényelmesebbé, esztétikusabbá alakítunk.
 
 Amennyiben nem szándékozunk tovább tevékenykedni az oldalon, úgy az alkalmazás jobb felső sarkában található \textit{kijelentkezés} gombbal visszatérhetünk a bejelentkezési oldalra, ezzel együtt lezárjuk a munkamenetet.
 
@@ -418,7 +378,7 @@ Amennyiben nem szándékozunk tovább tevékenykedni az oldalon, úgy az alkalma
 
 \subsection{Az adminisztrátori felület}
 
-A megfelelő felhasználóba való bejelentkezés után a program automatikusan az adminisztrátori felületbe továbbít minket (\ref{fig:admin}. ábra)
+A login oldalon a megfelelő (adminisztrátori) felhasználóba való bejelentkezés után a program automatikusan az adminisztrátori felületbe továbbít minket (\ref{fig:admin}. ábra).
 
 \begin{figure}[h]
 	\centering
