@@ -14,9 +14,9 @@ A továbbiakbak viszont szélesebb körű rendszerek álltak rendelkezésünkre.
 
 \subsection{Vue.js}
 
-A Vue.js egy nyílt forráskódú frontend JavaScript keretrendszer, melyet legtöbbször felhasználói felületek, valamint single-page [1] applikációk fejlesztésekor alkalmaznak.
+A Vue.js egy nyílt forráskódú frontend JavaScript keretrendszer, melyet legtöbbször felhasználói felületek, valamint single-page (egyetlen weboldalt használó, azt dinamikusan változtató) applikációk fejlesztésekor alkalmaznak.
 
-Nagy előnye, hogy magasabb szintű funkcionalitást kölcsönöz a HTML applikációknak, melyet az ún. „direktíváival” ér el. Ezeknek egy része beépített, viszont a felhasználók saját maguk is elkészíthetik egyéni direktíváikat \cite{w3schoolsvue}. Emellett „virtuális DOM-ot [2]” használ. Ez azt jelenti, hogy csak akkor módosul a valódi DOM, ha az applikáció változói frissülnek, így pedig a feldogozási sebesség megnő például a Jqueryhez képest [4].
+Nagy előnye, hogy magasabb szintű funkcionalitást kölcsönöz a HTML applikációknak, melyet az ún. „direktíváival” ér el. Ezeknek egy része beépített, viszont a felhasználók saját maguk is elkészíthetik egyéni direktíváikat \cite{w3schoolsvue}. Emellett „virtuális DOM-ot” használ. Ez azt jelenti, hogy csak akkor módosul a valódi DOM, ha az applikáció változói frissülnek, így pedig a feldogozási sebesség megnő például a közismert, és gyakran használt Jqueryhez képest.
 
 Erról a rendszerről egy cikk számol be bővebben \cite{vuecikk}:\\
 
@@ -70,7 +70,7 @@ Erról a rendszerről egy cikk számol be bővebben \cite{vuecikk}:\\
 
 A címben említett Angular egy elterjedt TypeScript alapú keretrendszer. Érdemes megjegyezni, hogy az ebben a dolgozatban felsorolt három keretrendszer közül ez az egyetlen tényleges keretrendszer, a Vue.js, valamint a Node.js pusztán JavaScript-könyvtárak.
 
-Ennek a rendszernek a jellegzetessége, hogy HTML-eket egészít ki attribútumokkal, ebből adódik, hogy legtöbbször single-page alkalmazások fejlesztésekor szokták alkalmazni, melyekhez számtalan bemutató videó, valamint demonstrációs anyag létezik [5].
+Ennek a rendszernek a jellegzetessége, hogy HTML-eket egészít ki attribútumokkal, ebből adódik, hogy legtöbbször single-page alkalmazások fejlesztésekor szokták alkalmazni, melyekhez számtalan bemutató videó, valamint demonstrációs anyag létezik.
 
 Továbbá, a három felsorolt lehetőség közül ezen keretrendszer tanulmányozásával foglalkozunk kizárólagosan Webtechnológiák II. tantárgy berkein belül.
 
@@ -82,12 +82,12 @@ Egy rövid (angol nyelvről fordított) szöveg mutatja be részleteiben a rends
 
 \textit{Egy Angular applikáció architechtúrája bizonyos alapvető koncepcióra támaszkodik. Az Angular keretrendszer építőkövei olyan Angular komponensek, melyek úgynevezett NgModulokba szervezettek. Az NgModulok összegyűjtik az összefüggő kódot funkcionális készletekbe; egy Angular applikáció ilyen NgModulok által van definiálva. Egy applikáció mindig rendelkezik legalább egy modullal, mely lehetővé teszi az úgynevezett "bootstrapping"-et, és jellegzetesen számos más modullal rendelkezik.}
 
-\textit{A komponensek "view"-okat (nézeteket) definiálnak. Ezek képernyőelem-készletek, melyek közül az Angular választhat és módosíthat, a programlogika, valamint az adat alapján. A komponensek szolgáltatásokat használnak, amelyek olyan meghatározott funkcionalitást biztosítanak, amik nem kapcsolódnak közvetlenül a nézetekhez. A szolgáltatások biztosítói beilleszthetőek a komponensekbe függőségek formájában, ezzel modulárissá, újrahasználhatóvá, valamint hatékonnyá téve a programunkat. A modulok, a komponensek, illetve a szolgáltatások olyan osztályok, melyek "dekorátorokat" használnak. Ezek jelzik a típusukat, és metaadatokat biztosítanak, melyek meghatározzák az Angular számára, hogyan használhatják őket.}
+\textit{A komponensek "view"-okat (későbbiekben: \textbf{nézeteket}) definiálnak. Definíció szerint ezek olyan képernyőelem-készletek, melyek közül az Angular választhat és módosíthat, a programlogika, valamint az adat alapján. A komponensek szolgáltatásokat használnak, amelyek olyan meghatározott funkcionalitást biztosítanak, amik nem kapcsolódnak közvetlenül a nézetekhez. A szolgáltatások biztosítói beilleszthetőek a komponensekbe függőségek formájában, ezzel modulárissá, újrahasználhatóvá, valamint hatékonnyá téve a programunkat. A modulok, a komponensek, illetve a szolgáltatások olyan osztályok, melyek "dekorátorokat" használnak. Ezek jelzik a típusukat, és metaadatokat biztosítanak, melyek meghatározzák az Angular számára, hogyan használhatják őket.}
 
 
 \textit{A komponensek osztályaihoz tartozó metaadatokhoz társul egy sablon, mely meghatározza a nézetet. A sablonban átlagos HTML elemekhez kapcsolódnak Angular direktívák és összeköttetésjelzők, melyek lehetővé teszik az Angular számára, hogy módosítsák a HTML elemeket a megjelenítés legenerálása előtt.}
 
-\textit{A szolgáltató osztályhoz tartozó metaadatok elérhetővé teszik az Angular számára szükséges információkat, így lehetővé téve a függőség beillesztést (DI) a komponensek részére.}
+\textit{A szolgáltató osztályhoz tartozó metaadatok elérhetővé teszik az Angular számára szükséges információkat, így lehetővé téve a függőség beillesztést (DI, Dependency Injection) a komponensek részére.}
 
 \textit{Egy applikáció komponensei jellemzően definiálnak hierarchikusan rendezett nézeteket. Az Angular elérhetővé teszi az átirányító (Router) szolgáltatás számára, hogy segítséget nyújtson a fejlesztőnek a nézetek közötti navigációban. Az átírányító biztosítja a kifinomult, böngészőn belüli navigációs lehetőségeket.}
 
@@ -117,9 +117,9 @@ Egy rövid (angol nyelvről fordított) szöveg mutatja be részleteiben a rends
 
 \textit{A sablonok HTML elemeket kombinálnak Angular jelölőkkel, melyek módosíthatják a HTML objektumokat a megjelenítésük előtt. A sablon direktívák programlogikát biztosítanak, az összeköttetésjelzők pedig összekapcsolják az alkalmazás-adatokat a DOM-mal. Kétféle adatösszeköttetést különböztetünk meg:}
 
-\textit{Az \textsc{eseményösszeköttetés} segítségével az applikáció képes "válaszolni" a felhasználói inputra a célkörnyezetben az alkalmazásadatok frissítésével.}
+\textit{Az \textbf{eseményösszeköttetés} segítségével az applikáció képes "válaszolni" a felhasználói inputra a célkörnyezetben az alkalmazásadatok frissítésével.}
 
-\textit{A \textsc{tulajdonságösszeköttetés} lehetővé teszi, hogy számított értékeket illeszthessünk be az alkalmazásadatból a HTML elemekbe.}
+\textit{A \textbf{tulajdonságösszeköttetés} lehetővé teszi, hogy számított értékeket illeszthessünk be az alkalmazásadatból a HTML elemekbe.}
 
 \textit{Mielőtt egy nézet megjelenítésre kerülne, az Angular kiérétkeli a direktívákat, illetve feloldja a sablonban található összeköttetési szintaxisokat, így módosítva a HTML elemeket és a DOM-ot a program adatai, valamint logikája alapján. Az Angular támogatja a kétirányú adatösszeköttetést. Ez azt jelentik, hogy a DOM-ban bekövetkezett változások, mint például a felhasználói választások a programadatban is bekövetkeznek.}
 
@@ -131,7 +131,7 @@ Egy rövid (angol nyelvről fordított) szöveg mutatja be részleteiben a rends
 
 \textit{Az olyan adathoz vagy logikához, mely nem kapcsolódik az adott nézethez, és szeretnénk megosztani más komponensekkel, szolgáltatásosztályokat hozunk létre. Ezek definícióját az @Injectable() dekorátor előzi meg. Ezen dekorátor biztosítja a metaadatokat, melyek lehetővé teszik, hogy más szolgáltatások beilleszthetőek legyenek függőségekként az osztályunkba.}
 
-\textit{A függőségbeillesztés (Dependency Injection, DI) segítségével a komponens osztályok megtarthatják tömör és hatékony mivoltukat. Ezek nem kérnek le adatot a szerverről, nem érvényesítenek felhasználói adatbevitelt, és nem naplóznak közvetlenül a konzolra; ezek csak elküldik az adott feladatokat a felelős szolgáltatásoknak.}
+\textit{A függőségbeillesztés (DI) segítségével a komponens osztályok megtarthatják tömör és hatékony mivoltukat. Ezek nem kérnek le adatot a szerverről, nem érvényesítenek felhasználói adatbevitelt, és nem naplóznak közvetlenül a konzolra; ezek csak elküldik az adott feladatokat a felelős szolgáltatásoknak.}
 
 \textit{[...]}\\
 
@@ -207,16 +207,16 @@ A rendszer ezen felül backend és frontend projekteknek is remek alapot ad. Hog
 \begin{table}[h]
 \centering
 \caption{A felvázolt keretrendszerek összehasonlítása (2/1)}
-\label{tab:minta}
+\label{tab:keretrendszerek1}
 \begin{tabular}{|l|c|c|}
 \hline
 Rendszer & Íródott & Cross-platform\\
 \hline
-Vue.js & JavaScript & Támogatja\\
+Vue.js & JavaScript nyelven & Támogatja\\
 \hline
-Angular & JavaScript & Támogatja\\
+Angular & JavaScript nyelven & Támogatja\\
 \hline
-Node.js & C/C++/JavaScript & Támogatja\\
+Node.js & C/C++/JavaScript nyelveken & Támogatja\\
 \hline
 \end{tabular}
 \end{table}
@@ -224,7 +224,7 @@ Node.js & C/C++/JavaScript & Támogatja\\
 \begin{table}[h]
 \centering
 \caption{A felvázolt keretrendszerek összehasonlítása (2/2)}
-\label{tab:minta}
+\label{tab:keretrendszerek2}
 \begin{tabular}{|l|c|c|}
 \hline
 Rendszer & DOM & Erősség\\
@@ -259,15 +259,15 @@ Ezzel szemben a NoSQL (a nevéből is adódóan) nem SQL-alapú, vagyis nem táb
 
 A MySQL egy (a nevéből is adódóan) SQL-alapú relációs adatbázis-kezelő szerver (RDBMS, Adatbáziskezelés I. tárgyból foglalkoztunk ezzel).
 Ez az egyik legelterjedtebb adatbázis-kezelő, mivel ingyenesen elérhető bárki számára szabad szoftverlicenszen keresztül, valamint számos platformon és programozási nyelvvel kompatibilis a használata.
-Elsődlegesen parancssoros kezelői interfészen (CLI-n) keresztül használható, viszont létezik hozzá grafikus felhasználói felület (GUI), melyet elérhetünk a MySQL hivatalos weboldaláról [6].
+Elsődlegesen parancssoros kezelői interfészen (CLI-n) keresztül használható, viszont létezik hozzá grafikus felhasználói felület (GUI), melyet elérhetünk a MySQL hivatalos weboldaláról.
 
-Alább olvasható egy rövid leírás a MySQL általános jellemzőiről :\\
+Alább olvasható egy rövid leírás a MySQL általános jellemzőiről \cite{mysqlcikk}:\\
 
 \noindent\textit{\textbf{\large{MySQL}}}\\
 
 \textit{A MySQL egy többfelhasználós, többszálú, SQL-alapú relációs adatbázis-kezelő szerver.}
 
-\textit{A szoftver eredeti fejlesztője a svéd MySQL AB cég, amely kettős licenceléssel tette elérhetővé a MySQL-t; választható módon vagy a GPL szabad szoftver licenc, vagy egy zárt (tulajdonosi) licenc érvényes a felhasználásra. 2008 januárjában a Sun felvásárolta 800 millió dollárért a céget. 2010. január 27-én a Sunt felvásárolta az Oracle Corporation,[2] így a MySQL is az Oracle tulajdonába került.}
+\textit{A szoftver eredeti fejlesztője a svéd MySQL AB cég, amely kettős licenceléssel tette elérhetővé a MySQL-t; választható módon vagy a GPL szabad szoftver licenc, vagy egy zárt (tulajdonosi) licenc érvényes a felhasználásra. 2008 januárjában a Sun felvásárolta 800 millió dollárért a céget. 2010. január 27-én a Sunt felvásárolta az Oracle Corporation, így a MySQL is az Oracle tulajdonába került.}
 
 \textit{A MySQL az egyik legelterjedtebb adatbázis-kezelő, aminek egyik oka lehet, hogy a teljesen nyílt forráskódú LAMP (Linux–Apache–MySQL–PHP) összeállítás részeként költséghatékony és egyszerűen beállítható megoldást ad dinamikus webhelyek szolgáltatására.}\\
 
@@ -287,7 +287,7 @@ Alább olvasható egy rövid leírás a MySQL általános jellemzőiről :\\
 
 A Microsoft SQL Server a világszerte híres Microsoft cég által fejlesztett relációs adatbázis-kezelő rendszer.
 Természetesen elsősorban Microsoft alapú rendszerekre tervezték, így a lefedettsége kevésbé szerteágazó a MySQL-hez képest. Viszont rengeteg szolgáltatással kompenzálja ezt a hátulütőjét.
-A cég ismeretes arról, hogy különböző (például „Standard”, vagy „Enterprise”) kiadások formájában bocsátja piacra termékeit, hogy a felhasználók minél szélesebb körét tudja kiszolgálni, és ez az említett SQL Server esetében sincs másképp. A Microsoft hivatalos weboldalán [7] tájékozódhatunk az elérhető kiadásokról, valamint tulajdonságaikról.
+A cég ismeretes arról, hogy különböző (például „Standard”, vagy „Enterprise”) kiadások formájában bocsátja piacra termékeit, hogy a felhasználók minél szélesebb körét tudja kiszolgálni, és ez az említett SQL Server esetében sincs másképp. A Microsoft hivatalos weboldalán tájékozódhatunk az elérhető kiadásokról, valamint tulajdonságaikról.
 
 Itt olvasható egy kis bemutatás az adatázisról \cite{mssqlcikk}:\\
 
@@ -396,7 +396,7 @@ Alább található egy rövid bemutató a rendszerről \cite{mongodbcikk}:\\
 \begin{table}[h]
 \centering
 \caption{A felvázolt adatbáziskezelők összehasonlítása (2/1)}
-\label{tab:minta}
+\label{tab:db1}
 \begin{tabular}{|l|c|c|}
 \hline
 Adatbázis & Rendszertípus &  Kezelőfelület\\
@@ -413,7 +413,7 @@ MongoDB & NoSQL & Elsődlegesen parancssoros\\
 \begin{table}[h]
 \centering
 \caption{A felvázolt adatbáziskezelők összehasonlítása (2/2)}
-\label{tab:minta}
+\label{tab:db2}
 \begin{tabular}{|l|c|c|}
 \hline
 Adatbázis & Alkalmas &  Séma\\
@@ -422,7 +422,7 @@ MySQL & Struktúrált adatokhoz & Fix\\
 \hline
 Microsoft SQL & Struktúrált adatokhoz & Fix\\
 \hline
-MongoDB & Félstruktúrált adatokhoz & Dinamikus, opcionális\\
+MongoDB & Szemistruktúrált adatokhoz & Dinamikus, opcionális\\
 \hline
 \end{tabular}
 \end{table}
