@@ -27,9 +27,9 @@ $ _
 A kutatás jellegű témáknál ez a fejezet gyakorlatilag kimaradhat.
 Helyette inkább a fő vizsgálati módszerek, kutatási irányok kaphatnak külön-külön fejezeteket.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 4 . 1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 4 . 1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Előkészületek}
 
@@ -79,9 +79,9 @@ Említést érdemel egy további alkalmazás, mely nagy segítséget nyújt az a
 
 Küldés után a válaszablakban találhatjuk a kérés eredményeit. Itt láthatjuk például a HTTP válasz státuszkódját, a futás idejét miliszekundumokban, viszont a legfontosabb a válaszkód, melyet akár többféle nyelven tudjuk megjeleníteni. E kód segítségével tudjuk ellenőrizni azt, hogy valóban helyesen működik-e a programunk.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 4 . 2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 4 . 2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{A program általános jellemzői}
 
@@ -119,13 +119,13 @@ Végül pedig beimportáljuk az \textit{fs} nevű modult. Ezen modullal fájlmű
 \end{itemize}
 Számunkra a fájlfeltöltés folyamatában lesz hasznos. Erre a feltöltés részletezésénél térünk vissza.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 4 . 3 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 4 . 3 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{A program felépítése}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 4 . 3 . 1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 4 . 3 . 1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{A szerver konfigurációja}
 
@@ -156,7 +156,7 @@ Következik az átirányítást kezelő motor konfigurációja. Ezt az Express \
 
 Utolsó változtatásként pedig meghívjuk a Cookie-parser modult.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 4 . 3 . 2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 4 . 3 . 2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Autentikáció}
 
@@ -166,7 +166,7 @@ A \textit{login.ejs} fájlban létrehozzuk a bejelentkezési űrlapot, melynek \
 
 Az elküldött űrlapot az applikációnkban kezeljük. Először is bekérjük a felhasználó által bevitt adatokat, a nevet és a jelszót. Kiíratjuk a konzolra a felhasználói adatokat, majd csatlakozunk az adatbázishoz, ahol első körben rákeresünk a felhasználónévre. Abban az esetben, ha nem létezik, hibaüzenetet küldünk. Ha mégis létezik, a bcrypt modul segítségével összehasonlítjuk a begépelt jelszót az adatbázisban szereplő, kódolt jelszóval. Magától értetődő, hogy abban az esetben, ha nem egyeznek, szintén hibaüzenetet küldünk a felhasználónak. Egyezőség esetén viszont eltároljuk a munkamenet adatait (például a felhasználónevet), a Cookie-parser modul legenerálja a felhasználóhoz tartozó süti-adatokat (így a nagy jelentősséggel bíró lejárati dátumot is), végül pedig átirányít a megfelelő oldalra (a "nem-admin" felhasználókat a főoldalra, az adminisztrátort pedig a felhasználó hozzáadása oldalra.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 4 . 3 . 3 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 4 . 3 . 3 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Adminisztrátori műveletek}
 
@@ -203,7 +203,7 @@ A következő lépés már ismert. Felhasználói adatbevitel, madj pedig elkül
 
 A törlendő felhasználói fiók nevének változóban történő eltárolása után csatlakozunk az adatbázishoz, majd \texttt{findOne()} típusú lekérdezéssel rákeresünk a felhasználónévre. Ha a keresés nem járt sikerrel, hibaüzenet jelenik meg. Találat esetén egy új csatlakozást kezdeményezünk, ahol már \texttt{deleteOne()} típusú lekérdezés segítségével töröljük az adott névhez tartozó felhasználói fiókot. Sikeres adattörlés esetén visszajelzést küldünk az adminisztrátornak, majd visszalépünk.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 4 . 3 . 4 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 4 . 3 . 4 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Fájlfeltöltés}
 
@@ -223,7 +223,7 @@ Következő lépésben szintén az \textit{fs} modul lesz hasznunkra, most a \te
 
 Ez a metódusa \textit{/programmeupload} oldalon történik, viszont a feltöltés kezelése szinte azonos a fájlfeltöltéssel. Az űrlap tartalmának változóban történő letárolása után a kiválasztott fájl ellenőrzését vizsgáljuk. Ha van kiválasztott fájl az űrlapban, letároljuk a fájlfeltöltéshez hasonlóan 3 változóban a feltöltés helyét (\textit{./views/programmes/uploads/}), fájlnévvel és kiterjesztéssel együtt, az eredeti elérési útvonalat, valamint az eredeti fájl tartalmát. Keresünk a mappában azonos nevű fájlt. Ha egyedi a fájlnév, akkor az eredeti fájl tartalmát kimásoljuk az általunk létrehozott, új fájlba, majd a sikeres feltöltő művelet után visszajelzést küldünk.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 4 . 3 . 5 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 4 . 3 . 5 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Címek}
 
@@ -312,7 +312,8 @@ Ide tartoznak azok az oldalak, melyek a sikeres műveletek (például adatbázis
 
 Ebbe a csoportba tartoznak azok az oldalak, melyek a hibás műveleteket jelzik vissza, vagy elkerülendő problémák miatt van szükség rájuk.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 4 . 3 . 6 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 4 . 3 . 6 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% HIÁNYOS!! %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{A hallgatói felület}
 
@@ -425,6 +426,9 @@ Ezt a folyamatot egy kicsit alaposabban áttekintjük. Mindenekelőtt fontos meg
 A forráskódból látszik, hogy először a \textit{formidable} modul segítségével lekérjük az űrlapot, melyet a felhasználó kitöltött (kiválasztotta a feltölteni kívánt fájlt). Ezután feldolgozzuk az űrlapot. Hibaellenőrzést végzünk, vagyis amennyiben a fájlnak nincs neve (a felhasználó nem választott ki fájlt), úgy hibaüzenetet küldünk. Ellenkező esetben megvizsgáljuk, hogy létezik-e azonos fájlnévvel dokumentum. Ebben segtségünkre lesz az \textit{fs} modul, melynek segítségével navigálhatunk a projektünkön belül. Ha egyezést talál a program, szintén hibaüzenetet küldünk a felhasználónak. Viszont ha egyedi a fájlnév, akkor az fs modul használatán keresztül bemásoljuk a fájlt a projektünk egyik almappájába, valamint visszajelzést küldünk a feltöltési folyamat sikerességéről.
 
 Amennyiben nem szándékozunk tovább tevékenykedni az oldalon, úgy az alkalmazás jobb felső sarkában található \textit{kijelentkezés} gombbal visszatérhetünk a bejelentkezési oldalra, ezzel együtt lezárjuk a munkamenetet.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 4 . 3 . 7 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% HIÁNYOS!! %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Az adminisztrátori felület}
 
