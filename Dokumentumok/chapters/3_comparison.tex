@@ -4,8 +4,13 @@ Alapvető technológiaként tekintünk a HTML, CSS, valamint a JavaScript nyelve
 
 A továbbiakbak viszont szélesebb körű rendszerek álltak rendelkezésünkre. Először is tekintsük át néhány releváns, számunkra is elérhető keretrendszert.
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 3 . 1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \Section{Webes keretrendszerek}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 3 . 1 . 1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Vue.js}
 
@@ -58,6 +63,8 @@ Erról a rendszerről egy cikk számol be bővebben \cite{vuecikk}:\\
 \textit{A Vue segítségével képesek lehetünk akár többoldalas appokat is építeni, ebből adódóan az úgynevezett routing is jól meg van benne oldva.}
 
 \textit{Az Vue.js mellé rengeteg kiváló packaget, és third party plugint készítettek. Ezek közé tartozik például a már említett Vuex, vagy a Vuelidate, aminek a segítségével űrlap-érvényesítést valósíthatunk meg könnyedén.}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 3 . 1 . 2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Angular}
 
@@ -145,6 +152,8 @@ Az átirányítás feltérképezi az URL-szerű útvonalakat. Viszont ezeket nem
 
 \textit{Ahhoz, hogy navigációs szabályokat létrehozhassunk, a navigációs útvonalakat a komponensekkel kell társítani. Egy útvonal URL-szerű szintaxist használ, mely egyesíti a programadatot, pontosan úgy, ahogyan a sablonszintaxis egyesíti a nézeteket a programadattal. Ezután alkalmazhatjuk a programlogikát, hogy kiválasszuk, melyik nézetet jelenítsük meg, vagy rejtsük el, válaszként a felhasználói inputra, a saját hozzáférési szabályaink alapján.}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 3 . 1 . 3 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \subsection{Node.js}
 
 A Node.js egy JavaScript függvénykönyvtár, melyet kifejezetten webszerverek fejlesztésére hoztak létre. 
@@ -191,6 +200,8 @@ A rendszer ezen felül backend és frontend projekteknek is remek alapot ad. Hog
 
 \textit{Ha mégis szükség van ilyesmire az alkalmazásunkban, jobb azt afféle külső erőforrásként megvalósítani, és a korábban említett üzenetsoros megoldással kezelni.}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 3 . 1 . 4 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \subsection{Összehasonlítás}
 
 \begin{table}[h]
@@ -227,6 +238,10 @@ Node.js & Nem használ & Skálázható webszerverek\\
 \end{tabular}
 \end{table}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 3 . 2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \Section{Adatbázisrendszerek}
 
 Adatbázisrendszereken belül két nagy csoportot tudunk megkülönböztetni:
@@ -237,6 +252,8 @@ Adatbázisrendszereken belül két nagy csoportot tudunk megkülönböztetni:
 Az SQL-alapú rendszerek táblázatok formájában tárolják az adatot, melyekben mezők, valamint rekordok találhatóak. Például, egy iskolai adatbázisban a tanulók nyilvántartása egy táblában történik, melyben változatos mezőket vesznek fel (tanuló neve, születési ideje stb.). Egy tanuló adatait tartalmazó sort rekordnak nevezünk. Fontos még megemlíteni, hogy elsődleges kulcsot erősen ajánlott használni az ilyen, és hasonló jellegű adatbázisokban. Elsődleges kulcsnak nevezzük azt a mezőt, mely a tábla rekordjait egyértelműen meghatározza. Ebben az esetben az előző példában elsődleges kulcs szerepét veheti fel a tanulók diákigazolvány száma.
 
 Ezzel szemben a NoSQL (a nevéből is adódóan) nem SQL-alapú, vagyis nem táblákban tárolják az adatokat. Legtöbbször dokumentumok formájában tárolnak adatot. Ezen belül is léteznek különböző megoldások a rendszerezés tekintetében, így például kollekciók, címkék, vagy akár metainformációk alapján is rendezhetjük az adatbázisunkat. Általánosságban elmondható, hogy JSON-szerű formátumban tárolnak. Ebből adódik, hogy a lekérdezések változatossága leszűkül, cserébe viszont nagyobb teljesítményre, valamint skálázhatóságra lesz képes.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 3 . 2 . 1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{MySQL}
 
@@ -264,7 +281,7 @@ Alább olvasható egy rövid leírás a MySQL általános jellemzőiről :\\
 
 \textit{Széles körben elterjedt és népszerű adminisztrációs eszköz a PHP nyelven írt, nyitott forráskódú phpMyAdmin. A phpMyBackupPro (amelyet szintén PHP-ban írtak) adatbázisok (akár időzített, ismétlődő) mentésére szolgál eszközül.}
 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 3 . 2 . 2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Microsoft SQL Server}
 
@@ -308,6 +325,8 @@ Itt olvasható egy kis bemutatás az adatázisról \cite{mssqlcikk}:\\
 \noindent\textit{\textbf{Következtetés}}\\
 
 \textit{Nagyon rövid és éles szavakkal, az SQL szerver az az eszköz, amelyet egy relációs adatbázis-kezelő rendszer mechanizmusának megvalósításához használnak. Ez lehetővé teszi a fejlesztőknek, hogy dolgozzanak az adatokkal annak érdekében, hogy jó élményt nyújthassanak a felhasználó számára. A szervezetekben az SQL szerver az adatfeldolgozás legelőnyösebb eszköze, mivel nagy mennyiségű adat kezelésére képes.}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 3 . 2 . 3 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{MongoDB}
 
@@ -369,6 +388,8 @@ Alább található egy rövid bemutató a rendszerről \cite{mongodbcikk}:\\
 \textit{Az \_id mezőtől függetlenül egyediséget indexek segítségével tudunk garantálni. \newline Amennyiben szükséges, definiálhatunk tehát más, kulcs-szerű mezőket is. Az így definiált egyedi mezők lehetnek összetettek is (tehát lehet több mező együttes egyediségét előírni).}
 
 \textit{Külső kulcs hivatkozások MongoDB-ben nincsenek. Tudunk hivatkozni más dokumentumokra azok kulcsainak bemásolásával, azonban ezekre a rendszer nem vállal garanciát (pl. a hivatkozott dokumentum törölhető).}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 3 . 2 . 4 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Összehasonlítás}
 
