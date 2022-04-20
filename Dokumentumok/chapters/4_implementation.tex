@@ -1,32 +1,5 @@
 \Chapter{Megvalósítás}
 
-Ez a fejezet mutatja be a megvalósítás lépéseit.
-Itt lehet az esetlegesen előforduló technikai nehézségeket említeni.
-Be lehet már mutatni a program elkészült részeit.
-
-Meg lehet mutatni az elkészített programkód érdekesebb részeit.
-(Az érdekesebb részek bemutatására kellene szorítkozni.
-Többségében a szöveges leírásnak kellene benne lennie.
-Abból lehet kiindulni, hogy a forráskód a dolgozathoz elérhető, azt nem kell magába a dolgozatba bemásolni, elegendő csak behivatkozni.)
-
-A stílusfájlok a \texttt{styles} jegyzékben találhatók.
-A stílusok között szerepel még C++, Java és Rust stílusfájl.
-Ezek használatához a \texttt{dolgozat.tex} fájl elején \texttt{usepackage} paranccsal hozzá kell adni a stílust, majd a stílusfájl nevével megegyező környezetet lehet használni.
-
-Stílusfájlokból elegendő csak annyit meghagyni, amennyire a dolgozatban szükség van.
-Más, C szintaktikájú nyelvekhez (mint például a JavaScript és C\#) a Java vagy C++ stílusfájlok átszerkesztésére van szükség.
-(Elegendő lehet csak a fájlnevet átírni, és a fájlban a környezet nevét.)
-
-Nyers adatok, parancssori kimenetek megjelenítéséhez a \texttt{verbatim} környezetet lehet használni.
-\begin{verbatim}
-$ some commands with arguments
-1 2 3 4 5
-$ _
-\end{verbatim}
-
-A kutatás jellegű témáknál ez a fejezet gyakorlatilag kimaradhat.
-Helyette inkább a fő vizsgálati módszerek, kutatási irányok kaphatnak külön-külön fejezeteket.
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 4 . 1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -35,7 +8,7 @@ Helyette inkább a fő vizsgálati módszerek, kutatási irányok kaphatnak kül
 
 Első lépésben szükségünk van egy olyan fejlesztőkörnyezetre, mely rendelkezik terminállal. Választásom a \textit{Visual Studio Code} nevű környezetre esett. Egyszerű, segítőkész, könnyen átlátható fejlesztőkörnyezetről beszélünk, mely számos programozási nyelvet támogat, illetve segítséget nyújt használatukkor.
 
-Az előző fejezetben összehasonlításra került néhány potenciális rendszer, jómagam pedig a \textit{Node.js} mellett döntöttem, abból az egyszerű okból kifolyólag, hogy ezt ajánlotta a témavezetőm, valamint ez volt a legszimpatikusabb számomra. Következő lépésben üzembe kell helyeznünk az említett keretrendszert, melyben a programot írjuk. A rendszert a hivatalos weboldaláról ([8]) érhetjük el. Letöltés és telepítés után rendelkezésünkre is áll a szoftver. Első lépésben konfigurálnunk kell a program "szívét", a \textit{package.json} fájlt. Ez tartalmazza a fontos metaadatokat a projektünkhöz (például a program belépési pontját), ezek közül is kiemelve a "függőségeket" (dependency-ket). A függőségek azt jelölik, hogy milyen modulokra (és azok mely verzióira) van szükség a program teljesértékű futtatásához. A konfigurálásához az alábbi parancsot kell begépelnünk:
+Az előző fejezetben összehasonlításra került néhány potenciális rendszer, jómagam pedig a \textit{Node.js} mellett döntöttem, abból az egyszerű okból kifolyólag, hogy ezt ajánlotta a témavezetőm, valamint ez volt a legszimpatikusabb számomra. Következő lépésben üzembe kell helyeznünk az említett keretrendszert, melyben a programot írjuk. A rendszert a hivatalos weboldaláról érhetjük el. Letöltés és telepítés után rendelkezésünkre is áll a szoftver. Első lépésben konfigurálnunk kell a program "szívét", a \textit{package.json} fájlt. Ez tartalmazza a fontos metaadatokat a projektünkhöz (például a program belépési pontját), ezek közül is kiemelve a "függőségeket" (dependency-ket). A függőségek azt jelölik, hogy milyen modulokra (és azok mely verzióira) van szükség a program teljesértékű futtatásához. A \textit{package.json} konfigurálásához az alábbi parancsot kell begépelnünk:
 
 \begin{verbatim}
 $ npm init
@@ -59,9 +32,9 @@ $ node <fajl.kiterjesztes>
 
 Ezzel készen is vagyunk a Node.js telepítésével, viszont még szükségünk lesz további előkészületekre.
 
-Ahogyan webes keretrendszert, úgy adatbázist is választani kell. A választásom pedig a \textit{MongoDB}-re esett, mégpedig azért, mert eddig csak SQL alapú rendszerekkel volt dolgom (Oracle SQL, MySQL), és ki szerettem volna próbálni valami újat, továbbá azért is, mert Webtechnológiák II tárgyból még hasznát vehetem ennek a rendszernek.
+Ahogyan webes keretrendszert, úgy adatbázist is választani kell. A választásom pedig a \textit{MongoDB}-re esett, mégpedig azért, mert eddig csak SQL alapú rendszerekkel volt dolgom (Oracle SQL, MySQL), és ki szerettem volna próbálni valami újat, továbbá azért is, mert Webtechnológiák II tárgyból még hasznát vehetem ennek az adatbázisrendszernek.
 
-Ahogy a Node.js-t, úgy a MongoDB-t is a hivatalos weboldaláról érhetjük el ([9]). Ebben az esetben is telepítésre, valamint installációra lesz szükség. Telepítés után pedig csatlakoznunk kell az adott adatbázishoz. Ezt elősegítendő, a program rendelkezik egy saját parancssoros felülettel. Itt az alábbi parancsot kell megadnunk:
+Ahogy a Node.js-t, úgy a MongoDB-t is a hivatalos weboldaláról érhetjük el. Ebben az esetben is telepítésre, valamint installációra lesz szükség. Telepítés után pedig csatlakoznunk kell az adott adatbázishoz. Ezt elősegítendő, a program rendelkezik egy saját parancssoros felülettel. Itt az alábbi parancsot kell megadnunk:
 
 \begin{verbatim}
 $ mongod
@@ -185,11 +158,11 @@ Első lépésként az \textit{adminadd.ejs} fájlban létrehozzunk a megfelelő 
 
 Elküldés után az applikációban kezelhetjük a felhasználói fiók hozzáadásának folyamatát.
 
-Itt először különböző változókban eltároljuk a felhasználó által bevitt adatokat: a felhasználónevet, a jelszót, valamint az újbóli jelszóbevitelt. Ezután ellenőrzést hajtunk végre a jelszó mezőkön. Ha nem egyeznek, az adminisztrátor \textit{"A jelszavak nem egyeznek!"} hibaüzenetet kapja meg, majd vissza kell lépnie. Egyezés esetén csatlakozunk az adatbázishoz, és egy \texttt{findOne()} lekérdezésen keresztül megvizsgáljuk, hogy létezik-e az adott névvel felhasználói fiók. Ezzel lezárjuk az első lekérdezést. Ha létezik, szintén hibaüzenet kerül megjelenítésre (\textit{Már létezik ilyen felhasználói fiók!}). Ha nem létezik, elindítjuk a második lekérdezést, mely viszont már \texttt{insertOne()} típusú, ugyanis ezzel tudjuk beilleszteni a dokumentumba a felhasználói fiókot. Ezután a sikeres fiók-hozzáadásról üzenetet kapunk, majd visszalépünk az adminisztrációs felületre.\\
+Itt először különböző változókban eltároljuk a felhasználó által bevitt adatokat: a felhasználónevet, a jelszót, valamint az újbóli jelszóbevitelt. Ezután ellenőrzést hajtunk végre a jelszó mezőkön. Ha nem egyeznek, az adminisztrátor \textit{"A jelszavak nem egyeznek!"} hibaüzenetet kapja meg, majd vissza kell lépnie. Egyezés esetén csatlakozunk az adatbázishoz, és egy \texttt{findOne()} lekérdezésen keresztül megvizsgáljuk, hogy létezik-e az adott névvel felhasználói fiók. Ezzel lezárjuk az első lekérdezést. Ha létezik, szintén hibaüzenet kerül megjelenítésre ("\textit{Már létezik ilyen felhasználói fiók!}"). Ha nem létezik, elindítjuk a második lekérdezést, mely viszont már \texttt{insertOne()} típusú, ugyanis ezzel tudjuk beilleszteni a dokumentumba a felhasználói fiókot. Ezután a sikeres fiók-hozzáadásról üzenetet kapunk, majd visszalépünk az adminisztrációs felületre.\\
 
 \noindent{\textbf{\large{Felhasználó módosítása}}}\\
 
-Az előző metódushoz hasonlóan először az adatbeviteli felületet hozzuk létre (\textit{adminmodify.ejs}). Ugyanazokat a beviteli mezőket tartalmazza, mint a fiók hozzáadása, viszont az itt található mezők azonosítója más, a megkülönböztethetőség végett (Például a hozzáadás folyamatában a felhasználónevet tartalmazó mező azonosítója \texttt{addUName}, míg a módosításban található felhasználónév-mező azonosítója \texttt{modifyUName}).
+Az előző metódushoz hasonlóan először az adatbeviteli felületet hozzuk létre (\textit{adminmodify.ejs}). Ugyanazokat a beviteli mezőket tartalmazza, mint a fiók hozzáadása, viszont az itt található mezők azonosítója más, a megkülönböztethetőség végett (Például a hozzáadás folyamatában a felhasználónevet tartalmazó mező azonosítója \texttt{addUName}, míg a módosítás űrlapjában található felhasználónév-mező azonosítója \texttt{modifyUName}).
 
 Adatfeltöltés, és elküldés után az alkalmazásban folytatjuk a kezelést.
 
@@ -241,7 +214,7 @@ A címeket funkciójuk alapján különböző csoportokba osztjuk:
 
 \noindent{\textbf{\large{Bejelentkezési oldal}}}\\
 
-Ide egyetlen oldal tartozik, a bejelentkezési oldal, mely egyben az URL gyökerét is jelzi (vagyis, domain név betöltése esetén ez jelenik meg). Elérési útvonala "\textit{/}". Ezen az oldalon tudnak a felhasználók (és az adminisztrátor) bejelenkezni a megfelelő oldalra (a felhasználók a \textit{home} nevű főoldalra, az adminisztrátor pedig az \textit{/adminadd} oldalra).\\
+Ide egyetlen oldal tartozik, a bejelentkezési oldal, mely egyben az URL gyökerét is jelzi (vagyis, domain név betöltése esetén ez jelenik meg). Elérési útvonala "\textit{/}". Ezen az oldalon tudnak a felhasználók (és az adminisztrátor) bejelenkezni a megfelelő oldalra (a felhasználók a \textit{home} nevű főoldalra, az adminisztrátor pedig az \textit{/adminadd} oldalra), valamint a munkamenet lejáratát követően is erre az oldalra navigálhatnak.\\
 
 \noindent{\textbf{\large{Felhasználói felület oldalai}}}\\
 
@@ -255,6 +228,8 @@ Ide soroljuk azokat az oldalakat, melyek között a (bejelentkezett) felhasznál
 
 Ezen lehetőségeket szemlélteti az alábbi use-case diagram:
 
+\newpage
+
 \begin{figure}[h]
 	\centering
 		\includegraphics[width=15truecm, height=10truecm]{images/felhasznalo_use_case.png}
@@ -262,14 +237,14 @@ Ezen lehetőségeket szemlélteti az alábbi use-case diagram:
 	\label{fig:userusecase}
 \end{figure}
 
-A navigációt az oldal felső részében található zöld menü segítségével végezhetik a felhasználók. A menü felett jelenik meg annak az oldalnak a neve, melyen a felhasználó éppen tartózkodik. A \textit{mainStyle.css} nevű CSS stíluslap adja ezen oldalak kinézetét, mely szerint a kurzor menüpontokra való húzása (\texttt{hover}) esetén a kijelölt menüpont szürke kiemelő színt kap, így megkülönböztetve a menüpontokat. A \textit{Fájlok}, valamint a \textit{Programok} menüpontok \textit{hover} eseménye esetén legördülnek, és két almenüpont válik előrhetővé számunkra: a \textit{Fájlok} menüpontból a \textit{Tananyagok} és a \textit{Feltöltés}, a \textit{Programok} menüpontból pedig a \textit{Demonstrációk} és a \textit{Feltöltés} almenüpontok jelennek meg. Az almenüpontok háttérszíne fekete, kijelőlés esetén viszont ugyanazt a szürkés árnyalatot kapják, mint a főmenüpontok. Kattintás hatására pedig a tényleges navigáció zajlik le. Attól függően, hogy melyik menüpontra kattintottunk, a navigáció változatos lehet:
+A navigációt a weboldal felső részében található zöld menü segítségével végezhetik a felhasználók. A menü felett jelenik meg annak az oldalnak a neve, melyen a felhasználó éppen tartózkodik. A \textit{mainStyle.css} nevű CSS stíluslap adja ezen oldalak kinézetét, mely szerint a kurzor menüpontokra való húzása (\texttt{hover}) esetén a kijelölt menüpont szürke kiemelő színt kap, így megkülönböztetve a menüpontokat. A \textit{Fájlok}, valamint a \textit{Programok} menüpontok \textit{hover} eseménye esetén legördülnek, és két almenüpont válik előrhetővé számunkra: a \textit{Fájlok} menüpontból a \textit{Tananyagok} és a \textit{Feltöltés}, a \textit{Programok} menüpontból pedig a \textit{Demonstrációk} és a \textit{Feltöltés} almenüpontok jelennek meg. Az almenüpontok háttérszíne fekete, kijelőlés esetén viszont ugyanazt a szürkés árnyalatot kapják, mint a főmenüpontok. Kattintás hatására pedig a tényleges navigáció zajlik le. Attól függően, hogy melyik menüpontra kattintottunk, a navigáció változatos lehet:
 
 \begin{itemize}
-\item{\textbf{Főoldal}: Navigáció a "\textit{/home}" oldalra}
-\item{\textbf{Fájlok/Tananyagok}: Navigáció a "\textit{/files}" oldalra}
-\item{\textbf{Fájlok/Feltöltés}: Navigáció a "\textit{/fileupload}" oldalra}
-\item{\textbf{Programok/Demonstrációk}: Navigáció a "\textit{/programmes}" oldalra}
-\item{\textbf{Programok/Feltöltés}: Navigáció a "\textit{/programmeupload}" oldalra}
+\item{\textbf{Főoldal}: Navigáció a "\textit{/home}" oldalra.}
+\item{\textbf{Fájlok/Tananyagok}: Navigáció a "\textit{/files}" oldalra.}
+\item{\textbf{Fájlok/Feltöltés}: Navigáció a "\textit{/fileupload}" oldalra.}
+\item{\textbf{Programok/Demonstrációk}: Navigáció a "\textit{/programmes}" oldalra.}
+\item{\textbf{Programok/Feltöltés}: Navigáció a "\textit{/programmeupload}" oldalra.}
 \end{itemize}
 
 \noindent{\textbf{\large{Adminisztrációs felület oldalai}}}\\
@@ -294,9 +269,9 @@ A megfelelő felhasználóba való bejelentkezés után a program automatikusan 
 A felület stílusa megegyezik a felhasználói felület stílusával, mivel ezen oldalak is a \textit{mainStyle.css} stíluslapot használják. A főmenüpontok zöldek, a jelenlegi oldalt jelző cím szürke, menüpont kijeöléskor pedig szürke hátteret kapnak. Itt nincsenek almenüpontok, csak három főmenüpont:
 
 \begin{itemize}
-\item{\textbf{Felhasználó hozzáadása}: Navigáció az "\textit{/adminadd}" oldalra}
-\item{\textbf{Felhasználó módosítása}: Navigáció az "\textit{/adminmodify}" oldalra}
-\item{\textbf{Felhasználó törlése}: Navigáció az "\textit{/adminremove}" oldalra}
+\item{\textbf{Felhasználó hozzáadása}: Navigáció az "\textit{/adminadd}" oldalra.}
+\item{\textbf{Felhasználó módosítása}: Navigáció az "\textit{/adminmodify}" oldalra.}
+\item{\textbf{Felhasználó törlése}: Navigáció az "\textit{/adminremove}" oldalra.}
 \end{itemize}
 
 \noindent{\textbf{\large{Sikerességet visszajelző oldalak}}}\\
@@ -310,7 +285,18 @@ Ide tartoznak azok az oldalak, melyek a sikeres műveletek (például adatbázis
 
 \noindent{\textbf{\large{Hibajelző oldalak}}}\\
 
-Ebbe a csoportba tartoznak azok az oldalak, melyek a hibás műveleteket jelzik vissza, vagy elkerülendő problémák miatt van szükség rájuk.
+Ebbe a csoportba tartoznak azok az oldalak, melyek a hibás műveleteket jelzik vissza, vagy elkerülendő problémák miatt van szükség rájuk. Ezen oldalak megjelenése a \textit{/errorStyle.css} stíluslap alapján történik. Ide tartoznak:
+
+\begin{itemize}
+\item{\textbf{Helytelen jelszó}: Navigáció a "\textit{/badauth}" oldalra. Ezt akkor jelenítjük meg, ha a felhasználó, vagy az adminisztrátor nem a fióknévhez kapcsolt jelszót gépeli be a jelszó mezőbe.}
+\item{\textbf{Már létező fájl}: Navigáció a "\textit{/fileexists}" oldalra. Ezzel a hibaüzenettel találkozunk abban az esetben, "\textit{Fájlok/Feltöltés}", vagy a "\textit{Programok/Feltöltés}" menüpont alatt olyan állományt szeretnénk feltölteni, melynek neve már megtalálható a megfelelő "\textit{files/uploads}", vagy "\textit{programmes/uploads}" mappában (tehát már feltöltésre került azonos nevű fájl).}
+\item{\textbf{Helytelen vagy lejárt munkamenet}: Navigáció a "\textit{/invalid}" oldalra. Akkor szembesülünk ezzel az üzenettel, ha a bejelentkezéstől számított 30 perces munkamenet lejár, és az idő lejárta után próbálunk meg műveleteket végezni az oldalon (például másik oldal betöltése a menün keresztül). Továbbá, amennyiben a címsorból próbáljuk meg elérni az oldalakat, szintén ezzel a hibával találkozunk. Érdemes lehet megjegyezni, hogy míg a többi hibajelző oldalon "\textit{Vissza}" gomb található, mely a böngésző előzménye alapján vezet vissza az előző meglátogatott oldalra a \texttt{history.back()} paranccsal, addig ezen az oldalon egy "\textit{Bejelentkezés}" gomb található, mely visszairányítja a böngészőt a \texttt{window.location} paraméter változtatásával a bejelentkezési felületre.}
+\item{\textbf{Nincs kiválasztott fájl}: Navigáció a "\textit{/nofile}" oldalra. Amikor a felhasználó úgy küldi el a "\textit{Fájlok/Feltöltés}", vagy a "\textit{Programok/Feltöltés}" oldalon található űrlapot, hogy nem választott ki fájlt, akkor ez a hibaüzenet jelenik meg számunkra.}
+\item{\textbf{Jogosulatlan felhasználó}: Navigáció a "\textit{/notadmin}" oldalra. Erre akkor van szükség, ha egy nem-adminisztrátor szeretne hozzáférni (címsor segítségével) az adminisztrátori felülethez.}
+\item{\textbf{Nincs ilyen felhasználó}: Navigáció a "\textit{/notfound}" oldalra. A bejelentkezési oldalról kaphatunk ilyen hibajelzést. Az autentikáció során a felhasználó által begépelt név alapján keresünk felhasználói fiókot az adatbázisban. Ha nem találtunk egyet sem (nincs ilyen névvel felhasználói fiók), akkor erre az oldalra irányít minket az applikáció.}
+\item{\textbf{Nem egyező jelszavak}: Navigáció a "\textit{/notmatching}" oldalra. Ezt a hibaüzenetet két oldalról is kaphatjuk: az egyik a \textit{Felhasználó hozzáadása}, a másik pedig a \textit{Felhasználó módosítása} nevű, adminisztrátori felületen fellelhető oldal. Értelemszerűen mindkét oldalon ugyanaz a hiba váltja ki ennek a hibaüzenetnek a megjelenítését: Ha az adminisztrátor nem ugyanazt a jelszót gépeli be a két \textit{Jelszó} mezőbe.}
+\item{\textbf{Már létező felhasználó}: Navigáció a "\textit{/userexists}" oldalra. Ez az adminisztrátor számára megjelenő üzenet. Akkor következik be ez a hiba, ha olyan felhasználói fiókot próbál hozzáadni az adatbázishoz, melynek neve már szerepel az adatbázisban. Könnyű belátni, hogy két azonos nevű felhasználó nem szerepelhet a fiókok nyilvántartásában.}
+\end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 4 . 3 . 6 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% HIÁNYOS!! %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
