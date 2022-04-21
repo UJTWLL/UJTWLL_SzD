@@ -63,7 +63,7 @@ Említést érdemel egy további alkalmazás, mely nagy segítséget nyújt az a
 
 \begin{figure}[h]
 	\centering
-		\includegraphics[width=12truecm, height=7truecm]{images/postman.png}
+		\includegraphics[width=15truecm, height=9truecm]{images/postman.png}
 	\caption{A Postman grafikus felülete}
 	\label{fig:postman}
 \end{figure}
@@ -265,7 +265,7 @@ Ide soroljuk azokat az oldalakat, melyek között a (bejelentkezett) felhasznál
 \item{feltölteni saját tartalmat.}
 \end{itemize}
 
-Ezen lehetőségeket szemlélteti az alábbi use-case diagram:
+Ezen lehetőségeket szemlélteti az alábbi use-case diagram (\ref{fig:userusecase}. ábra):
 
 \begin{figure}[h]
 	\centering
@@ -294,7 +294,7 @@ Ide azokat az oldalakat soroljuk, melyek között az adminisztrátor böngészni
 \item{felhasználói fiókot törölni}
 \end{itemize}
 
-A megfelelő felhasználóba való bejelentkezés után a program automatikusan az adminisztrátori felületbe továbbít minket. Az itt rendelkezésünkre álló lehetőségeket szemlélteti az alább található use-case diagram:
+A megfelelő felhasználóba való bejelentkezés után a program automatikusan az adminisztrátori felületbe továbbít minket. Az itt rendelkezésünkre álló lehetőségeket szemlélteti az alább található use-case diagram (\ref{fig:adminusecase}. ábra):
 
 \begin{figure}[h]
 	\centering
@@ -336,7 +336,6 @@ Ebbe a csoportba tartoznak azok az oldalak, melyek a hibás műveleteket jelzik 
 \end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 4 . 3 . 6 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% HIÁNYOS!! %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{A hallgatói felület}
 
@@ -371,7 +370,9 @@ Fontos megjegyezni, hogy a munkafolyamat a bejelentkezés pillanatától számí
 
 A főoldalon a legördülő menü lesz a felhasználók segítségére, ugyanis ezen keresztül történik a navigáció, melyet a korábbi fejezetekben részleteztünk. Maga a menü egyszerű, gombokból (\texttt{<button>}-okból) áll, melyeket stíluslapok segítségével kényelmesebbé, esztétikusabbá alakítunk.
 
-Amennyiben nem szándékozunk tovább tevékenykedni az oldalon, úgy az alkalmazás jobb felső sarkában található \textit{kijelentkezés} gombbal visszatérhetünk a bejelentkezési oldalra, ezzel együtt lezárjuk a munkamenetet.
+Annak érdekében, hogy egyéb fontos információt meg tudjunk jeleníteni, létrehoztunk egy "\textit{sidebar}"-t. Ez nem más, mint a weboldalak bal oldalán elhelyezkedő oszlop, melyet adattárolásra rendszeresítettünk. Ennek szélessége mindig az adott képernyő méretéhez igazodik, pontosan a képernyő-szélesség 12\%-át foglalja el. Ennek megvalósítása egy egyszerű táblázattal történt. A menü alatt egy "láthatatlan" táblázatot hoztunk létre (egy olyan táblázatot, melynek 0 képpontnyi vastag szegélye van, így ugyan van szegélye, de nem látható). Ennek a táblázatnak két cellája van. A bal oldali cella szolgáltatja a már említett sidebar-t. A jobb oldali cella tölti ki a képernyő-szélesség maradékát, melyben a menüpontok szerinti tartalmat jelenítjük meg.
+
+Mindezen felül a képernyő jobb felső sarkában található a \textit{Kijelentkezés} gomb, melynek segítségével visszatérhetünk a bejelentkezési oldalra. Értelemszerűen a kijelentkezés folyamata után a munkamenetünk véget ér, így ha vissza szeretnénk térni a felhasználói felületre, újabb bejelentkezésre lesz szükségünk.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 4 . 3 . 7 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% HIÁNYOS!! %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -387,66 +388,23 @@ A login oldalon a megfelelő (adminisztrátori) felhasználóba való bejelentke
 	\label{fig:admin}
 \end{figure}
 
-Itt az adminisztrátornak lehetősége van:
+Amennyiben illetéktelenül próbálkozunk hozzáférni ehhez a felülethez (tehát, ha hallgatói fiókba jelentkezünk be, vagy ha egyáltalán nem jelentkezünk be), úgy hibaüzenet fogad minket (\ref{fig:nemadmin})
+
+\begin{figure}[h]
+	\centering
+		\includegraphics[width=10truecm, height=7truecm]{images/nemadmin.png}
+	\caption{Illetéktelen felhasználó esetén megjelenő hibaüzenet}
+	\label{fig:nemadmin}
+\end{figure}
+
+Ellenkező esetben (adminisztrátori fiókba való bejelentkezéskor) a rendszer átirányít a "\textit{Felhasználó hozzáadása}" (\textit{/adminadd}) oldalra. Ez a felület hasonló a hallgatói felülethez, hiszen ugyanazt a stíluslapot (\textit{mainStyle.css}) használja. Itt is megtalálható egy menü, azonban itt nem ugyanazok a menüpontok találhatóak:
 
 \begin{itemize}
-\item{felhasználót hozzáadni,}
-\item{felhasználó meglévő adatait módosítani, valamint}
-\item{felhasználói fiókot törölni}
+\item{\textbf{Felhasználó hozzáadása}: Ezezn az oldalon lehet új felhasználói fiókot hozzáadni az adatbázishoz.}
+\item{\textbf{Felhasználó módosítása}: Itt lehet egy felhasználó már meglévő fiókjának jelszavát módosítani.}
+\item{\textbf{Felhasználó törlése}: Itt pedig egy meglévő felhasználói fiókot lehet a neve alapján törölni az adatbázisból.}
 \end{itemize}
 
-Ezen műveletek során szintén a MongoDB adatbázis adott kollekciójával rendelkezik, ezen belül hajtja végre a műveleteket. Hozzáadás során a program ellenőrzi, hogy létezik-e a megadott felhasználónévvel fiók. Amennyiben létezik, úgy hibaüzenetet küld a rendszer, és visszatér az előző oldalra. A módosítás művelete közben szintén a felhasználói fiók jelenlétét ellenőrzi az alkalmazás. Könnyű belátni, hogy itt a fiók meglétére van szükség, ugyanis, ha nem létezik fiók, úgy nem tudjuk az adatait módosítani. Hasonló ellenőrzés zajlik le felhasználó törlése során is. Nem hagyhatjuk figyelmen kívül azt sem, hogy - ahol szükséges, - a jelszavak egyezőségét is figyelni kell.
-
-Példának okáért a felhasználó hozzáadását az alábbi programrészlet szemlélteti:
-
-\begin{javascript}
-app.post('/add', function(req, res, next) {
-
-  var addUser = req.body.addUName,
-      addPW = req.body.addPW,
-      addPWAgain = req.body.addPWAgain;
-  var addObj = { username: addUser,
-password: bcrypt.hashSync(addPW, 10) };
-
-  if(addPW != addPWAgain){
-    console.log("Passwords don't match!");
-    res.redirect('/notmatching');
-  }
-  else{
-    MongoClient.connect('mongodb+srv://jokermta:QTIq5re1999@szdcluster.4fntd.mongodb.net/test?retryWrites=true&w=majority', {
-      useUnifiedTopology: true,
-      useNewUrlParser: true,
-    }).then((db) => {
-      var dbo = db.db("test");
-      dbo.collection("profiles").findOne({ username:addUser })
-.then((collection) => {
-        if (collection) {
-          console.log("User already exists!");
-          res.redirect('/userexists');
-        }
-        else{
-          MongoClient.connect('mongodb+srv://jokermta:QTIq5re1999@szdcluster.4fntd.mongodb.net/test?retryWrites=true&w=majority', {
-            useUnifiedTopology: true,
-            useNewUrlParser: true,
-          }).then((db) => {
-            var dbo = db.db("test");
-            dbo.collection("profiles").insertOne(addObj)
-.then((collection) => {
-              console.log("User added!");
-              res.redirect('/dbsuccess');
-            })
-          });
-        }
-      }).catch(err => {
-        console.log('DB Connection Error: ${err.message}');
-        res.redirect('/notfound');
-      }).finally(() => {
-        console.log('Close DB');
-        db.close();
-      })
-    });
-  }
-});
-\end{javascript}
+Az előző alfejezetben ismertetett \textit{sidebar}, valamint a \textit{Kijelentkezés} gomb itt is megtalálható.
 
 Érdemes megjegyezni azt a tényt, hogy munkamenet szempontjából az adminisztrátort is felhasználóként kezeljük! Ez azt jelenti, hogy a bejelentkezéstől számított 30 perc után az adminisztrátort is kijelentkezteti a program, és újra be kell jelentkeznie.
