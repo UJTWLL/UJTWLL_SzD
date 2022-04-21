@@ -252,7 +252,7 @@ app.post('/remove', function(req, res, next) {
 //------------------------------------------------------------------------------------------------------------------------------------------
 
 // http://localhost:3000/fileupload
-app.post('/fileupload', async (req, res, next) => {
+app.post('/fileupload', (req, res, next) => {
   const form = new formidable.IncomingForm();
   form.parse(req, function(err, fields, files){
     if(files.fileUp.originalFilename == ""){
@@ -276,7 +276,7 @@ app.post('/fileupload', async (req, res, next) => {
 });
 
 // http://localhost:3000/programmeupload
-app.post('/programmeupload', async (req, res, next) => {
+app.post('/programmeupload', (req, res, next) => {
   const form = new formidable.IncomingForm();
   form.parse(req, function(err, fields, files){
     if(files.programmeUp.originalFilename == ""){
@@ -440,15 +440,6 @@ app.get('/userexists', function(req, res) {
     res.redirect("invalid");
 	} else {
     res.render("userexists");
-	}
-});
-
-// http://localhost:3000/badfile
-app.get('/badfile', function(req, res) {
-  if (!req.session.loggedin) {
-    res.redirect("invalid");
-	} else {
-    res.render("badfile");
 	}
 });
 
