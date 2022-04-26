@@ -8,7 +8,7 @@
 
 \subsection{Visual Studio Code}
 
-Első lépésben szükségünk van egy olyan fejlesztőkörnyezetre, mely rendelkezik terminállal. Választásom a \textit{Visual Studio Code} nevű környezetre esett. Egyszerű, segítőkész, könnyen átlátható fejlesztőkörnyezetről beszélünk, mely számos programozási nyelvet támogat, illetve segítséget nyújt használatukkor (\ref{fig:vscode}).
+Első lépésben szükségünk van egy olyan fejlesztőkörnyezetre, mely rendelkezik terminállal. Választásom a \textit{Visual Studio Code} nevű környezetre esett. Egyszerű, segítőkész, könnyen átlátható fejlesztőkörnyezetről beszélünk, mely számos programozási nyelvet támogat, illetve segítséget nyújt használatukkor (\ref{fig:vscode}. ábra).
 
 \begin{figure}[h]
 	\centering
@@ -19,7 +19,7 @@ Első lépésben szükségünk van egy olyan fejlesztőkörnyezetre, mely rendel
 
 \subsection{Node.js}
 
-Az előző fejezetben összehasonlításra került néhány potenciális rendszer, jómagam pedig a \textit{Node.js} mellett döntöttem, abból az egyszerű okból kifolyólag, hogy ezt ajánlotta a témavezetőm, valamint ez volt a legszimpatikusabb számomra. Következő lépésben üzembe kell helyeznünk az említett keretrendszert, melyben a programot írjuk. A rendszert a hivatalos weboldaláról érhetjük el. Letöltés és telepítés után rendelkezésünkre is áll a szoftver. Első lépésben konfigurálnunk kell a program "szívét", a \textit{package.json} fájlt. Ez tartalmazza a fontos metaadatokat a projektünkhöz (például a program belépési pontját), ezek közül is kiemelve a "függőségeket" (dependency-ket). A függőségek azt jelölik, hogy milyen modulokra (és azok mely verzióira) van szükség a program teljesértékű futtatásához. A \textit{package.json} konfigurálásához az alábbi parancsot kell begépelnünk:
+Az előző fejezetben összehasonlításra került néhány potenciális rendszer, jómagam pedig a \textit{Node.js} mellett döntöttem. Következő lépésben üzembe kell helyeznünk az említett keretrendszert, melyben a programot írjuk. A rendszert a hivatalos weboldaláról érhetjük el. Letöltés és telepítés után rendelkezésünkre is áll a szoftver. Első lépésben konfigurálnunk kell a program "szívét", a \textit{package.json} fájlt. Ez tartalmazza a fontos metaadatokat a projektünkhöz (például a program belépési pontját), ezek közül is kiemelve a "függőségeket" (dependency-ket). A függőségek azt jelölik, hogy milyen modulokra (és azok mely verzióira) van szükség a program teljesértékű futtatásához. A \textit{package.json} konfigurálásához az alábbi parancsot kell begépelnünk:
 
 \begin{verbatim}
 $ npm init
@@ -45,7 +45,7 @@ Ezzel készen is vagyunk a Node.js telepítésével, viszont még szükségünk 
 
 \subsection{MongoDB}
 
-Ahogyan webes keretrendszert, úgy adatbázist is választani kell. A választásom pedig a \textit{MongoDB}-re esett, mégpedig azért, mert eddig csak SQL alapú rendszerekkel volt dolgom (Oracle SQL, MySQL), és ki szerettem volna próbálni valami újat, továbbá azért is, mert Webtechnológiák II tárgyból még hasznát vehetem ennek az adatbázisrendszernek.
+Ahogyan webes keretrendszert, úgy adatbázist is választani kell. A választásom pedig a \textit{MongoDB}-re esett, mégpedig azért, mert számos különböző típusú adattal dolgozunk, melyeket nem feltétlenül lehet struktúrába rendezni. Az összehasonlításoknál láthattuk, hogy sémakötöttség szempontjából a NoSQL adatbázisok rugalmasabbak az SQL alapúaknál, ezért a MongoDB kézenfekvő megoldás.
 
 Ahogy a Node.js-t, úgy a MongoDB-t is a hivatalos weboldaláról érhetjük el. Ebben az esetben is telepítésre, valamint installációra lesz szükség. Telepítés után pedig csatlakoznunk kell az adott adatbázishoz. Ezt elősegítendő, a program rendelkezik egy saját parancssoros felülettel. Itt az alábbi parancsot kell megadnunk:
 
@@ -59,7 +59,7 @@ Ennek hatására a konfigurációs fájl (\textit{mongo.cfg}) alapján csatlakoz
 
 \noindent{\textbf{\large{Postman}}}\\
 
-Említést érdemel egy további alkalmazás, mely nagy segítséget nyújt az applikációnk tesztelésében. Ez pedig nem más, mint a \textit{Postman}. Ez az asztali alkalmazás képes - többek között - felhasználói adatbevitelt szimulálni, így tesztelhetjük a webapplikációnkat különböző kérések elküldésével (\ref{fig:postman}).
+Említést érdemel egy további alkalmazás, mely nagy segítséget nyújt az applikációnk tesztelésében. Ez pedig nem más, mint a \textit{Postman}. Ez az asztali alkalmazás képes - többek között - felhasználói adatbevitelt szimulálni, így tesztelhetjük a webapplikációnkat különböző kérések elküldésével (\ref{fig:postman}. ábra).
 
 \newpage
 
@@ -82,14 +82,14 @@ Küldés után a válaszablakban találhatjuk a kérés eredményeit. Itt látha
 
 \noindent{\textbf{\large{MongoDB Atlas}}}\\
 
-Említésre került, hogy a MongoDB applikációja alapvetően parancssoros felületű. Ennek értelmében a csatlakoztatott adatbázist és annak tartalmát (például a kollekcióit) szintén parancssoros felületen keresztül érhetjük el. Amennyiben viszont igényünk van rá, megtehetjük mindezt grafikus felületen is. Ezt a \textit{MongoDB Atlas} nevű webalkalmazás teszi lehetővé (\ref{fig:atlas}. ábra).
+Említésre került, hogy a MongoDB applikációja alapvetően parancssoros felületű. Ennek értelmében a csatlakoztatott adatbázist és annak tartalmát (például a kollekcióit) szintén parancssoros felületen keresztül érhetjük el. Amennyiben viszont igényünk van rá, megtehetjük mindezt grafikus felületen is. Ezt a \textit{MongoDB Atlas} nevű webalkalmazás teszi lehetővé (\ref{fig:atlas}. ábra). További előnyeként meg kell említenünk, hogy a MongoDB Atlas segítségével felhőszolgáltatásként használhatjuk adatbázisunkat, így az adataink nem lokálisan, hanem felhőben tárolódnak.
 
 \newpage
 
 \begin{figure}[h]
 	\centering
 		\includegraphics[width=12truecm, height=7truecm]{images/atlas.png}
-	\caption{A MongoDB Atlas felületén egy kollekció dokumentumai}
+	\caption{A MongoDB Atlas felülete}
 	\label{fig:atlas}
 \end{figure}
 
@@ -119,7 +119,7 @@ Ebben a példában a "\textit{/invalid}" nevű oldalra navigálás esetén az "\
 
 Szóba került a munkamenet-menedzselés is. Ezt az Express egyik alrendszerével, az \textit{Express-session}-nel, valamint a \textit{Cookie-parser} nevű modullal oldjuk meg. Míg az előbbi magát a munkamenetet kezeli, az utóbbi segítségével tudjuk módosítani a sütiket (példának okáért a sütik elévülési idejét - ez határozza meg a munkamenet hosszát, mely esetünkben 30 perc).
 
-A projekten belüli navigációt, illetve útvonalkezelést a \textit{Path} nevű modullal végezzük. E modul képes többek között fájlok kiterjesztését, kiterjesztés nélküli nevét ("basename") lekérdezni, útvonalak abszolút voltát, vagy akár két útvonal közti relatív útvonalat meghatározni. Nekünk a \texttt{resolve()} függvény lesz segítségünkre, mellyel az argumentumként megadott útvonalat és más mappákat lehet abszolút útvonalként beállítani. Emellett a \texttt{join()} metódus is hasznunkra lesz, mivel ezzel útvonalakat lehet összevonni. Továbbá egy bizonyos \texttt{\_\_dirname} változót is biztosít számunkra a modul, mely a futtatás helyét tárolja (mindig azt az útvonalat veszi fel értékként, amelyből futtattuk a programot).
+A projekten belüli navigációt, illetve útvonalkezelést a \textit{Path} nevű modullal végezzük. E modul képes többek között fájlok kiterjesztését, kiterjesztés nélküli nevét ("basename") lekérdezni, útvonalak abszolút voltát, vagy akár két útvonal közti relatív útvonalat is képes meghatározni. Nekünk a \texttt{resolve()} függvény lesz segítségünkre, mellyel az argumentumként megadott útvonalat és más mappákat lehet abszolút útvonalként beállítani. Emellett a \texttt{join()} metódus is hasznunkra lesz, mivel ezzel útvonalakat lehet összevonni. Továbbá egy bizonyos \texttt{\_\_dirname} változót is biztosít számunkra a modul, mely a futtatás helyét tárolja (mindig azt az útvonalat veszi fel értékként, amelyből futtattuk a programot).
 
 Igényt tartunk még a \textit{Formidable} modulra is. Ez lehetővé teszi számunkra, hogy bejövő (felhasználó által elküldött, így rendelkezésünkre bocsátott), főleg fájlfeltöltési űrlapokat kezeljünk. Leglényegesebb funkciója a \texttt{parse()} függvény. Ezzel tudjuk a kapott űrlapot értelmezni, mind a kiválasztott fájl(ok), mind a hozzá kapcsolódó mezők szempontjából.
 
@@ -150,7 +150,7 @@ Első körben definiáljuk a munkamenethez szükséges paramétereket az Express
 \item{\textbf{secret}: A munkamenet egyedi azonosító kulcsa. Ez általában egy bonyolult, véletlenszerűen generált string, melyet nem szabad nyilvánosságra hozni.}
 \item{\textbf{saveUninitialized}: Egy boolean (logikai) típusú változó, mely jelzi, hogy az \textit{uninitialized} (létrehozott, de értékeket nem hordozó) munkamenetek mentésre kerüljenek-e, vagy sem.}
 \item{\textbf{resave}: Szintén egy logikai értéket hordoz. Ez határozza meg, hogy mi történjen akkor, ha egy kérés során nem módosul a munkamenet. \texttt{True} érték esetén mentésre kerül, \texttt{false} esetén viszont nem. Versengéses kérések esetén (például amikor a felhasználó több párhuzamos kérést küld a szerver felé) a \textit{false} a jobb választás.}
-\item{\textbf{cookie}: Itt tudjuk módosítani a sütik változóit. Mi csak egyetlen változót állítunk be, a \texttt{magAge}-et. Ez határozza meg a süti (ezzel együtt a munkamenet) lejáratát. A mi esetünkben ez az érték fél óra.}
+\item{\textbf{cookie}: Itt tudjuk módosítani a sütik változóit. Mi csak egyetlen változót állítunk be, a \texttt{maxAge}-et. Ez határozza meg a süti (ezzel együtt a munkamenet) lejáratát. A mi esetünkben ez az érték fél óra.}
 \end{itemize}
 
 \noindent
@@ -180,11 +180,27 @@ A \textit{login.ejs} fájlban létrehozzuk a bejelentkezési űrlapot, melynek \
 
 Az elküldött űrlapot az applikációnkban kezeljük. Először is bekérjük a felhasználó által bevitt adatokat, a nevet és a jelszót. Kiíratjuk a konzolra a felhasználói adatokat, majd csatlakozunk az adatbázishoz, ahol első körben rákeresünk a felhasználónévre. Abban az esetben, ha nem létezik, hibaüzenetet küldünk. Ha mégis létezik, a bcrypt modul segítségével összehasonlítjuk a begépelt jelszót az adatbázisban szereplő, kódolt jelszóval. Magától értetődő, hogy abban az esetben, ha nem egyeznek, szintén hibaüzenetet küldünk a felhasználónak. Egyezőség esetén viszont eltároljuk a munkamenet adatait (például a felhasználónevet), a Cookie-parser modul legenerálja a felhasználóhoz tartozó süti-adatokat (így a nagy jelentősséggel bíró lejárati dátumot is), végül pedig átirányít a megfelelő oldalra (a "nem-admin" felhasználókat a főoldalra, az adminisztrátort pedig a felhasználó hozzáadása oldalra.
 
+Az autentikációt modellezi az alábbi folyamatábra (\ref{fig:autentikacio}. ábra):
+
+\begin{figure}[h]
+	\centering
+		\includegraphics[width=15truecm, height=17truecm]{images/autentikacio.png}
+	\caption{Az autentikáció folyamatábrája}
+	\label{fig:autentikacio}
+\end{figure}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 4 . 3 . 3 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Adminisztrátori műveletek}
 
-Következőleg az adminisztrátori műveletek kezelését határozzuk meg. Fontos megjegyezni, hogy mivel mindhárom művelet adatot oszt meg a szerverrel, ezért ezek mindegyike \texttt{post} metódusként kezelendő.\\
+Következőleg az adminisztrátori műveletek kezelését határozzuk meg. Fontos megjegyezni, hogy mivel mindhárom művelet adatot oszt meg a szerverrel, ezért ezek mindegyike \texttt{post} metódusként kezelendő. A metódusok végrehajtása során az adatbázis kollekciójának felhasználói fiókokat tartalmazó dokumentumait módosítjuk (\ref{fig:kollekcio}. ábra).\\
+
+\begin{figure}[h]
+	\centering
+		\includegraphics[width=12truecm, height=7truecm]{images/kollekcio.png}
+	\caption{A felhasználói fiókokat tartalmazó kollekció}
+	\label{fig:kollekcio}
+\end{figure}
 
 \noindent{\textbf{\large{Felhasználó hozááadása}}}\\
 
@@ -288,13 +304,7 @@ A navigációt a weboldal felső részében található zöld menü segítségé
 
 \noindent{\textbf{\large{Adminisztrációs felület oldalai}}}\\
 
-Ide azokat az oldalakat soroljuk, melyek között az adminisztrátor böngészni tud. Ezen oldalakon az adminisztrátornak lehetősége van:
-
-\begin{itemize}
-\item{felhasználót hozzáadni,}
-\item{felhasználó meglévő adatait módosítani, valamint}
-\item{felhasználói fiókot törölni}
-\end{itemize}
+Ide azokat az oldalakat soroljuk, melyek között az adminisztrátor böngészni tud. Ezen oldalakon az adminisztrátornak lehetősége van felhasználót hozzáadni, felhasználó meglévő adatait módosítani, valamint felhasználói fiókot törölni.
 
 A megfelelő felhasználóba való bejelentkezés után a program automatikusan az adminisztrátori felületbe továbbít minket. Az itt rendelkezésünkre álló lehetőségeket szemlélteti az alább található use-case diagram (\ref{fig:adminusecase}. ábra):
 
@@ -304,6 +314,8 @@ A megfelelő felhasználóba való bejelentkezés után a program automatikusan 
 	\caption{Az adminisztrátori felület}
 	\label{fig:adminusecase}
 \end{figure}
+
+\newpage
 
 A felület stílusa megegyezik a felhasználói felület stílusával, mivel ezen oldalak is a \textit{mainStyle.css} stíluslapot használják. A főmenüpontok zöldek, a jelenlegi oldalt jelző cím szürke, menüpont kijeöléskor pedig szürke hátteret kapnak. Itt nincsenek almenüpontok, csak három főmenüpont:
 
@@ -377,7 +389,6 @@ Annak érdekében, hogy egyéb fontos információt meg tudjunk jeleníteni, lé
 Mindezen felül a képernyő jobb felső sarkában található a \textit{Kijelentkezés} gomb, melynek segítségével visszatérhetünk a bejelentkezési oldalra. Értelemszerűen a kijelentkezés folyamata után a munkamenetünk véget ér, így ha vissza szeretnénk térni a felhasználói felületre, újabb bejelentkezésre lesz szükségünk.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 4 . 3 . 7 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% HIÁNYOS!! %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Az adminisztrátori felület}
 
@@ -390,7 +401,7 @@ A login oldalon a megfelelő (adminisztrátori) felhasználóba való bejelentke
 	\label{fig:admin}
 \end{figure}
 
-Amennyiben illetéktelenül próbálkozunk hozzáférni ehhez a felülethez (tehát, ha hallgatói fiókba jelentkezünk be, vagy ha egyáltalán nem jelentkezünk be), úgy hibaüzenet fogad minket (\ref{fig:nemadmin})
+Amennyiben illetéktelenül próbálkozunk hozzáférni ehhez a felülethez (tehát, ha hallgatói fiókba jelentkezünk be, vagy ha egyáltalán nem jelentkezünk be), úgy hibaüzenet fogad minket (\ref{fig:nemadmin}. ábra)
 
 \begin{figure}[h]
 	\centering
@@ -398,6 +409,8 @@ Amennyiben illetéktelenül próbálkozunk hozzáférni ehhez a felülethez (teh
 	\caption{Illetéktelen felhasználó esetén megjelenő hibaüzenet}
 	\label{fig:nemadmin}
 \end{figure}
+
+\newpage
 
 Ellenkező esetben (adminisztrátori fiókba való bejelentkezéskor) a rendszer átirányít a "\textit{Felhasználó hozzáadása}" (\textit{/adminadd}) oldalra. Ez a felület hasonló a hallgatói felülethez, hiszen ugyanazt a stíluslapot (\textit{mainStyle.css}) használja. Itt is megtalálható egy menü, azonban itt nem ugyanazok a menüpontok találhatóak:
 

@@ -18,7 +18,7 @@ A Vue.js egy nyílt forráskódú frontend JavaScript keretrendszer, melyet legt
 
 Nagy előnye, hogy magasabb szintű funkcionalitást kölcsönöz a HTML applikációknak, melyet az ún. „direktíváival” ér el. Ezeknek egy része beépített, viszont a felhasználók saját maguk is elkészíthetik egyéni direktíváikat \cite{w3schoolsvue}. Emellett „virtuális DOM-ot” használ. Ez azt jelenti, hogy csak akkor módosul a valódi DOM, ha az applikáció változói frissülnek, így pedig a feldogozási sebesség megnő például a közismert, és gyakran használt Jqueryhez képest.
 
-Erról a rendszerről egy cikk számol be bővebben \cite{vuecikk}:\\
+Erról a rendszerről az alábbi cikkrészlet számol be bővebben \cite{vuecikk}:\\
 
 \noindent\textit{\textbf{\large{Mi az a Vue.js?}}}\\
 
@@ -68,46 +68,45 @@ Erról a rendszerről egy cikk számol be bővebben \cite{vuecikk}:\\
 
 \subsection{Angular}
 
-A címben említett Angular egy elterjedt TypeScript alapú keretrendszer. Érdemes megjegyezni, hogy az ebben a dolgozatban felsorolt három keretrendszer közül ez az egyetlen tényleges keretrendszer, a Vue.js, valamint a Node.js pusztán JavaScript-könyvtárak.
+Az Angular egy elterjedt TypeScript alapú keretrendszer. Érdemes megjegyezni, hogy az ebben a dolgozatban felsorolt három keretrendszer közül ez az egyetlen tényleges keretrendszer, a Vue.js, valamint a Node.js pusztán JavaScript-könyvtárak.
 
 Ennek a rendszernek a jellegzetessége, hogy HTML-eket egészít ki attribútumokkal, ebből adódik, hogy legtöbbször single-page alkalmazások fejlesztésekor szokták alkalmazni, melyekhez számtalan bemutató videó, valamint demonstrációs anyag létezik.
 
-Továbbá, a három felsorolt lehetőség közül ezen keretrendszer tanulmányozásával foglalkozunk kizárólagosan Webtechnológiák II. tantárgy berkein belül.
+Továbbá, a három felsorolt lehetőség közül ezen keretrendszer tanulmányozásával foglalkozunk kizárólagosan Webtechnológiák II. tantárgy keretein belül.
 
 Egy rövid (angol nyelvről fordított) szöveg mutatja be részleteiben a rendszert \cite{angularcikk}:\\
 
 \noindent\textit{\textbf{\large{Bevezetés az Angular koncepcióiba}}}\\
 
-\textit{Az Angular egy felület és egy keretrendszer, mely single-page kliens applikációk fejlesztését biztosítja HTML, valamint TypeScript segítségével. Megvalósítja az alapvető és az opcionális funkcionalitást TypeScript függvénykönytárak készleteként, melyek beilleszthetőek az applikációkba.}
+\textit{Az Angular egy felület, valamint egy keretrendszer, mely single-page kliens applikációk fejlesztését biztosítja HTML, valamint TypeScript segítségével. Megvalósítja az alapvető, illetve az opcionális funkcionalitást TypeScript függvénykönytárak készleteként, melyek beilleszthetőek az applikációba.}
 
-\textit{Egy Angular applikáció architechtúrája bizonyos alapvető koncepcióra támaszkodik. Az Angular keretrendszer építőkövei olyan Angular komponensek, melyek úgynevezett NgModulokba szervezettek. Az NgModulok összegyűjtik az összefüggő kódot funkcionális készletekbe; egy Angular applikáció ilyen NgModulok által van definiálva. Egy applikáció mindig rendelkezik legalább egy modullal, mely lehetővé teszi az úgynevezett "bootstrapping"-et, és jellegzetesen számos más modullal rendelkezik.}
+\textit{Egy Angular applikáció architektúrája bizonyos alapvető koncepcióra támaszkodik. Az Angular keretrendszer építőkövei olyan Angular komponensek, melyek úgynevezett NgModulokba szervezettek. Az NgModulok összegyűjtik az összefüggő kódot funkcionális készletekbe; egy Angular applikáció ilyen NgModulok által van definiálva. Egy applikáció legalább egy modullal rendelkezik, mely lehetővé teszi az úgynevezett "bootstrapping"-et, viszont jellemzően számos más modul egészíti ki ezt.}
 
-\textit{A komponensek "view"-okat (későbbiekben: \textbf{nézeteket}) definiálnak. Definíció szerint ezek olyan képernyőelem-készletek, melyek közül az Angular választhat és módosíthat, a programlogika, valamint az adat alapján. A komponensek szolgáltatásokat használnak, amelyek olyan meghatározott funkcionalitást biztosítanak, amik nem kapcsolódnak közvetlenül a nézetekhez. A szolgáltatások biztosítói beilleszthetőek a komponensekbe függőségek formájában, ezzel modulárissá, újrahasználhatóvá, valamint hatékonnyá téve a programunkat. A modulok, a komponensek, illetve a szolgáltatások olyan osztályok, melyek "dekorátorokat" használnak. Ezek jelzik a típusukat, és metaadatokat biztosítanak, melyek meghatározzák az Angular számára, hogyan használhatják őket.}
+\textit{A komponensek "view"-okat (későbbiekben: \textbf{nézeteket}) definiálnak. Definíció szerint ezek olyan képernyőelem-készletek, melyeket az Angular módosíthat a programlogika, valamint az adatok alapján. A komponensek szolgáltatásokat használnak, amelyek olyan meghatározott funkcionalitást biztosítanak, amik nem kapcsolódnak közvetlenül a nézetekhez. A szolgáltatások beilleszthetőek a komponensekbe függőségek formájában, ezzel modulárissá, újrahasználhatóvá, valamint hatékonnyá téve a programunkat. A modulok, a komponensek, illetve a szolgáltatások olyan osztályok, melyek "dekorátorokat" használnak. Ezek jelzik a típusukat, és metaadatokat biztosítanak, melyek meghatározzák az Angular számára, hogyan használhatják őket.}
 
-
-\textit{A komponensek osztályaihoz tartozó metaadatokhoz társul egy sablon, mely meghatározza a nézetet. A sablonban átlagos HTML elemekhez kapcsolódnak Angular direktívák és összeköttetésjelzők, melyek lehetővé teszik az Angular számára, hogy módosítsák a HTML elemeket a megjelenítés legenerálása előtt.}
+\textit{A komponensek osztályaihoz tartozó metaadatokhoz társul egy sablon, mely meghatározza a nézetet. A sablonban alapvető HTML elemekhez kapcsolódnak Angular direktívák és összeköttetésjelzők, melyek lehetővé teszik az Angular számára, hogy módosítsák a HTML elemeket a megjelenítés legenerálása előtt.}
 
 \textit{A szolgáltató osztályhoz tartozó metaadatok elérhetővé teszik az Angular számára szükséges információkat, így lehetővé téve a függőség beillesztést (DI, Dependency Injection) a komponensek részére.}
 
-\textit{Egy applikáció komponensei jellemzően definiálnak hierarchikusan rendezett nézeteket. Az Angular elérhetővé teszi az átirányító (Router) szolgáltatás számára, hogy segítséget nyújtson a fejlesztőnek a nézetek közötti navigációban. Az átírányító biztosítja a kifinomult, böngészőn belüli navigációs lehetőségeket.}
+\textit{Egy applikáció komponensei hierarchikusan rendezett nézeteket definiálnak. Az Angular elérhetővé teszi az átirányító (Router) szolgáltatás számára, hogy segítséget nyújtson a fejlesztőnek a nézetek közötti navigációban. Az átírányító biztosítja a kifinomult, böngészőn belüli navigációs lehetőségeket.}
 
 \textit{[...]}\\
 
 \noindent\textit{\textbf{Modulok}}\\
 
-\textit{Az Angular NgModuljai különböznek, illetve kiegészítik a JavaScript (ES2015) modulokat. Egy NgModul meghatároz egy fordítási kontextust a komponensek készlete számára, melyek az applikáció tartományához, munkafolyamatához, vagy a hozzá kapcsolódó képességkészlethez kötődnek. Egy NgModul a komponensekhez társíthat hozzá kapcsolódó kódot (például szolgáltatást), hogy funkcionális egységet alkossanak.}
+\textit{Számos NgModul áll az Angular rendelkezésére, melyek kiegészítik a JavaScript (ES2015) modulokat. Egy NgModul meghatároz egy fordítási kontextust a komponensek készlete számára, melyek az applikáció tartományához, munkafolyamatához, vagy a hozzá kapcsolódó képességkészlethez kötődnek. Egy NgModul a komponensekhez társíthat hozzá kapcsolódó kódot (például szolgáltatást), hogy funkcionális egységet alkossanak.}
 
-\textit{Minden Angular applikáció rendelkezik egy gyökérmodullal, melynek megegyezés szerint AppModul a neve. Ez biztosítja a bootstrap mechanizmusokat, melyek indítját az  alkalmazást. Az applikáció általában számos funkcionális modult tartalmaz.}
+\textit{Minden Angular applikáció rendelkezik egy gyökérmodullal, melynek megegyezés szerint AppModul a neve. Ez biztosítja a bootstrap mechanizmusokat, melyek indítják az  alkalmazást. Az applikáció általában számos funkcionális modult tartalmaz.}
 
-\textit{Az NgModul - a JavaScript modulokhoz hasonlóan - képesek funkcionalitást beilleszteni még NgModulokból, valamint engedélyezni a saját funkcionalitásuk exportálását, melyet így más NgModulok is használatba vehetnek. Például, hogy valaki használhassa az átirányító szolgáltatást az alkalmazásában, be kell importálnia a Router NgModult.}
+\textit{Az NgModulok - a JavaScript modulokhoz hasonlóan - képesek funkcionalitást beimportálni más NgModulokból, valamint engedélyezni a saját funkcionalitásuk exportálását, melyet így más NgModulok is használatba vehetnek. Például, abban az esetben, ha valaki használni szeretné az átirányító szolgáltatást az alkalmazásában, be kell importálnia a Router nevű NgModult.}
 
-\textit{A kód különböző funkcionális modulokba való átszervezésével könnyebben kezelhetjük a komplex applikációk fejlesztését, akár a desing és az újrahasználhatóság szempontjából is. Továbbá, e technika az úgynevezett "lazy loading" ("lusta töltés") előnyét nyújtja. Ez lehetővé teszi, hogy igény szerint tölthettünk be modulokat, ezzel minimalizálva az indításnál betöltendő kód mennyiségét.}\\
+\textit{A kód különböző funkcionális modulokba való átszervezésével könnyebben kezelhetjük a komplex applikációk fejlesztését, akár a dizájn és az újrahasználhatóság szempontjából is. Továbbá, e technika az úgynevezett "lazy loading" ("lusta töltés") előnyét nyújtja. Ez lehetővé teszi, hogy igény szerint töltsünk be modulokat, ezzel minimalizálva az indításnál betöltendő kód mennyiségét.}\\
 
 \noindent\textit{\textbf{Komponensek}}\\
 
-\textit{Minden Angular alkalmazás rendelkezik legalább egy komponenssel (a gyökér komponenssel), mely kpcsolatba hozza a komponens hierarchiát az oldal dokumentum objektum modelljével (DOM). Minden komponens egy osztályt definiál, mely tartalmazza az applikáció adatait és logikáját, és kapcsolatban áll a HTML sablonnal, amely definiálja a célkörnyezetben megjelenítendő nézetet.}
+\textit{Minden Angular alkalmazás rendelkezik legalább egy komponenssel (a gyökér komponenssel), mely kapcsolatba hozza a komponens hierarchiát az oldal dokumentum objektum modelljével (Document Object Model, DOM). Minden komponens egy osztályt definiál, mely tartalmazza az applikáció adatait és logikáját, valamint kapcsolatban áll a HTML sablonnal, amely definiálja a célkörnyezetben megjelenítendő nézetet.}
 
-\textit{A @Component() dekorátor azonosítja az alatta lévő osztályt komponensként, és rendelkezésre bocsátja a sablont, és a hozzá kapcsolódó komponens-specifikus metaadatokat.}
+\textit{A @Component() dekorátor az alatta lévő osztályt komponensként definiálja, és rendelkezésre bocsátja a sablont, illetve a hozzá kapcsolódó komponens-specifikus metaadatokat.}
 
 \textit{A dekorátorok olyan funkciók, melyek JavaScript osztályokat módosítanak. Az Angular számos dekorátort definiál, melyek az osztályokhoz bizonyos metaadatokat rendelnek, így a rendszer tudja, mit jelentenek, illetve hogyan működnek az adott osztályok.}
 
@@ -117,19 +116,19 @@ Egy rövid (angol nyelvről fordított) szöveg mutatja be részleteiben a rends
 
 \textit{A sablonok HTML elemeket kombinálnak Angular jelölőkkel, melyek módosíthatják a HTML objektumokat a megjelenítésük előtt. A sablon direktívák programlogikát biztosítanak, az összeköttetésjelzők pedig összekapcsolják az alkalmazás-adatokat a DOM-mal. Kétféle adatösszeköttetést különböztetünk meg:}
 
-\textit{Az \textbf{eseményösszeköttetés} segítségével az applikáció képes "válaszolni" a felhasználói inputra a célkörnyezetben az alkalmazásadatok frissítésével.}
+\textit{Az \textbf{eseményösszeköttetés} segítségével az applikáció képes reagálni a felhasználói inputra a célkörnyezetben az alkalmazásadatok frissítésével.}
 
 \textit{A \textbf{tulajdonságösszeköttetés} lehetővé teszi, hogy számított értékeket illeszthessünk be az alkalmazásadatból a HTML elemekbe.}
 
-\textit{Mielőtt egy nézet megjelenítésre kerülne, az Angular kiérétkeli a direktívákat, illetve feloldja a sablonban található összeköttetési szintaxisokat, így módosítva a HTML elemeket és a DOM-ot a program adatai, valamint logikája alapján. Az Angular támogatja a kétirányú adatösszeköttetést. Ez azt jelentik, hogy a DOM-ban bekövetkezett változások, mint például a felhasználói választások a programadatban is bekövetkeznek.}
+\textit{Mielőtt egy nézet megjelenítésre kerülne, az Angular kiértékeli a direktívákat, illetve feloldja a sablonban található összeköttetési szintaxisokat, így módosítva a HTML elemeket és a DOM-ot a program adatai, valamint logikája alapján. Az Angular támogatja a kétirányú adatösszeköttetést. Ez azt jelenti, hogy a DOM-ban bekövetkezett változások (így például a felhasználói választások) a programadatban is bekövetkeznek.}
 
-\textit{A sablonok használhatnak úgynevezett "pipe"-okat, melyek javítják a felhasználói élményt azáltal, hogy átalakítják a megjelenő értékeket. Például, pipe-okat használunk akokr, ha a felhasználó elhelyezkedése alapján szeretnénk megjeleníteni dátumot vagy valutát. Az Angular biztosít előre definiált pipe-okat gyakori átalakításokra, továbbá a fejlesztő is írhat saját pipe-okat.}
+\textit{A sablonok használhatnak úgynevezett "pipe"-okat, melyek javítják a felhasználói élményt azáltal, hogy átalakítják a megjelenő értékeket. Például, pipe-okat használunk akkor, ha a felhasználó elhelyezkedése alapján szeretnénk megjeleníteni dátumot vagy valutát. Az Angular biztosít előre definiált pipe-okat gyakori átalakításokra, továbbá a fejlesztő is létrehozhat saját pipe-okat.}
 
 \textit{[..]}\\
 
 \noindent\textit{\textbf{Szolgáltatások és függőségbeillesztések}}\\
 
-\textit{Az olyan adathoz vagy logikához, mely nem kapcsolódik az adott nézethez, és szeretnénk megosztani más komponensekkel, szolgáltatásosztályokat hozunk létre. Ezek definícióját az @Injectable() dekorátor előzi meg. Ezen dekorátor biztosítja a metaadatokat, melyek lehetővé teszik, hogy más szolgáltatások beilleszthetőek legyenek függőségekként az osztályunkba.}
+\textit{Szolgáltatásosztályokat hozunk létre az olyan adathoz vagy logikához, melyek nem kapcsolódnak az adott nézethez, viszont szeretnénk megosztani más komponensekkel. Ezek definícióját az @Injectable() dekorátor előzi meg. Ezen dekorátor biztosítja a metaadatokat, melyek lehetővé teszik, hogy más szolgáltatások beilleszthetőek legyenek függőségként az osztályunkba.}
 
 \textit{A függőségbeillesztés (DI) segítségével a komponens osztályok megtarthatják tömör és hatékony mivoltukat. Ezek nem kérnek le adatot a szerverről, nem érvényesítenek felhasználói adatbevitelt, és nem naplóznak közvetlenül a konzolra; ezek csak elküldik az adott feladatokat a felelős szolgáltatásoknak.}
 
@@ -137,20 +136,26 @@ Egy rövid (angol nyelvről fordított) szöveg mutatja be részleteiben a rends
 
 \noindent\textit{\textbf{Átirányítás}}\\
 
-\textit{Az Angular átirányító NgModul olyan szolgáltatást biztosít, mely lehetővé teszi az aklalmazáson belüli különböző applikáció állapotok, valamint nézet hierarchiák közötti navigációs útvonal definiálását. Ez a modell a böngésző-navigációs konvenciók által lehet ismerős:}
+\textit{Az Angularban a Router (átírányító) NgModul olyan szolgáltatást biztosít, mely lehetővé teszi az alkalmazáson belüli különböző applikáció állapotok, valamint nézet hierarchiák közötti navigációs útvonal definiálását. Ez a modell a böngésző-navigációs konvenciók által lehet ismerős:}
 \textit{
 \begin{itemize}
 \item{Ha a felhasználó beír egy URL-t a címsorba, a böngésző a kapcsolódó oldalra navigál.}
 \item{Az oldalon található linkre kattintva a böngésző egy új oldalra navigál.}
 \item{A böngésző "Vissza", valamint "Tovább" gombjaira kattintva a böngésző előzménye alapján az előző, illetve a következő (már meglátogatott) oldalra navigál.}
 \end{itemize}
-Az átirányítás feltérképezi az URL-szerű útvonalakat. Viszont ezeket nem oldalak, hanem nézetek formájában teszi. Amikor egy felhasználó végrehajt valamit az oldalon (például rákattint egy linkre, mely a böngészőben egy új oldalt töltene be), az átirányító megszakítja a böngésző folyamatát, és megjeleníti, vagy eltűnteti a nézetek hierarchiáját.}
+Az átirányítás feltérképezi az URL-szerű útvonalakat. Viszont ezeket nem oldalak, hanem nézetek formájában tárolja el. Amikor egy felhasználó végrehajt valamit az oldalon (például rákattint egy linkre, mely a böngészőben egy új oldalt töltene be), az átirányító megszakítja a böngésző folyamatát, és megjeleníti, vagy eltünteti a nézetek hierarchiáját.}
 
-\textit{Ha az átirányító meghatározza, hogy a jelenlegi applikáció állapot egy bizonyos funkcionalitást igényel, és a modul, mely ezt definiálja, még nem töltődött be, úgy az átirányító igény szerint "lusta töltést" alkalmazhat a modulon.}
+\textit{A Router képes meghatározni azt, hogy a jelenlegi applikáció állapot egy bizonyos funkcionalitást igényel. Abban az esetben viszont, ha a modul, mely az elvárt funkcionalitást definiálja, még nem töltődött be, úgy a Router igény szerint "lusta töltést" alkalmazhat a modulon.}
 
-\textit{Az átirányító értelmezi a link URL címét az applikáció nézeteinek navigációs szabálykészlete, valamint adatállapota alapján. Navigálhatunk új nézetekre amikor a felhasználó egy gombra kattint, vagy kiválaszt egy opciót a legördülő listából, illetve, ha bármi más forrásból "ingert" kapunk. Az átirányító naplózza a tevékenységeket a böngésző előzményeiben, így a "Vissza", valamint a "Tovább" gombok is rendeltetésszerűen működnek.}
+\textit{A Router mindezen felül képes értelmezni a link URL címét az applikáció nézeteinek navigációs szabálykészlete, valamint adatállapota alapján. Ennek az NgModulnak segítségével új nézetre navigálhatunk:
+\begin{itemize}
+\item{ha a felhasználó rákattint egy gombra,}
+\item{ha a felhasználó kiválaszt egy opciót egy legördülő menüből, illetve}
+\item{ha bármi más forrásból "ingert" kap az alkalmazás.}
+\end{itemize}
+A Router továbbá naplózza a tevékenységeket a böngésző előzményeiben, így a "Vissza", valamint a "Tovább" gombok is rendeltetésszerűen működnek.}
 
-\textit{Ahhoz, hogy navigációs szabályokat létrehozhassunk, a navigációs útvonalakat a komponensekkel kell társítani. Egy útvonal URL-szerű szintaxist használ, mely egyesíti a programadatot, pontosan úgy, ahogyan a sablonszintaxis egyesíti a nézeteket a programadattal. Ezután alkalmazhatjuk a programlogikát, hogy kiválasszuk, melyik nézetet jelenítsük meg, vagy rejtsük el, válaszként a felhasználói inputra, a saját hozzáférési szabályaink alapján.}
+\textit{Ahhoz, hogy navigációs szabályokat létrehozhassunk, a navigációs útvonalakat társítani kell a komponensekkel. Egy útvonal URL-szerű szintaxist használ, mely egyesíti a programadatot, pontosan úgy, ahogyan a sablonszintaxis egyesíti a nézeteket a programadattal. Ezután alkalmazhatjuk a programlogikát, hogy kiválasszuk a felhasználói input, valamint a saját hozzáférési szabályaink alapján a megjelenítendő nézetet.}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 3 . 1 . 3 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -251,7 +256,7 @@ Adatbázisrendszereken belül két nagy csoportot tudunk megkülönböztetni:
 \end{itemize}
 Az SQL-alapú rendszerek táblázatok formájában tárolják az adatot, melyekben mezők, valamint rekordok találhatóak. Például, egy iskolai adatbázisban a tanulók nyilvántartása egy táblában történik, melyben változatos mezőket vesznek fel (tanuló neve, születési ideje stb.). Egy tanuló adatait tartalmazó sort rekordnak nevezünk. Fontos még megemlíteni, hogy elsődleges kulcsot erősen ajánlott használni az ilyen, és hasonló jellegű adatbázisokban. Elsődleges kulcsnak nevezzük azt a mezőt, mely a tábla rekordjait egyértelműen meghatározza. Ebben az esetben az előző példában elsődleges kulcs szerepét veheti fel a tanulók diákigazolvány száma.
 
-Ezzel szemben a NoSQL (a nevéből is adódóan) nem SQL-alapú, vagyis nem táblákban tárolják az adatokat. Legtöbbször dokumentumok formájában tárolnak adatot. Ezen belül is léteznek különböző megoldások a rendszerezés tekintetében, így például kollekciók, címkék, vagy akár metainformációk alapján is rendezhetjük az adatbázisunkat. Általánosságban elmondható, hogy JSON-szerű formátumban tárolnak. Ebből adódik, hogy a lekérdezések változatossága leszűkül, cserébe viszont nagyobb teljesítményre, valamint skálázhatóságra lesz képes.
+Ezzel szemben a NoSQL (a nevéből is adódóan) nem SQL-alapú, vagyis nem táblákban tárolják az adatokat. Legtöbbször dokumentumok formájában történik az adattárolás, emellett viszont gráfokban, vagy akár objektumokban is tárolhatunk adatot. Ezen belül is léteznek különböző megoldások a rendszerezés tekintetében, így például kollekciók, címkék, vagy akár metainformációk alapján is rendezhetjük az adatbázisunkat. A dokumentumban tároló adatbázisokról általánosságban elmondható, hogy JSON-szerű formátumban tárolnak, de az XML-ben, vagy a BSON-ban történő adattárolás sem ritka. Ebből adódik, hogy a lekérdezések változatossága leszűkül, cserébe viszont nagyobb teljesítményre, valamint skálázhatóságra lesz képes.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 3 . 2 . 1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -259,7 +264,7 @@ Ezzel szemben a NoSQL (a nevéből is adódóan) nem SQL-alapú, vagyis nem táb
 
 A MySQL egy (a nevéből is adódóan) SQL-alapú relációs adatbázis-kezelő szerver (RDBMS, Adatbáziskezelés I. tárgyból foglalkoztunk ezzel).
 Ez az egyik legelterjedtebb adatbázis-kezelő, mivel ingyenesen elérhető bárki számára szabad szoftverlicenszen keresztül, valamint számos platformon és programozási nyelvvel kompatibilis a használata.
-Elsődlegesen parancssoros kezelői interfészen (CLI-n) keresztül használható, viszont létezik hozzá grafikus felhasználói felület (GUI), melyet elérhetünk a MySQL hivatalos weboldaláról.
+Elsődlegesen CLI-n (Command Line Interface-en, parancssoros kezelői felületen) keresztül használható, viszont létezik hozzá GUI (Graphical User Interface, grafikus felhasználói felület), melyet elérhetünk a MySQL hivatalos weboldaláról.
 
 Alább olvasható egy rövid leírás a MySQL általános jellemzőiről \cite{mysqlcikk}:\\
 
@@ -334,18 +339,6 @@ A MongoDB kitűnik az előbbi két adatbázis-kezelő közül azzal, hogy az ún
 A Microsoft SQL Server-hez hasonlóan itt is különböző kiadások érhetőek el a potenciális felhasználók számára, attól függően, hogy milyen, valamint mekkora méretű projektet terveznek megvalósítani.
 
 Alább található egy rövid bemutató a rendszerről \cite{mongodbcikk}:\\
-
-\noindent\textit{\textbf{\large{NoSQL adatbázisok}}}\\
-
-\textit{A NoSQL adatbázisok a relációs sémától eltérően működő adatbázisok összefoglaló neve. A név valamennyire megtévesztő, mert a fogalomnak kevés köze van az SQL nyelvhez - ehelyett a releváns különbség az adatreprezentációban és a sémában van. De mégis miért van szükségünk új fajta adatbázisokra, amikor a relációs adatbázisok régóta jól használhatóak? Egy kis méretű adatbázis egyszerű sémával könnyen leírható relációs modellben, még kényelmes is. De az alkalmazásaink fejlődnek, egyre több funkciót kell ellátniuk, ezzel együtt komplexebbé válik a séma is, illetve egyre több adatot kell eltárolni és nő az adatbázis. Ez egy bizonyos határ felett komplikálttá válik.}
-
-\textit{A relációs adatbázisok hátránya, hogy a folyamatos változások, séma változtatást igényelnek. Ahhoz, hogy ezt karban tudjuk tartani folyamatosan migrálni kell az adatokat és ez nem egyszerű feladat. Továbbá teljesítmény problémákkal, azaz inkább konzisztencia- és skálázási problémákkal járhat, ha relációs adatbázist használunk - ezzel azonban nem foglalkozunk mélyebben.}
-
-\textit{Ezekre a problémákra a NoSQL adatbázisok nyújtanak megoldást. Ebben a világban elhagyjuk a szigorú sémákat, helyette egy flexibilis sémát fogunk alkalmazni. Azaz nem lesznek erős elvárásaink az adatbázisban tárolt adatokkal szemben.}\\
-
-\noindent\textit{\textbf{A MongoDB alap koncepciói}}\\
-
-\textit{A MongoDB egy kliens-szerver architektúrájú nem-relációs adatbázis. A kép jobb oldalán látható a mongod, azaz Mongo démon, vagyis az a processz, ami az adatbázis elérését biztosítja. A másik oldal a mi alkalmazásunk, ahonnan a kliens kapcsolódik a szerverhez egy hálózati kapcsolaton keresztül. Ez a hálózati kapcsolat az ún. wire protocol-on keresztül történik, ez a MongoDB saját protokollja. Ebben a protokollban JSON formájú adat kommunikáció zajlik binárisan (azaz BSON).}\\
 
 \noindent\textit{\textbf{\large{A MongoDB architechtúrája}}}\\
 
